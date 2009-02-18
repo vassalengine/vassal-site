@@ -22,6 +22,20 @@ class AuthDB {
     mysql_close($this->dbh);
   }
 
+  public function user_for_cookie($key) {
+    $query = sprintf(
+      "SELECT username FROM cookies WHERE id='%s'",
+      mysql_real_escape_string($key)
+    );
+
+    $row = $this->read($query);
+    if (!$row) {
+      throw new ErrorException('No such key in cookie database.');
+    }
+
+    return $row['username'];
+  }
+
   public function read($query) {
     $r = mysql_query($query, $this->dbh);
     if (!$r) {

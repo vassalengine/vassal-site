@@ -16,18 +16,7 @@ try {
 
   # check cookie
   $auth = new AuthDB();
-
-  $query = sprintf(
-    "SELECT username FROM cookies WHERE id='%s'",
-    mysql_real_escape_string($key)
-  );
-
-  $row = $auth->read($query);
-  if (!$row) {
-    throw new ErrorException('No result.');
-  }
-  
-  extract($row);
+  $username = $auth->user_for_cookie($key);
 
   # check whether this was a modification attempt
   if (empty($_POST)) {
