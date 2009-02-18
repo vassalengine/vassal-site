@@ -40,6 +40,11 @@ a img {
   padding: 0;
 }
 
+#vassal-login {
+  float: right;
+  margin: 5px 5px 0 0;
+}
+
 #vassal-nav-list {
   margin: 0;
   padding: 0;
