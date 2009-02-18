@@ -1,8 +1,8 @@
 <?php
 
-require_once('AuthDB.php');
-require_once('UserDB.php');
-require_once('ssolib.php');
+require_once('sso/AuthDB.php');
+require_once('sso/UserDB.php');
+require_once('sso/ssolib.php');
 
 $tilte = 'Confirm email';
 
