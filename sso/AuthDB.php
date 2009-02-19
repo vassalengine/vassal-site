@@ -36,6 +36,15 @@ class AuthDB {
     return $row['username'];
   }
 
+  public function expire_cookie($key) {
+    $query = sprintf(
+      "DELETE FROM cookies WHERE id='%s'",
+      mysql_real_escape_string($key)
+    );
+
+    $this->write($query);
+  }
+
   public function read($query) {
     $r = mysql_query($query, $this->dbh);
     if (!$r) {

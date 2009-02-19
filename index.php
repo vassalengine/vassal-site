@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?php echo '<?xml version="1.0" encoding="UTF-8"?>' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head profile="http://www.w3.org/2005/10/profile">
@@ -18,7 +18,24 @@
     </div>
 
     <div id="vassal-login">
-      <a href="login.php">Log in</a>
+<?php
+  $key = $_COOKIE['VASSAL_login'];
+  if (!empty($key)) { 
+    require_once('sso/AuthDB.php');
+  
+    try {
+      $auth = new AuthDB();
+      $username = $auth->user_for_cookie($key);
+      print '<a href="logout.php">Log out</a>';
+    }
+    catch (ErrorException $e) {
+      print '<a href="login.php">Log in</a>';
+    }
+  }
+  else {
+    print '<a href="login.php">Log in</a>';
+  }
+?>
     </div>
   </div>
 
@@ -49,7 +66,7 @@
         </table>
   
         <h1>What Games Are There?</h1>
-        <p>Hundreds of boardgames have been converted for use with VASSAL, so there's a good chance that you'll find the games you own in our <a href="">module library</a> already. If there is not yet a VASSAL module for your favorite game, you can use the VASSAL Editor to build your own module, and should you run into trouble, help is only a click away in our <a href="">forum</a>.</p>
+        <p>Hundreds of boardgames have been converted for use with VASSAL, so there's a good chance that you'll find the games you own in our <a href="">module library</a> already. If there is not yet a VASSAL module for your favorite game, you can use the VASSAL Editor to build your own module, and should you run into trouble, help is only a click away in our <a href="forum/">forum</a>.</p>
 
         <table class="screenshot">
           <tr>
@@ -87,7 +104,7 @@
 
       <div id="vassal-contribute">
         <h1>Get Involved</h1>
-        <p>The VASSAL project is run by volunteers and makes progress by the efforts of volunteers. Is there a feature you'd like to see in the next release? Did you find a bug? Request that feature or report the bug <a href="">here</a>. Are you a programmer? We could use your help. Join us in the <a href="">developers' forum</a>. Not a programmer? Help us improve our <a href="">documentation</a>.</p>
+        <p>The VASSAL project is run by volunteers and makes progress by the efforts of volunteers. Is there a feature you'd like to see in the next release? Did you find a bug? Request that feature or report the bug <a href="bugzilla/">here</a>. Are you a programmer? We could use your help. Join us in the <a href="">developers' forum</a>. Not a programmer? Help us improve our <a href="">documentation</a>.</p>
       </div>
     </div>
   </div>
