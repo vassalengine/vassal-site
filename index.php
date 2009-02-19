@@ -26,14 +26,14 @@
     try {
       $auth = new AuthDB();
       $username = $auth->user_for_cookie($key);
-      print '<a href="logout.php">Log out</a>';
+      print '<a href="logout.php?returnto=/index.php">Log out</a>';
     }
     catch (ErrorException $e) {
-      print '<a href="login.php">Log in</a>';
+      print '<a href="login.php?returnto=/index.php">Log in</a>';
     }
   }
   else {
-    print '<a href="login.php">Log in</a>';
+    print '<a href="login.php?returnto=/index.php">Log in</a>';
   }
 ?>
     </div>

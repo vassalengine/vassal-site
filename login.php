@@ -5,10 +5,12 @@ require_once('sso/ssolib.php');
 
 $title = 'VASSAL Login';
 
+$returnto = $_GET['returnto'];
+
 # check whether this was a login attempt
 if (empty($_POST)) {
   print_top($title);
-  print_form();
+  print_form($returnto);
   print_bottom();
   exit;
 }
@@ -168,21 +170,16 @@ try {
     false,
     true
   );
-    
-  #header('Location: http://www.test.nomic.net/wiki/index.php/Main_Page');
-  #header('Location: http://www.test.nomic.net/forum');
 
-  print_top($title);
-  print '<a href="http://www.test.nomic.net/wiki">wiki</a><br/>';
-  print '<a href="http://www.test.nomic.net/forum">forum</a><br/>';
-  print '<a href="http://www.test.nomic.net/bugzilla">bugs</a><br/>';
-  print_bottom();
+  # go back where we came from
+  if (!empty($returnto)) $returnto = '/index.php';
+  header("Location: $returnto");
   exit;
 }
 catch (ErrorException $e) {
   print_top($title);
   warn($e->getMessage());
-  print_form();
+  print_form($returnto);
   print_bottom();
   exit;
 }
@@ -214,9 +211,12 @@ function parse_cookie_header($header) {
   }
 }
 
-function print_form() {
+function print_form($returnto) {
+  $action = 'login.php';
+  if (!empty($returnto)) $action .= "?returnto=$returnto";
+
   print <<<END
-<form class="loginform" action="login.php" method="post">
+<form class="loginform" action="$action" method="post">
   <fieldset>
     <legend>Login</legend>
     <p>Don't have an account? <a href="register.php">Create an account</a>.</p>
