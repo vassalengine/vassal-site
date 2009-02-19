@@ -132,7 +132,7 @@ function print_form() {
   print <<<END
 <form class="modify_form" action="modify.php" method="post">
   <fieldset>
-    <legend>Modify Settings</legend>
+    <legend>Modify Account</legend>
     <table>
       <tr>
         <th><label for="password">Password:</label></th>

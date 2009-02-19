@@ -216,7 +216,7 @@ function print_form($returnto) {
   if (!empty($returnto)) $action .= "?returnto=$returnto";
 
   print <<<END
-<form class="loginform" action="$action" method="post">
+<form class="login_form" action="$action" method="post">
   <fieldset>
     <legend>Login</legend>
     <p>Don't have an account? <a href="register.php">Create an account</a>.</p>

@@ -45,14 +45,40 @@ a img {
   margin: 5px 5px 0 0;
 }
 
-.loginform fieldset {
+.login_form fieldset {
   margin: 10px auto;
   max-width: 20em;
 }
 
-.loginform legend {
+.login_form legend {
   font-weight: bold;
   font-size: 110%; 
+}
+
+.login_form th {
+  text-align: right;
+}
+
+.login_form label {
+  font-weight: normal;
+}
+
+.modify_form fieldset {
+  margin: 10px auto;
+  max-width: 30em;
+}
+
+.modify_form legend {
+  font-weight: bold;
+  font-size: 110%;
+}
+
+.modify_form th {
+  text-align: right;
+}
+
+.modify_form label {
+  font-weight: normal;
 }
 
 .errorbox {
