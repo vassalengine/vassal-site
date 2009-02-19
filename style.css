@@ -45,6 +45,31 @@ a img {
   margin: 5px 5px 0 0;
 }
 
+.loginform fieldset {
+  margin: 10px auto;
+  max-width: 20em;
+}
+
+.loginform legend {
+  font-weight: bold;
+  font-size: 110%; 
+}
+
+.errorbox {
+  margin: 10px auto;
+  border: 2px red solid;
+  padding: 0.5em 1em;
+  background-color: #fff2f2;
+}
+
+.errorbox h2 {
+  font-size: 1em;
+  font-weight: bold;
+  display: inline;
+  margin: 0 .5em 0 0;
+  border: none;
+}
+
 #vassal-nav-list {
   margin: 0;
   padding: 0;

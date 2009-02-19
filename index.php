@@ -11,7 +11,7 @@
 <div id="vassal-page">
   <div id="vassal-header">
     <div id="vassal-logo">
-      <a href="index.html"><img src="images/header.png"/></a>
+      <a href="/index.php"><img src="images/header.png"/></a>
     </div>
 
     <div id="vassal-search">

@@ -157,7 +157,7 @@ try {
   $expires = time() + (60 * 60 * 24 * 30);
 
   $auth = new AuthDB();
-  $auth->create_cookie($key, $username, $expires);
+  $auth->create_cookie($username, $key, $expires);
 
   setrawcookie(
     'VASSAL_login',
