@@ -36,6 +36,18 @@ class AuthDB {
     return $row['username'];
   }
 
+  public function create_cookie($username, $key, $expires) {
+    $query = sprintf(
+      "INSERT INTO cookies (id, username, expires)
+       VALUES('%s', '%s', FROM_UNIXTIME(%s))",
+      mysql_real_escape_string($key),
+      mysql_real_escape_string($username),
+      mysql_real_escape_string($expires)
+    );
+
+    $this->write($query);
+  }
+
   public function expire_cookie($key) {
     $query = sprintf(
       "DELETE FROM cookies WHERE id='%s'",

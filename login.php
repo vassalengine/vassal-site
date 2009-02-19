@@ -157,16 +157,7 @@ try {
   $expires = time() + (60 * 60 * 24 * 30);
 
   $auth = new AuthDB();
-
-  $query = sprintf(
-    "INSERT INTO cookies (id, username, expires)
-     VALUES('%s', '%s', FROM_UNIXTIME(%s))",
-    mysql_real_escape_string($key),
-    mysql_real_escape_string($username),
-    mysql_real_escape_string($expires)
-  );
-
-  $auth->write($query);
+  $auth->create_cookie($key, $username, $expires);
 
   setrawcookie(
     'VASSAL_login',
