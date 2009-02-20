@@ -34,7 +34,7 @@ function print_top($title) {
       <li><a href="">FAQ</a></li>
       <li><a href="">Documentation</a></li>
       <li><a href="forum/">Forum</a></li>
-      <li><a href="">News</a></li>
+      <li><a href="news.php">News</a></li>
       <li><a href="">Help</a></li>
     </ul>
   </div>

@@ -46,7 +46,7 @@
   	  <li><a href="">FAQ</a></li>
 	    <li><a href="">Documentation</a></li>
 	    <li><a href="forum/">Forum</a></li>
-  	  <li><a href="">News</a></li>
+  	  <li><a href="news.php">News</a></li>
   	  <li><a href="">Help</a></li>
     </ul>
   </div>
@@ -110,7 +110,7 @@
   </div>
 
   <div class="content_box_full" id="vassal-news">
-    <h1>Latest News <a href=""><img src="images/feed-icon-14x14.png"/></a></h1>
+    <h1>Latest News <a href="news.php"><img src="images/feed-icon-14x14.png"/></a></h1>
     <ul class="news">
       <li class="day">
         <div class="date">Feb<br/>1</div>
