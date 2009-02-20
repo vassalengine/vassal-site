@@ -95,9 +95,6 @@ try {
   $phpEx = 'php';
   include($phpbb_root_path . 'common.' . $phpEx);
 
-  $auth = new auth();
-  $user = new user();
-
   $user->session_begin();
   $auth->acl($user->data);
   $user->setup();
@@ -172,7 +169,7 @@ try {
   );
 
   # go back where we came from
-  if (!empty($returnto)) $returnto = '/index.php';
+  if (empty($returnto)) $returnto = '/index.php';
   header("Location: $returnto");
   exit;
 }
