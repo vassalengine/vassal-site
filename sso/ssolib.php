@@ -6,6 +6,10 @@ function rand_base64_key() {
   return strtr($key, '+/=', '-_');
 }
 
+function getval($hash, $key) {
+  return array_key_exists($key, $hash) ? $hash[$key]: '';
+}
+
 #
 # Create a list of cookies for use in a 'Cookie:' header.
 #
