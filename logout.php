@@ -4,7 +4,7 @@ require_once('sso/ssolib.php');
 
 $title = 'Log out';
 
-$returnto = $_GET['returnto'];
+$returnto = array_key_exists('returnto', $_GET) ? $_GET['returnto'] : '';
 
 # expire the cookie if we have one
 $key = $_COOKIE['VASSAL_login'];
