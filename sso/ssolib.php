@@ -11,6 +11,185 @@ function getval($hash, $key) {
 }
 
 #
+# Login to MediaWiki.
+#
+function mediawiki_login($url, $username, $password) {
+  $params = array(
+    'format'     => 'php',
+    'action'     => 'login',
+    'lgname'     => $username,
+    'lgpassword' => $password,
+    'lgdomain'   => 'test'
+  );
+
+  $request = http_build_query($params);
+
+  $opts = array(
+    'http' => array(
+      'method' => 'POST',
+      'header' => "Content-type: application/x-www-form-urlencoded\r\n" .
+                  'Content-Length: ' . strlen($request) . "\r\n",
+      'content' => $request
+    )
+  );
+
+  $ctx = stream_context_create($opts);
+  $content = file_get_contents($url, 0 , $ctx);
+
+  $reply = unserialize($content);
+  $reply = $reply['login'];
+
+  if ($reply['result'] != 'Success') {
+    if ($reply['result'] == 'Illegal') {
+      throw new ErrorException('MediaWiki login failed: Invalid username.');
+    }
+    else if ($reply['result'] == 'NotExists') {
+      throw new ErrorException('MediaWiki login failed: Invalid username.');
+    }
+    else if ($reply['result'] == 'WrongPass') {
+      throw new ErrorException('MediaWiki login falied: Invalid password.');
+    }
+    else if ($reply['result'] == 'WrongPluginPass') {
+      throw new ErrorException('MediaWiki login failed: Invalid password.');
+    }
+    else {
+      throw new ErrorException('MediaWiki login failed: ' . $reply['result']);
+    }
+  }
+
+  return extract_cookies($http_response_header);
+}
+
+#
+# Logout of MediaWiki
+#
+function mediawiki_logout($url) {
+  $params = array(
+    'format'     => 'php',
+    'action'     => 'logout',
+  );
+
+  $request = http_build_query($params);
+
+  $opts = array(
+    'http' => array(
+      'method' => 'POST',
+      'header' => "Content-type: application/x-www-form-urlencoded\r\n" .
+                  'Content-Length: ' . strlen($request) . "\r\n" .
+                  'Cookie: ' . cookies_list($_COOKIE) . "\r\n",
+      'content' => $request
+    )
+  );
+
+  $ctx = stream_context_create($opts);
+  $content = file_get_contents($url, 0 , $ctx);
+
+  return extract_cookies($http_response_header);
+}
+
+#
+# Login to phpBB.
+#
+function phpbb_login($url, $username, $password) {
+  $params = array(
+    'username' => $username,
+    'password' => $password,
+  );
+
+  $request = http_build_query($params);
+
+  $opts = array(
+    'http' => array(
+      'method' => 'POST',
+      'header' => "Content-type: application/x-www-form-urlencoded\r\n" .
+                  'Content-Length: ' . strlen($request) . "\r\n",
+      'content' => $request
+    )
+  );
+
+  $ctx = stream_context_create($opts);
+  $content = file_get_contents($url, 0 , $ctx);
+
+  if ($content != '1') {
+    throw new ErrorException('phpBB login failed.');
+  }
+
+  return extract_cookies($http_response_header);
+}
+
+#
+# Logout of phpBB.
+#
+function phpBB_logout($url) {
+  $opts = array(
+    'http' => array(
+      'method' => 'GET',
+      'header' => 'Cookie: ' . cookies_list($_COOKIE) . "\r\n"
+    )
+  );
+
+  $ctx = stream_context_create($opts);
+  $content = file_get_contents($url, 0 , $ctx);
+
+  return extract_cookies($http_response_header);
+}
+
+#
+# Login to Bugzilla.
+#
+function bugzilla_login($url, $username, $password) {
+  $params = array(
+    'login'    => $username,
+    'password' => $password
+    #  'remember' => true
+  );
+
+  $request = xmlrpc_encode_request('User.login', $params);
+
+  $opts = array(
+    'http' => array(
+      'method' => 'POST',
+      'header' => "Content-type: text/xml\r\n" .
+                  'Content-Length: ' . strlen($request) . "\r\n",
+      'content' => $request
+    )
+  );
+
+  $ctx = stream_context_create($opts);
+  $content = file_get_contents($url, 0 , $ctx);
+
+  $reply = xmlrpc_decode($content);
+  if (xmlrpc_is_fault($reply)) {
+    throw new ErrorException(
+      $reply['faultString'] . ' (' . $reply['faultCode'] . ')');
+  }
+
+  return extract_cookies($http_response_header);
+}
+
+#
+# Logout of Bugzilla.
+#
+function bugzilla_logout($url) {
+  $request = xmlrpc_encode_request('User.logout', null);
+
+  $opts = array(
+    'http' => array(
+      'method' => 'POST',
+      'header' => "Content-type: text/xml\r\n" .
+                  'Content-Length: ' . strlen($request) . "\r\n" .
+                  'Cookie: ' . cookies_list($_COOKIE) . "\r\n",
+      'content' => $request
+    )
+  );
+
+  $ctx = stream_context_create($opts);
+  $content = file_get_contents($url, 0 , $ctx);
+
+  return extract_cookies($http_response_header);
+}
+
+#
 # Create a list of cookies for use in a 'Cookie:' header.
 #
 function cookies_list($cookies) {
