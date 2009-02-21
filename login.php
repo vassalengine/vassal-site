@@ -34,120 +34,22 @@ try {
   $user = new UserDB();
   $user->auth($username, $password);
 
+  $cookies = array();
+
   # MediaWiki login
   $url = 'http://www.test.nomic.net/wiki/api.php';
-  $data = array(
-    'format'     => 'php',
-    'action'     => 'login',
-    'lgname'     => $username,
-    'lgpassword' => $password,
-    'lgdomain'   => 'test'
-  );
+  $cookies += mediawiki_login($url, $username, $password);
 
-  $cookies = array();
-
-  $ch = curl_init($url);
-  curl_setopt($ch, CURLOPT_HEADER, false);
-  curl_setopt($ch, CURLOPT_HEADERFUNCTION, 'read_header');
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-  curl_setopt($ch, CURLOPT_POST, true);
-  curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-  $result = curl_exec($ch);
-  curl_close($ch);
-
-  $result = unserialize($result);
-  $result = $result['login'];
-
-  if ($result['result'] != 'Success') {
-    if ($result['result'] == 'Illegal') {
-      throw new ErrorException('MediaWiki login failed: Invalid username.');
-    }
-    else if ($result['result'] == 'NotExists') {
-      throw new ErrorException('MediaWiki login failed: Invalid username.');
-    }
-    else if ($result['result'] == 'WrongPass') {
-      throw new ErrorException('MediaWiki login falied: Invalid password.');
-    }
-    else if ($result['result'] == 'WrongPluginPass') {
-      throw new ErrorException('MediaWiki login failed: Invalid password.');
-    }
-    else {
-      throw new ErrorException('MediaWiki login failed: ' . $result['result']);
-    }
-  }
-
-  # set MediaWiki cookies
-  foreach ($cookies as $name => $attr) {
-    setrawcookie(
-      $name,
-      $attr['value'],
-      array_key_exists('expires', $attr) ? strtotime($attr['expires']) : 0,
-      $attr['path'],
-      'www.test.nomic.net',
-      false,
-      array_key_exists('httponly', $attr)
-    );
-  }
-
-  # phpBB login 
-  define('IN_PHPBB', true);
-  $phpbb_root_path = '../forum/';
-  $phpEx = 'php';
-  include($phpbb_root_path . 'common.' . $phpEx);
-
-  $user->session_begin();
-  $auth->acl($user->data);
-  $user->setup();
-
-  $autologin = true;
-  $viewonline = true;
-
-  if (!$user->data['is_registered']) {
-    $result = $auth->login($username, $password, $autologin, $viewonline);
-
-    if ($result['status'] != LOGIN_SUCCESS) {
-      throw new ErrorException('phpBB login failed.');
-    }
-  }
+  # phpBB login
+  $url = 'http://www.test.nomic.net/phpbb_login.php';
+  $cookies += phpbb_login($url, $username, $password);
 
   # Bugzilla login
-  $cookies = array();
-
-  $params = array(
-    'login'    => $username,
-    'password' => $password
-  #  'remember' => true
-  );
-
-  $request = xmlrpc_encode_request('User.login', $params);
-  $header = array(
-    'Content-type: text/xml',
-    'Content-length: ' . strlen($request)
-  );
-
   $url = 'http://www.test.nomic.net/bugzilla/xmlrpc.cgi';
+  $cookies += bugzilla_login($url, $username, $password);
 
-  $ch = curl_init();
-  curl_setopt($ch, CURLOPT_URL, $url);
-  curl_setopt($ch, CURLOPT_HEADERFUNCTION, 'read_header');
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-  curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-  curl_setopt($ch, CURLOPT_POST, true);
-  curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
-  $data = curl_exec($ch);
-  curl_close($ch);
-
-  foreach ($cookies as $name => $attr) {
-    setrawcookie(
-      $name,
-      $attr['value'],
-      array_key_exists('expires', $attr) ? strtotime($attr['expires']) : 0,
-      $attr['path'],
-      'www.test.nomic.net',
-      false,
-      array_key_exists('httponly', $attr)
-    );
-  }
+  # write out the cookies captured from the logins 
+  put_cookies($cookies);
 
   # FIXME: loop in case we have a cookie collision
 
@@ -181,32 +83,165 @@ catch (ErrorException $e) {
   exit;
 }
 
-function read_header($ch, $string) {
-  $length = strlen($string);
+#
+# Login to MediaWiki.
+#
+function mediawiki_login($url, $username, $password) {
+  $params = array(
+    'format'     => 'php',
+    'action'     => 'login',
+    'lgname'     => $username,
+    'lgpassword' => $password,
+    'lgdomain'   => 'test'
+  );
+ 
+  $request = http_build_query($params);
 
-  if (!strncmp($string, "Set-Cookie:", 11)) {
-    parse_cookie_header($string);
+  $opts = array(
+    'http' => array(
+      'method' => 'POST',
+      'header' => "Content-type: application/x-www-form-urlencoded\r\n" .
+                  'Content-Length: ' . strlen($request) . "\r\n",
+      'content' => $request
+    )
+  );
+
+  $ctx = stream_context_create($opts);
+  $content = file_get_contents($url, 0 , $ctx);
+
+  $reply = unserialize($content);
+  $reply = $reply['login'];
+
+  if ($reply['result'] != 'Success') {
+    if ($reply['result'] == 'Illegal') {
+      throw new ErrorException('MediaWiki login failed: Invalid username.');
+    }
+    else if ($reply['result'] == 'NotExists') {
+      throw new ErrorException('MediaWiki login failed: Invalid username.');
+    }
+    else if ($reply['result'] == 'WrongPass') {
+      throw new ErrorException('MediaWiki login falied: Invalid password.');
+    }
+    else if ($reply['result'] == 'WrongPluginPass') {
+      throw new ErrorException('MediaWiki login failed: Invalid password.');
+    }
+    else {
+      throw new ErrorException('MediaWiki login failed: ' . $reply['result']);
+    }
   }
 
-  return $length;
+  return get_cookies($http_response_header);
 }
 
-function parse_cookie_header($header) {
-  global $cookies;
+#
+# Login to phpBB.
+#
+function phpbb_login($url, $username, $password) {
+  $params = array(
+    'username' => $username,
+    'password' => $password,
+  );
+ 
+  $request = http_build_query($params);
 
-  $cookiestr = trim(substr($header, 11, -1));
-  $crumbs = explode(';', $cookiestr);
-    
-  $tmp = explode('=', array_shift($crumbs));
-  $name = trim($tmp[0]);
-  $cookies[$name]['value'] = trim($tmp[1]);
-  
-  foreach ($crumbs as $crumb) {
-    $tmp = explode('=', $crumb);
-    $cookies[$name][strtolower(trim($tmp[0]))] =
-      sizeof($tmp) > 1 ? trim($tmp[1]) : null;
+  $opts = array(
+    'http' => array(
+      'method' => 'POST',
+      'header' => "Content-type: application/x-www-form-urlencoded\r\n" .
+                  'Content-Length: ' . strlen($request) . "\r\n",
+      'content' => $request
+    )
+  );
+
+  $ctx = stream_context_create($opts);
+  $content = file_get_contents($url, 0 , $ctx);
+
+  if ($content != '1') {
+    throw new ErrorException('phpBB login failed.');
+  }
+
+  return get_cookies($http_response_header);
+}
+
+#
+# Login to Bugzilla.
+#
+function bugzilla_login($url, $username, $password) {
+  $params = array(
+    'login'    => $username,
+    'password' => $password
+    #  'remember' => true
+  );
+
+  $request = xmlrpc_encode_request('User.login', $params);
+
+  $opts = array(
+    'http' => array(
+      'method' => 'POST',
+      'header' => "Content-type: text/xml\r\n" .
+                  'Content-Length: ' . strlen($request) . "\r\n",
+      'content' => $request
+    )
+  );
+
+  $ctx = stream_context_create($opts);
+  $content = file_get_contents($url, 0 , $ctx);
+
+  $reply = xmlrpc_decode($content);
+  if (xmlrpc_is_fault($reply)) {
+    throw new ErrorException(
+      $reply['faultString'] . ' (' . $reply['faultCode'] . ')');
+  }
+
+  return get_cookies($http_response_header);
+}
+
+#
+# Capture and parse cookies from an array of headers.
+#
+function get_cookies($headers) {
+  $cookies = array();
+
+  foreach ($headers as $header) {
+    if (!strncmp($header, 'Set-Cookie: ', 12)) {
+      # knock off the header name and split on attributes
+      $crumbs = explode('; ', substr($header, 12));
+      
+      # get the cookie name and value
+      $tmp = explode('=', array_shift($crumbs));
+      $name = trim($tmp[0]);
+      $cookies[$name]['value'] = trim($tmp[1]);
+ 
+      # get each attribute 
+      foreach ($crumbs as $crumb) {
+        $tmp = explode('=', $crumb);
+        $cookies[$name][strtolower(trim($tmp[0]))] =
+          sizeof($tmp) > 1 ? trim($tmp[1]) : null;
+      }
+    }
+  }
+
+  return $cookies;
+}
+
+#
+# Write an array of cookies created by get_cookies() as output.
+#
+function put_cookies($cookies) {
+  foreach ($cookies as $name => $attr) {
+    setrawcookie(
+      $name,
+      $attr['value'],
+      array_key_exists('expires', $attr) ? strtotime($attr['expires']) : 0,
+      $attr['path'],
+      'www.test.nomic.net',
+      false,
+      array_key_exists('httponly', $attr)
+    );
   }
 }
+
+
 
 function print_form($returnto) {
   $action = 'login.php';
