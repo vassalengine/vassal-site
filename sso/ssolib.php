@@ -6,6 +6,68 @@ function rand_base64_key() {
   return strtr($key, '+/=', '-_');
 }
 
+#
+# Create a list of cookies for use in a 'Cookie:' header.
+#
+function cookies_list($cookies) {
+  $str = '';
+
+  $first = true;
+  foreach ($cookies as $name => $value) {
+    if ($first) $first = false;
+    else $str .= '; ';
+
+    $str .=  $name . '=' . $value;
+  }
+
+  return $str;
+}
+
+#
+# Capture and parse cookies from an array of headers.
+#
+function extract_cookies($headers) {
+  $cookies = array();
+
+  foreach ($headers as $header) {
+    if (!strncmp($header, 'Set-Cookie: ', 12)) {
+      # knock off the header name and split on attributes
+      $crumbs = explode('; ', substr($header, 12));
+
+      # get the cookie name and value
+      $tmp = explode('=', array_shift($crumbs));
+      $name = trim($tmp[0]);
+      $cookies[$name]['value'] = trim($tmp[1]);
+
+      # get each attribute 
+      foreach ($crumbs as $crumb) {
+        $tmp = explode('=', $crumb);
+        $cookies[$name][strtolower(trim($tmp[0]))] =
+          sizeof($tmp) > 1 ? trim($tmp[1]) : null;
+      }
+    }
+  }
+
+  return $cookies;
+}
+
+#
+# Write an array of cookies created by extract_cookies() as output.
+#
+function set_cookies($cookies) {
+  foreach ($cookies as $name => $attr) {
+    setrawcookie(
+      $name,
+      $attr['value'],
+      array_key_exists('expires', $attr) ? strtotime($attr['expires']) : 0,
+      $attr['path'],
+      'www.test.nomic.net',
+      false,
+      array_key_exists('httponly', $attr)
+    );
+  }
+}
+
 function warn($err) {
   print '<div class="errorbox"><h2>Error:</h2>' . $err . '</div>';
 }

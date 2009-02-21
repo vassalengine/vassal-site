@@ -49,7 +49,7 @@ try {
   $cookies += bugzilla_login($url, $username, $password);
 
   # write out the cookies captured from the logins 
-  put_cookies($cookies);
+  set_cookies($cookies);
 
   # FIXME: loop in case we have a cookie collision
 
@@ -130,7 +130,7 @@ function mediawiki_login($url, $username, $password) {
     }
   }
 
-  return get_cookies($http_response_header);
+  return extract_cookies($http_response_header);
 }
 
 #
@@ -160,7 +160,7 @@ function phpbb_login($url, $username, $password) {
     throw new ErrorException('phpBB login failed.');
   }
 
-  return get_cookies($http_response_header);
+  return extract_cookies($http_response_header);
 }
 
 #
@@ -193,55 +193,8 @@ function bugzilla_login($url, $username, $password) {
       $reply['faultString'] . ' (' . $reply['faultCode'] . ')');
   }
 
-  return get_cookies($http_response_header);
+  return extract_cookies($http_response_header);
 }
-
-#
-# Capture and parse cookies from an array of headers.
-#
-function get_cookies($headers) {
-  $cookies = array();
-
-  foreach ($headers as $header) {
-    if (!strncmp($header, 'Set-Cookie: ', 12)) {
-      # knock off the header name and split on attributes
-      $crumbs = explode('; ', substr($header, 12));
-      
-      # get the cookie name and value
-      $tmp = explode('=', array_shift($crumbs));
-      $name = trim($tmp[0]);
-      $cookies[$name]['value'] = trim($tmp[1]);
- 
-      # get each attribute 
-      foreach ($crumbs as $crumb) {
-        $tmp = explode('=', $crumb);
-        $cookies[$name][strtolower(trim($tmp[0]))] =
-          sizeof($tmp) > 1 ? trim($tmp[1]) : null;
-      }
-    }
-  }
-
-  return $cookies;
-}
-
-#
-# Write an array of cookies created by get_cookies() as output.
-#
-function put_cookies($cookies) {
-  foreach ($cookies as $name => $attr) {
-    setrawcookie(
-      $name,
-      $attr['value'],
-      array_key_exists('expires', $attr) ? strtotime($attr['expires']) : 0,
-      $attr['path'],
-      'www.test.nomic.net',
-      false,
-      array_key_exists('httponly', $attr)
-    );
-  }
-}
-
-
 
 function print_form($returnto) {
   $action = 'login.php';
