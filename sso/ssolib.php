@@ -6,10 +6,6 @@ function rand_base64_key() {
   return strtr($key, '+/=', '-_');
 }
 
-function getval($hash, $key) {
-  return array_key_exists($key, $hash) ? $hash[$key]: '';
-}
-
 #
 # Login to MediaWiki.
 #

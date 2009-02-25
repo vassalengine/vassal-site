@@ -5,7 +5,7 @@ require_once('sso/ssolib.php');
 
 $title = 'VASSAL Login';
 
-$returnto = getval($_GET, 'returnto');
+$returnto = isset($_GET['returnto']) ? $_GET['returnto'] : '';
 
 # check whether this was a login attempt
 if (empty($_POST)) {

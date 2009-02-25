@@ -4,10 +4,10 @@ require_once('sso/ssolib.php');
 
 $title = 'Log out';
 
-$returnto = getval($_GET, 'returnto');
+$returnto = isset($_GET['returnto']) ? $_GET['returnto'] : '';
 
 # expire the cookie if we have one
-$key = getval($_COOKIE, 'VASSAL_login');
+$key = isset($_COOKIE['VASSAL_login']) ? $_COOKIE['VASSAL_login'] : '';
 if (!empty($key)) {
 
   require_once('sso/AuthDB.php');
