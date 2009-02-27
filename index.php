@@ -4,14 +4,14 @@
 <head profile="http://www.w3.org/2005/10/profile">
   <link rel="stylesheet" type="text/css" href="/style.css"/>
   <link rel="alternate" type="application/rss+xml" title="RSS" href="" />
-  <link rel="icon" type="image/png" href="images/VASSAL.png"/>
+  <link rel="icon" type="image/png" href="/images/VASSAL.png"/>
   <title>VASSAL</title>
 </head>
 <body>
 <div id="vassal-page">
   <div id="vassal-header">
     <div id="vassal-logo">
-      <a href="/index.php"><img src="images/header.png"/></a>
+      <a href="/index.php"><img src="/images/header.png"/></a>
     </div>
 
     <div id="vassal-search">
@@ -62,8 +62,8 @@
 
         <table class="screenshot">
           <tr>
-            <td><a href="images/screenshot1.png"><img src="thumbs/screenshot1.png" /></a></td>
-            <td><a href="images/screenshot2.png"><img src="thumbs/screenshot2.png" /></a></td>
+            <td><a href="/images/screenshot1.png"><img src="/thumbs/screenshot1.png" /></a></td>
+            <td><a href="/images/screenshot2.png"><img src="/thumbs/screenshot2.png" /></a></td>
           </tr>
         </table>
   
@@ -72,8 +72,8 @@
 
         <table class="screenshot">
           <tr>
-            <td><a href="images/screenshot2.png"><img src="thumbs/screenshot2.png" /></a></td>
-            <td><a href="images/screenshot1.png"><img src="thumbs/screenshot1.png" /></a></td>
+            <td><a href="/images/screenshot2.png"><img src="/thumbs/screenshot2.png" /></a></td>
+            <td><a href="/images/screenshot1.png"><img src="/thumbs/screenshot1.png" /></a></td>
           </tr>
         </table>
       </div>
@@ -94,7 +94,7 @@
 
         <div class="dlbutton">
           <div>Support <span class="sc">Vassal</span></div>
-          <a href=""><img src="images/paypal_donate.png"/></a>
+          <a href=""><img src="/images/paypal_donate.png"/></a>
         </div>
         <p><span class="sc">Vassal</span> is free, but development and hosting are not. If you enjoy using <span class="sc">Vassal</span>, please consider helping us with these costs.</p>
       </div>
@@ -111,7 +111,7 @@
     </div>
 
     <div class="content_box_full" id="vassal-news">
-      <h1>Latest News <a href="news.php"><img src="images/feed-icon-14x14.png"/></a></h1>
+      <h1>Latest News <a href="news.php"><img src="/images/feed-icon-14x14.png"/></a></h1>
       <ul class="news">
         <li class="day">
           <div class="date">Feb<br/>1</div>
