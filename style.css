@@ -32,6 +32,10 @@ a img {
   border: 0;
 }
 
+.sc {
+  font-variant: small-caps;
+}
+
 #vassal-page {
   margin: 0 5px;
 }
