@@ -1,11 +1,10 @@
-
 body {
-  font-size: small;
   margin: 0 auto;
   padding: 0;
+/*  font-size: small; */
+  font-size: 72.5%;
   background-color: white;
-  min-width: 700px;
-  width: 790px;
+  max-width: 900px;
 }
 
 body, td, th, input, textarea, pre, h1, h2, h3, h4, h5, h6 { color: #222; }
@@ -36,24 +35,23 @@ a img {
   font-variant: small-caps;
 }
 
-#vassal-page {
-  margin: 0 5px;
+#vassal-header {
+  overflow: auto;
+  border-bottom: 1px solid black;
 }
 
 #vassal-logo {
   float: left;
-  margin-top: 5px;
+  margin: 0;
+  padding: 10px 20px 10px 10px;
+  background: transparent url('/images/header_bg-w.png') top left no-repeat;
 }
 
 #vassal-logo a img {
   border: none;
 }
 
-#vassal-header {
-  min-height: 82px;
-  height: 82px;
-  margin: 0 auto;
-  padding: 0;
+#vassal-navigation {
 }
 
 #vassal-login {
@@ -116,7 +114,7 @@ a img {
   margin: 0;
   padding: 0;
   height: 29px;
-  background: transparent url('images/stripe.png') left repeat-x;
+  background: transparent url('/images/stripe.png') left repeat-x;
   border-bottom: 1px solid black;
 }
 
@@ -133,21 +131,21 @@ a img {
   color: white;
   padding: 10px 10px 5px 10px;
   font-weight: bold;
-  font-size: 110%;
+/*  font-size: 72.5%; */
   text-decoration: none;
   line-height: 1;
 }
 
 #vassal-nav-list a:hover {
   color: #f8d530;
-  background: transparent url('images/stripe2.png') left repeat-x;
+  background: transparent url('/images/stripe2.png') left repeat-x;
 }
 
 #vassal-footer {
   clear: both;
   margin-top: 15px;
-  padding-top: 76px;
-  background: transparent url('images/footer.png') top repeat-x;
+  padding-top: 36px;
+  background: transparent url('/images/footer.png') top;
 }
 
 #vassal-footer-list {
@@ -172,7 +170,15 @@ a img {
 }
 
 #content {
+  margin: 0 auto;
+  padding: 0;
+  min-width: 700px;
+  max-width: 790px;
+  width: 790px;
   clear: both;
+
+  font-size: 1.2em;
+  line-height: 1.25em;
 }
 
 #content h1 {
