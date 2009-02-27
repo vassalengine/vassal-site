@@ -56,7 +56,7 @@
       <div id="vassal-about">
         <h1>What is VASSAL?</h1>
         <p>VASSAL is a game engine for building and playing online adaptations of board games and card games. It allows users to play in real time over the Internet, or by email. VASSAL runs on all platforms, and is free, open-source software.</p>
-        <p>Click <a href="">here</a> to learn more about VASSAL</p>
+        <p>Click <a href="foo">here</a> to learn more about VASSAL</p>
 
         <table class="screenshot">
           <tr>
@@ -107,56 +107,55 @@
         <p>The VASSAL project is run by volunteers and makes progress by the efforts of volunteers. Is there a feature you'd like to see in the next release? Did you find a bug? Request that feature or report the bug <a href="bugzilla/">here</a>. Are you a programmer? We could use your help. Join us in the <a href="">developers' forum</a>. Not a programmer? Help us improve our <a href="">documentation</a>.</p>
       </div>
     </div>
-  </div>
 
-  <div class="content_box_full" id="vassal-news">
-    <h1>Latest News <a href="news.php"><img src="images/feed-icon-14x14.png"/></a></h1>
-    <ul class="news">
-      <li class="day">
-        <div class="date">Feb<br/>1</div>
-        <ul class="events">
-          <li><a href="">This is a news item in the future</a></li>
-        </ul>
-      </li>
-      <li class="day">
-        <div class="date">Jan<br/>31</div>
-        <ul class="events">
-          <li><a href="">VASSAL 3.1.0 released</a></li>
-          <li><a href="">VASSAL has a new web site</a></li>
-          <li><a href="">This is a test news item</a></li>
-          <li><a href="">No news is good news</a></li>
-        </ul>
-      </li>
-      <li class="day">
-        <div class="date">Jan<br/>30</div>
-        <ul class="events">
-          <li><a href="">Monsterpocalypse 1.01 released</a></li>
-        </ul>
-      </li>
-      <li class="day">
-        <div class="date">Jan<br/>26</div>
-        <ul class="events">
-          <li><a href="">VASSAL 3.1.0-beta8 released</a></li>
-          <li><a href="">Zombies are eating my brain</a></li>
-        </ul>
-      </li>
-      <li class="day">
-        <div class="date">Jan<br/>25</div>
-        <ul class="events">
-          <li><a href="">VASSAL 3.1.0-beta8 released</a></li>
-          <li><a href="">Zombies are eating my brain</a></li>
-        </ul>
-      </li>
-      <li class="day">
-        <div class="date">Jan<br/>24</div>
-        <ul class="events">
-          <li><a href="">Star Wars Tactics Version 1.4 released</a></li>
-          <li><a href="">This is a very, very long news item, put here just to test what happens when we have a very, very long news item</a></li>
-        </ul>
-      </li>
-    </ul>
-    <em><a id="more-news" href="">...more news</a></em>
-
+    <div class="content_box_full" id="vassal-news">
+      <h1>Latest News <a href="news.php"><img src="images/feed-icon-14x14.png"/></a></h1>
+      <ul class="news">
+        <li class="day">
+          <div class="date">Feb<br/>1</div>
+          <ul class="events">
+            <li><a href="">This is a news item in the future</a></li>
+          </ul>
+        </li>
+        <li class="day">
+          <div class="date">Jan<br/>31</div>
+          <ul class="events">
+            <li><a href="">VASSAL 3.1.0 released</a></li>
+            <li><a href="">VASSAL has a new web site</a></li>
+            <li><a href="">This is a test news item</a></li>
+            <li><a href="">No news is good news</a></li>
+          </ul>
+        </li>
+        <li class="day">
+          <div class="date">Jan<br/>30</div>
+          <ul class="events">
+            <li><a href="">Monsterpocalypse 1.01 released</a></li>
+          </ul>
+        </li>
+        <li class="day">
+          <div class="date">Jan<br/>26</div>
+          <ul class="events">
+            <li><a href="">VASSAL 3.1.0-beta8 released</a></li>
+            <li><a href="">Zombies are eating my brain</a></li>
+          </ul>
+        </li>
+        <li class="day">
+          <div class="date">Jan<br/>25</div>
+          <ul class="events">
+            <li><a href="">VASSAL 3.1.0-beta8 released</a></li>
+            <li><a href="">Zombies are eating my brain</a></li>
+          </ul>
+        </li>
+        <li class="day">
+          <div class="date">Jan<br/>24</div>
+          <ul class="events">
+            <li><a href="">Star Wars Tactics Version 1.4 released</a></li>
+            <li><a href="">This is a very, very long news item, put here just to test what happens when we have a very, very long news item</a></li>
+          </ul>
+        </li>
+      </ul>
+      <em><a id="more-news" href="">...more news</a></em>
+    </div>
   </div>
 
   <?php virtual('/footer.shtml'); ?>
