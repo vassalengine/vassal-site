@@ -99,7 +99,7 @@
 
       <div id="vassal-help">
         <h1>Get Help</h1>
-        <p>Need help with using VASSAL? Stuck while creating a module? If you can't find an answer in our extensive <a href="">documentation</a>, check our friendly <a href="">forum</a> for help.</p>
+        <p>Need help with using VASSAL? Stuck while creating a module? If you can't find an answer in our extensive <a href="">documentation</a>, check our friendly <a href="forum/">forum</a> for help.</p>
       </div>
 
       <div id="vassal-contribute">
