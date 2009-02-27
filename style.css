@@ -116,7 +116,7 @@ a img {
   margin: 0;
   padding: 0;
   height: 29px;
-  background: transparent url('images/stripe.jpg') left repeat-x;
+  background: transparent url('images/stripe.png') left repeat-x;
   border-bottom: 1px solid black;
 }
 
@@ -140,7 +140,7 @@ a img {
 
 #vassal-nav-list a:hover {
   color: #f8d530;
-  background: transparent url('images/stripe2.jpg') left repeat-x;
+  background: transparent url('images/stripe2.png') left repeat-x;
 }
 
 #vassal-footer {
