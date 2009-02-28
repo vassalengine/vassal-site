@@ -1,0 +1,84 @@
+/* Site header */
+
+#vassal-header {
+  overflow: auto;
+  border-bottom: 1px solid black;
+  margin-bottom: 10px;
+}
+
+#vassal-logo {
+  float: left;
+  margin: 0;
+  padding: 10px 20px 10px 10px;
+  background: transparent url('/images/header_bg-w.png') top left no-repeat;
+}
+
+#vassal-logo a img {
+  border: none;
+}
+
+
+/* Site navigation bar */
+
+#vassal-nav-list {
+  margin: 0;
+  padding: 0;
+  height: 29px;
+  background: transparent url('/images/stripe.png') left repeat-x;
+  border-bottom: 1px solid black;
+}
+
+#vassal-nav-list li {
+  display: inline;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  float: left;
+}
+
+#vassal-nav-list a {
+  display: block;
+  color: white;
+  padding: 10px 10px 5px 9px;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 8pt;
+/*  font-size: 72.5%; */
+  text-decoration: none;
+  line-height: 1;
+}
+
+#vassal-nav-list a:hover {
+  color: #f8d530;
+  background: transparent url('/images/stripe2.png') left repeat-x;
+}
+
+
+/* Site footer */
+
+#vassal-footer {
+  clear: both;
+  margin-top: 4em;
+  border-top: 1px solid black;
+}
+
+#vassal-footer-list {
+  float: right;
+  margin: 0;
+  padding: 0px 5px;
+}
+
+#vassal-footer-list li {
+  display: inline;
+  list-style: none;
+  margin: 0;
+  padding: 8px 10px;
+  float: left;
+}
+
+#vassal-footer-list a {
+  display: block;
+  font-size: small;
+  text-decoration: none;
+  line-height: 1;
+}

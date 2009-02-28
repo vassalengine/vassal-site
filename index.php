@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head profile="http://www.w3.org/2005/10/profile">
   <link rel="stylesheet" type="text/css" href="/style.css"/>
+  <link rel="stylesheet" type="text/css" href="/site.css"/>
   <link rel="alternate" type="application/rss+xml" title="RSS" href="" />
   <link rel="icon" type="image/png" href="/images/VASSAL.png"/>
   <title>VASSAL</title>
