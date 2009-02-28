@@ -39,9 +39,9 @@
 <div id="content">
   <div class="content_box_left">
     <div id="vassal-about">
-      <h1>What is <span class="sc">Vassal</span>?</h1>
-      <p><span class="sc">Vassal</span> is a game engine for building and playing online adaptations of board games and card games. It allows users to play in real time over the Internet, or by email. <span class="sc">Vassal</span> runs on all platforms, and is free, open-source software.</p>
-      <p>Click <a href="foo">here</a> to learn more about <span class="sc">Vassal</span>.</p>
+      <h1>What is <acronym>Vassal</acronym>?</h1>
+      <p><acronym>Vassal</acronym> is a game engine for building and playing online adaptations of board games and card games. It allows users to play in real time over the Internet, or by email. <acronym>Vassal</acronym> runs on all platforms, and is free, open-source software.</p>
+      <p>Click <a href="foo">here</a> to learn more about <acronym>Vassal</acronym>.</p>
 
       <table class="screenshot">
         <tr>
@@ -51,7 +51,7 @@
       </table>
   
       <h1>What Games Are There?</h1>
-      <p>Hundreds of boardgames have been converted for use with <span class="sc">Vassal</span>, so there's a good chance that you'll find the games you own in our <a href="">module library</a> already. If there is not yet a <span class="sc">Vassal</span> module for your favorite game, you can use the <span class="sc">Vassal</span> Editor to build your own module, and should you run into trouble, help is only a click away in our <a href="forum/">forum</a>.</p>
+      <p>Hundreds of boardgames have been converted for use with <acronym>Vassal</acronym>, so there's a good chance that you'll find the games you own in our <a href="">module library</a> already. If there is not yet a <acronym>Vassal</acronym> module for your favorite game, you can use the <acronym>Vassal</acronym> Editor to build your own module, and should you run into trouble, help is only a click away in our <a href="forum/">forum</a>.</p>
 
       <table class="screenshot">
         <tr>
@@ -64,8 +64,8 @@
 
   <div class="content_box_right">
     <div id="vassal-download">
-      <h1>Get <span class="sc">Vassal</span></h1>
-      <p><span class="sc">Vassal</span> is free, open-source software, created by volunteers. Our current release is 3.1.0.</p> 
+      <h1>Get <acronym>Vassal</acronym></h1>
+      <p><acronym>Vassal</acronym> is free, open-source software, created by volunteers. Our current release is 3.1.0.</p> 
       <div class="dlbutton">
         <div>Download 3.1.0</div>
         <ul class="dllist">
@@ -76,20 +76,20 @@
       </div>
 
       <div class="dlbutton">
-        <div>Support <span class="sc">Vassal</span></div>
+        <div>Support <acronym>Vassal</acronym></div>
         <a href=""><img src="/images/paypal_donate.png"/></a>
       </div>
-      <p><span class="sc">Vassal</span> is free, but development and hosting are not. If you enjoy using <span class="sc">Vassal</span>, please consider helping us with these costs.</p>
+      <p><acronym>Vassal</acronym> is free, but development and hosting are not. If you enjoy using <acronym>Vassal</acronym>, please consider helping us with these costs.</p>
     </div>
 
     <div id="vassal-help">
       <h1>Get Help</h1>
-      <p>Need help using <span class="sc">Vassal</span>? Stuck while creating a module? If you can't find an answer in our extensive <a href="">documentation</a>, check our friendly <a href="forum/">forum</a> for help.</p>
+      <p>Need help using <acronym>Vassal</acronym>? Stuck while creating a module? If you can't find an answer in our extensive <a href="">documentation</a>, check our friendly <a href="forum/">forum</a> for help.</p>
     </div>
 
     <div id="vassal-contribute">
       <h1>Get Involved</h1>
-      <p>The <span class="sc">Vassal</span> project is run by volunteers and makes progress by the efforts of volunteers. Is there a feature you'd like to see in the next release? Did you find a bug? Request that feature or report the bug <a href="bugzilla/">here</a>. Are you a programmer? We could use your help. Join us in the <a href="">developers' forum</a>. Not a programmer? Help us improve our <a href="">documentation</a>.</p>
+      <p>The <acronym>Vassal</acronym> project is run by volunteers and makes progress by the efforts of volunteers. Is there a feature you'd like to see in the next release? Did you find a bug? Request that feature or report the bug <a href="bugzilla/">here</a>. Are you a programmer? We could use your help. Join us in the <a href="">developers' forum</a>. Not a programmer? Help us improve our <a href="">documentation</a>.</p>
     </div>
   </div>
 
@@ -105,8 +105,8 @@
       <li class="day">
         <div class="date">Jan<br/>31</div>
         <ul class="events">
-          <li><a href=""><span class="sc">Vassal</span> 3.1.0 released</a></li>
-          <li><a href=""><span class="sc">Vassal</span> has a new web site</a></li>
+          <li><a href=""><acronym>Vassal</acronym> 3.1.0 released</a></li>
+          <li><a href=""><acronym>Vassal</acronym> has a new web site</a></li>
           <li><a href="">This is a test news item</a></li>
           <li><a href="">No news is good news</a></li>
         </ul>
@@ -120,14 +120,14 @@
       <li class="day">
         <div class="date">Jan<br/>26</div>
         <ul class="events">
-          <li><a href=""><span class="sc">Vassal</span> 3.1.0-beta8 released</a></li>
+          <li><a href=""><acronym>Vassal</acronym> 3.1.0-beta8 released</a></li>
           <li><a href="">Zombies are eating my brain</a></li>
         </ul>
       </li>
       <li class="day">
         <div class="date">Jan<br/>25</div>
         <ul class="events">
-          <li><a href=""><span class="sc">Vassal</span> 3.1.0-beta8 released</a></li>
+          <li><a href=""><acronym>Vassal</acronym> 3.1.0-beta8 released</a></li>
           <li><a href="">Zombies are eating my brain</a></li>
         </ul>
       </li>

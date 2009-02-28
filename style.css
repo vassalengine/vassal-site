@@ -31,7 +31,7 @@ a img {
   border: 0;
 }
 
-.sc {
+acronym {
   font-variant: small-caps;
 }
 
@@ -143,9 +143,8 @@ a img {
 
 #vassal-footer {
   clear: both;
-  margin-top: 15px;
-  padding-top: 36px;
-  background: transparent url('/images/footer.png') top;
+  margin-top: 4em;
+  border-top: 1px solid black;
 }
 
 #vassal-footer-list {
@@ -157,20 +156,19 @@ a img {
   display: inline;
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 8px 10px;
   float: left;
 }
 
 #vassal-footer-list a {
   display: block;
-  padding: 8px 10px;
   font-size: small;
   text-decoration: none;
   line-height: 1;
 }
 
 #content {
-  margin: 0 auto;
+  margin: 1em auto;
   padding: 0;
   min-width: 700px;
   max-width: 790px;
