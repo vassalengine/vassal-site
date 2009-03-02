@@ -17,7 +17,6 @@
   border: none;
 }
 
-
 /* Site navigation bar */
 
 #vassal-nav-list {
@@ -43,7 +42,6 @@
   font-family: sans-serif;
   font-weight: bold;
   font-size: 8pt;
-/*  font-size: 72.5%; */
   text-decoration: none;
   line-height: 1;
 }
@@ -58,35 +56,48 @@
 
 #vassal-footer {
   clear: both;
-  margin-top: 4em;
-  padding-top: 10px;
-  margin-bottom: 4em;
+  margin: 4em 0;
+  padding: 10px 0 0 0;
   border-top: 1px solid black;
+  color: #222222;
+  font-size: 9pt;
+  font-family: sans-serif;
+}
+
+#vassal-footer acronym {
+  font-variant: small-caps;
+}
+
+#vassal-footer .copyright {
+  font-size: smaller;
+}
+
+#vassal-footer a {
+  color: #546035;
+}
+
+#vassal-footer a:visited {
+  color: #384024;
+}
+
+#vassal-footer a:hover {
+  color: #9caa79;
 }
 
 #vassal-footer-list {
-  float: right;
+  text-align: center;
   margin: 0;
-  padding: 0px 5px;
+  padding: 0 5px;
 }
 
 #vassal-footer-list li {
   display: inline;
   list-style: none;
   margin: 0;
-  padding: 8px 10px;
-/*  float: left; */
-}
-
-#vassal-footer-list a {
-/*  display: block; */
-  font-size: small;
-  text-decoration: none;
-  line-height: 1;
+  padding: 8px 8px;
 }
 
 #vassal-footer-list a img {
   vertical-align: middle;
+  border: 0;
 }
-
-

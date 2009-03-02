@@ -1,12 +1,12 @@
 <div id="vassal-footer">
   <ul id="vassal-footer-list">
-    <li>Copyright &copy; 2009 <a href="/about.html">The <acronym>Vassal</acronym> Team</a></li>
+    <li><span class="copyright">Copyright &copy; 2009</span> <a href="/about.html">The <acronym>Vassal</acronym> Team</a></li>
     <li><a href="/license.html">License</a></li>
     <li><a href="/donate.html">Donate</a></li>
     <li><a href="/sitemap.html">Sitemap</a></li>
     <li><a href="/search.html">Search</a></li>
     <li><a href="/about.html">About</a></li>
-    <li><a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=90612&amp;type=2" width="125" height="37" alt="SourceForge.net Logo" /></a></li>
-    <li><a href="http://www.yourkit.com/"><img src="/images/YourKit_logo.png" alt="YourKit Java Profiler" /></a></li>
+    <li><a href="http://sourceforge.net/projects/vassalengine"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=90612&type=12" width="120" height="30" alt="Get VASSAL Engine at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a></li>
+    <li><a href="http://www.yourkit.com/"><img src="/images/YourKit_logo.png" alt="YourKit Java Profiler" width="96" height="30" /></a></li>
   </ul>
 </div> 
