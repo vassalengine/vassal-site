@@ -68,17 +68,13 @@
       <h1>Get <acronym>Vassal</acronym></h1>
       <p><acronym>Vassal</acronym> is free, open-source software, created by volunteers. Our current release is 3.1.0.</p> 
       <div class="dlbutton">
-        <div>Download 3.1.0</div>
-        <ul class="dllist">
-          <li><a href="http://downloads.sourceforge.net/vassalengine/VASSAL-3.1.0-beta8-generic.zip">Linux</a></li>
-          <li><a href="http://downloads.sourceforge.net/vassalengine/VASSAL-3.1.0-beta8-windows.exe">Mac OS</a></li>
-          <li><a href="http://downloads.sourceforge.net/vassalengine/VASSAL-3.1.0-beta8-macosx.dmg">Windows</a></li>
-        </ul>
+        <?php
+          include 'inc/download-detect.php';
+          echo "<a href=\"$download_url\"><span>Download <acronym>Vassal</acronym><br/>$version$download_os</span><img src=\"/images/button.download.png\"/></a>";
+        ?>
       </div>
-
       <div class="dlbutton">
-        <div>Support <acronym>Vassal</acronym></div>
-        <a href=""><img src="/images/paypal_donate.png"/></a>
+        <a href=""><span>Support <acronym>Vassal</acronym></span><img src="/images/paypal_donate.png"/></a>
       </div>
       <p><acronym>Vassal</acronym> is free, but development and hosting are not. If you enjoy using <acronym>Vassal</acronym>, please consider helping us with these costs.</p>
     </div>

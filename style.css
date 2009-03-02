@@ -100,14 +100,13 @@ acronym {
   clear: both;
 
   font-size: 1.2em;
-  line-height: 1.25em;
+/*  line-height: 1.25em; */
 }
 
 #content h1 {
-  display: block;
 /*  margin: 0.67em, 0, 0.67em, 0; */
 /*  line-height: 0.3; */  /* why? */ 
-  color: #384024; 
+  color: #384024;
 } 
 
 .content_box_left { 
@@ -126,21 +125,11 @@ acronym {
   clear: both;
 }
 
-ul.dllist {
-  display: block;
-  margin: 0;
-  padding: 0.5em;
-}
 
-ul.dllist li {
-  margin: 0 5px;
-  padding: 0;
-  list-style: none;
-  display: inline;
-}
+
 
 div.dlbutton {
-  padding: 0.5em;
+  padding: 1em;
   margin: 1em auto;
   border: 1px solid #8dea34;
   border-radius: 5px;
@@ -154,18 +143,35 @@ div.dlbutton {
   text-align: center;
 }
 
-div.dlbutton a, div.dlbutton a:hover, div.dlbutton a:visited {
+div.dlbutton a {
+  display: block;
+  overflow: auto;
   color: white;
   text-decoration: none;
 }
 
-div.dlbutton a:hover {
+div.dlbutton a:hover, div.dlbutton a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+div.dlbutton a:hover span {
   text-decoration: underline;
 }
 
-div.dlbutton div {
-  margin: 0.5em;
+div.dlbutton a span {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  padding: 12px;
 }
+
+div.dlbutton a img {
+  vertical-align: middle;
+}
+
+
+
 
 table.screenshot {
   margin: 0 auto;
@@ -224,3 +230,59 @@ div.date {
 div.date:first-line {
   font-size: 70%;
 }
+
+
+
+
+
+
+
+#download {
+   margin-left: auto;
+   margin-right: auto;
+   border-collapse: collapse;
+}
+
+#download th {
+   font-weight: bold;
+   font-size: 0.85em;
+}
+
+#download tr.release {
+   background: #eeeeee;
+   border: 1px solid #cccccc;
+   font-weight: bold;
+}
+
+#download tr {
+   border: 1px solid #cccccc;
+}
+
+#download td.date {
+   text-align: right;
+}
+
+#download tbody.formatgroup {
+   border: 1px solid #cccccc;
+}
+
+#download td.format {
+   padding: 0 0.5em 0 0.5em;
+}
+
+#download td.name, #download td.note {
+   font-size: 0.85em;
+   padding: 2px 0.5em 2px 0.5em;
+}
+
+#download td.size {
+   font-family: monospace;
+   text-align: right;
+   padding: 0 0.5em 0 0.5em;
+}
+
+#download td.md5sum {
+   font-family: monospace;
+   padding: 0 0.5em 0 0.5em;
+}
+
