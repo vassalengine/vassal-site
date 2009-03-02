@@ -59,6 +59,8 @@
 #vassal-footer {
   clear: both;
   margin-top: 4em;
+  padding-top: 10px;
+  margin-bottom: 4em;
   border-top: 1px solid black;
 }
 
@@ -73,12 +75,18 @@
   list-style: none;
   margin: 0;
   padding: 8px 10px;
-  float: left;
+/*  float: left; */
 }
 
 #vassal-footer-list a {
-  display: block;
+/*  display: block; */
   font-size: small;
   text-decoration: none;
   line-height: 1;
 }
+
+#vassal-footer-list a img {
+  vertical-align: middle;
+}
+
+

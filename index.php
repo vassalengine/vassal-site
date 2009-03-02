@@ -141,18 +141,5 @@
 </div>
 
 <?php virtual('/footer.shtml'); ?>
-<!--
-  <div id="vassal-footer">
-    <ul id="vassal-footer-list">
--->
-<!--      <li>Copyright &copy; 2009 <a href="">VASSAL dev team</a></li>
-      <li><a href="">License</a></li>
-      <li><a href="">Donate</a></li>
-      <li><a href="">Sitemap</a></li>
-      <li><a href="">Search</a></li>
-      <li><a href="">About</a></li>
-    </ul>
-    <ul>
--->
 </body>
 </html>
