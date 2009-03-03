@@ -35,7 +35,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA</p>
 
   <h1>Website Content</h1>
-  <p>Website content (except game modules) is released under the <a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share Alike 3.0 Unported.</a> license.</p>
+  <p>Website content (except game modules) is released under the <a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share Alike 3.0 Unported</a> license.</p>
 
   <p>All products mentioned on these pages are trademarks of their respective owners, where appropriate.</p>
 
