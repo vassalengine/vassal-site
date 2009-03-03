@@ -114,7 +114,7 @@ code {
   <p>If you do not already have Java 5 or later, the <acronym>Vassal</acronym> installer will download and install it for you. Alternatively, you may install Java yourself before installing <acronym>Vassal</acronym>. Current versions of Java are available at <a href="http://www.java.com">java.com</a>.</p>
 
   <h4>Other</h4>
-  <p>This is the package to use if you run an OS without a dedicated package.</p>
+  <p>This is the package to use if you run an OS without a dedicated package. In order to run <acronym>Vassal</acronym>, you will need to obtain a JRE for your OS.</p>
 
   <h4>Source</h4>
   <p>This is the source code for <acronym>Vassal</acronym>. If you want to <em>use</em> <acronym>Vassal</acronym>, you should consider installing the pre-built package for your operating system, found above. If, instead, you are interested in doing development work on <acronym>Vassal</acronym>, you might instead want to check out the current code from our <a href="">source repository</a>.</p>
