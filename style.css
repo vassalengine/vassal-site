@@ -7,7 +7,7 @@ body {
   max-width: 900px;
 }
 
-body, td, th, input, textarea, pre, h1, h2, h3, h4, h5, h6 { color: #222; }
+body, td, th, input, textarea, pre, h1, h2, h3, h4, h5, h6 { color: #222222; }
 body, td, th, input, textarea { font-family: sans-serif; }
 pre { font-family: monospace; }
 
