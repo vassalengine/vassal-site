@@ -17,13 +17,17 @@ dd{
 }
 
 dl{
+  margin-bottom: 0;
   padding: 0em 2em 1em 1em;
   display: inline-block;
-  vertical-align: middle;
+}
+
+td img, td span {
+  vertical-align: top;
 }
 
 table {
-  margin: 0 auto;
+  margin: 1em auto;
 }
 
 code {
