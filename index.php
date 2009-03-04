@@ -3,39 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head profile="http://www.w3.org/2005/10/profile">
   <link rel="stylesheet" type="text/css" href="/style.css"/>
-  <link rel="stylesheet" type="text/css" href="/site.css"/>
+  <link rel="stylesheet" type="text/css" href="/css/site.css"/>
   <link rel="alternate" type="application/rss+xml" title="RSS" href="" />
   <link rel="icon" type="image/png" href="/images/VASSAL.png"/>
   <title>VASSAL</title>
 </head>
 <body>
-<div id="vassal-header">
-  <div id="vassal-logo">
-    <a href="/index.php"><img src="/images/header.png"/></a>
-  </div>
-  <?php virtual('/navigation.shtml'); ?>
-
-  <div id="vassal-login">
-<?php
-  $key = $_COOKIE['VASSAL_login'];
-  if (!empty($key)) { 
-    require_once('sso/AuthDB.php');
-  
-    try {
-      $auth = new AuthDB();
-      $username = $auth->user_for_cookie($key);
-      print '<a href="logout.php?returnto=/index.php">Log out</a>';
-    }
-    catch (ErrorException $e) {
-      print '<a href="login.php?returnto=/index.php">Log in</a>';
-    }
-  }
-  else {
-    print '<a href="login.php?returnto=/index.php">Log in</a>';
-  }
-?>
-  </div>
-</div>
+<?php include('inc/header.php'); ?>
 
 <div id="content">
   <div class="content_box_left">
@@ -140,6 +114,6 @@
   </div>
 </div>
 
-<?php virtual('/footer.shtml'); ?>
+<?php include('inc/footer.shtml'); ?>
 </body>
 </html>

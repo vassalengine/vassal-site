@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head profile="http://www.w3.org/2005/10/profile">
   <link rel="stylesheet" type="text/css" href="/style.css"/>
-  <link rel="stylesheet" type="text/css" href="/site.css"/>
+  <link rel="stylesheet" type="text/css" href="/css/site.css"/>
   <link rel="icon" type="image/png" href="/images/VASSAL.png"/>
 
   <style type="text/css">
@@ -39,12 +39,7 @@ code {
   <title>Download VASSAL</title>
 </head>
 <body>
-<div id="vassal-header">
-  <div id="vassal-logo">
-    <a href="/index.php"><img src="/images/header.png"/></a>
-  </div>
-  <?php virtual('/navigation.shtml'); ?>
-</div>
+<?php include('inc/header.php'); ?>
 
 <div id="content">
 <div class="content_box_full">
@@ -129,6 +124,6 @@ code {
 </div>
 </div>
 
-<?php virtual('/footer.shtml'); ?>
+<?php include('inc/footer.shtml'); ?>
 </body>
 </html>

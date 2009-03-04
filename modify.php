@@ -130,7 +130,7 @@ catch (ErrorException $e) {
 
 function print_form() {
   print <<<END
-<form class="modify_form" action="modify.php" method="post">
+<form class="sso_form" action="modify.php" method="post">
   <fieldset>
     <legend>Modify Account</legend>
     <table>

@@ -257,31 +257,23 @@ function print_top($title) {
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head profile="http://www.w3.org/2005/10/profile">
-  <link rel="stylesheet" type="text/css" href="style.css"/>
-  <link rel="stylesheet" type="text/css" href="/site.css"/>
+  <link rel="stylesheet" type="text/css" href="/style.css"/>
+  <link rel="stylesheet" type="text/css" href="/css/site.css"/>
+  <link rel="stylesheet" type="text/css" href="/css/sso.css"/>
   <link rel="icon" type="image/png" href="VASSAL.png"/>
   <title>$title</title>
 </head>
 <body>
-<div id="vassal-header">
-  <div id="vassal-logo">
-    <a href="/index.php"><img src="images/header.png"/></a>
-  </div>
 END;
 
-  virtual('/navigation.shtml');
-
-  echo <<<END
-</div>
-<div id="content">
-END;
+  include(dirname(__FILE__) . '/../inc/header.php');
+  echo '<div id="content">';
 }
 
 function print_bottom() {
-  print '</div>';
-  virtual('/footer.shtml');
+  echo '</div>';
+  include(dirname(__FILE__) . '/../inc/footer.shtml');
   print <<<END
-</div>
 </body>
 </html>
 END;

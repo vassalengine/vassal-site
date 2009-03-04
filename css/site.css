@@ -52,6 +52,23 @@
   background: transparent url('/images/stripe2.png') left repeat-x;
 }
 
+/* Site login/logout block */
+
+#vassal-login {
+  float: right;
+  margin: 5px 5px 0 0;
+  font-size: 9pt;
+}
+
+#vassal-login a, #vassal-login a:visited {
+  color: #546035;
+  text-decoration: none;
+}
+
+#vassal-login a:hover {
+  color: #9caa79;
+  text-decoration: underline;
+}
 
 /* Site footer */
 

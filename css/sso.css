@@ -1,0 +1,19 @@
+
+.sso_form {
+  margin: 10px auto;
+  display: table;
+}
+
+.sso_form legend {
+  font-weight: bold;
+  font-size: 110%;
+}
+
+.sso_form th {
+  text-align: right;
+}
+
+.sso_form label {
+  font-weight: normal;
+}
+

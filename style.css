@@ -35,47 +35,6 @@ acronym {
   font-variant: small-caps;
 }
 
-#vassal-login {
-  float: right;
-  margin: 5px 5px 0 0;
-}
-
-.login_form fieldset {
-  margin: 10px auto;
-  max-width: 20em;
-}
-
-.login_form legend {
-  font-weight: bold;
-  font-size: 110%; 
-}
-
-.login_form th {
-  text-align: right;
-}
-
-.login_form label {
-  font-weight: normal;
-}
-
-.modify_form fieldset {
-  margin: 10px auto;
-  max-width: 30em;
-}
-
-.modify_form legend {
-  font-weight: bold;
-  font-size: 110%;
-}
-
-.modify_form th {
-  text-align: right;
-}
-
-.modify_form label {
-  font-weight: normal;
-}
-
 .errorbox {
   margin: 10px auto;
   border: 2px red solid;
@@ -231,58 +190,4 @@ div.date:first-line {
   font-size: 70%;
 }
 
-
-
-
-
-
-
-#download {
-   margin-left: auto;
-   margin-right: auto;
-   border-collapse: collapse;
-}
-
-#download th {
-   font-weight: bold;
-   font-size: 0.85em;
-}
-
-#download tr.release {
-   background: #eeeeee;
-   border: 1px solid #cccccc;
-   font-weight: bold;
-}
-
-#download tr {
-   border: 1px solid #cccccc;
-}
-
-#download td.date {
-   text-align: right;
-}
-
-#download tbody.formatgroup {
-   border: 1px solid #cccccc;
-}
-
-#download td.format {
-   padding: 0 0.5em 0 0.5em;
-}
-
-#download td.name, #download td.note {
-   font-size: 0.85em;
-   padding: 2px 0.5em 2px 0.5em;
-}
-
-#download td.size {
-   font-family: monospace;
-   text-align: right;
-   padding: 0 0.5em 0 0.5em;
-}
-
-#download td.md5sum {
-   font-family: monospace;
-   padding: 0 0.5em 0 0.5em;
-}
 

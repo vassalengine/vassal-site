@@ -146,7 +146,7 @@ catch (ErrorException $e) {
 function print_form() {
   print <<<END
 <script>var RecaptchaOptions = { theme : 'white' };</script>
-<form class="registration_form" action="register.php" method="post">
+<form class="sso_form" action="register.php" method="post">
   <fieldset>
     <legend>Create an Account</legend>
     <p>Already have an account? <a href="login.php">Log in</a>.</p>
@@ -179,7 +179,7 @@ function print_form() {
         <td><input type="text" id="realname" name="realname" size="20"/></td>
       </tr>
       <tr>
-        <td colspan="2">
+        <td colspan="2" align="center"><div style="margin: 0 auto;">
 END;
 
   echo recaptcha_get_html(RECAPTCHA_PUBLIC_KEY);

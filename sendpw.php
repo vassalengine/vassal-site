@@ -90,7 +90,7 @@ catch (ErrorException $e) {
 
 function print_form() {
   print <<<END
-<form class="sendpwform" action="sendpw.php" method="post">
+<form class="sso_form" action="sendpw.php" method="post">
   <fieldset>
     <legend>Send password</legend>
     <table>
@@ -99,7 +99,7 @@ function print_form() {
         <td><input type="text" id="username" name="username" size="20"/></td>
       </tr>
       <tr>
-        <th colspan="2">OR</th>
+        <th>OR</th>
       </tr>
       <tr>
         <th><label for="email">Email address:</label></th>
