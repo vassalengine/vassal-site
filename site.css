@@ -4,6 +4,7 @@
   overflow: auto;
   border-bottom: 1px solid black;
   margin-bottom: 10px;
+  background: #ffffff;
 }
 
 #vassal-logo {
@@ -62,6 +63,7 @@
   color: #222222;
   font-size: 9pt;
   font-family: sans-serif;
+  background: #ffffff;
 }
 
 #vassal-footer acronym {
