@@ -48,7 +48,7 @@
         ?>
       </div>
       <div class="dlbutton">
-        <a href=""><span>Support <acronym>Vassal</acronym></span><img src="/images/paypal_donate.png"/></a>
+        <a target="_blank" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=_flow&SESSION=gS5hJbXNrYzfhrwcaHyrBsSqND22MpcGz07W_M7D94YX9wq1CFH4rbdTb7e&dispatch=5885d80a13c0db1fa798f5a5f5ae42e779d4b5655493f6171509c5b2ec019b86"><span>Support <acronym>Vassal</acronym></span><img src="/images/paypal_donate.png"/></a>
       </div>
       <p><acronym>Vassal</acronym> is free, but development and hosting are not. If you enjoy using <acronym>Vassal</acronym>, please consider helping us with these costs.</p>
     </div>
