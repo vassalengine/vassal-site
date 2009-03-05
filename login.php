@@ -45,7 +45,7 @@ try {
   $cookies += phpbb_login($url, $username, $password);
 
   # Bugzilla login
-  $url = 'http://www.test.nomic.net/bugzilla/xmlrpc.cgi';
+  $url = 'http://www.test.nomic.net/tracker/xmlrpc.cgi';
   $cookies += bugzilla_login($url, $username, $password);
 
   # write out the cookies captured from the logins 

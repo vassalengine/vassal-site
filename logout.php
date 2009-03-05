@@ -36,7 +36,7 @@ try {
   $cookies += phpbb_logout($url);
 
   # Bugzilla logout
-  $url = 'http://www.test.nomic.net/bugzilla/xmlrpc.cgi';
+  $url = 'http://www.test.nomic.net/tracker/xmlrpc.cgi';
   $cookies += bugzilla_logout($url);
 
   set_cookies($cookies);  
