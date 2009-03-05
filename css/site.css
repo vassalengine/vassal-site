@@ -60,7 +60,7 @@
   font-size: 9pt;
 }
 
-#vassal-login a, #vassal-login a:visited {
+#vassal-login a:link, #vassal-login a:visited {
   color: #546035;
   text-decoration: none;
 }
@@ -91,7 +91,7 @@
   font-size: smaller;
 }
 
-#vassal-footer a {
+#vassal-footer a:link {
   color: #546035;
 }
 
