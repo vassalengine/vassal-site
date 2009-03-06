@@ -5,7 +5,7 @@ require_once('sso/ssolib.php');
 
 $title = 'VASSAL Login';
 
-$returnto = isset($_GET['returnto']) ? $_GET['returnto'] : '';
+$returnto = isset($_GET['returnto']) ? urldecode($_GET['returnto']) : '';
 
 # check whether this was a login attempt
 if (empty($_POST)) {
@@ -85,7 +85,7 @@ catch (ErrorException $e) {
 
 function print_form($returnto) {
   $action = 'login.php';
-  if (!empty($returnto)) $action .= "?returnto=$returnto";
+  if (!empty($returnto)) $action .= '?returnto=' . urlencode($returnto) . '"';
 
   print <<<END
 <form class="sso_form" action="$action" method="post">

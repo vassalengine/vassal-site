@@ -1,6 +1,8 @@
 <div id="vassal-login">
 <?php
 
+$returnto = urlencode($_SERVER['REQUEST_URI']);
+
 if (isset($_COOKIE['VASSAL_login'])) {
   $key = $_COOKIE['VASSAL_login'];
 
@@ -9,15 +11,17 @@ if (isset($_COOKIE['VASSAL_login'])) {
   try {
     $auth = new AuthDB();
     $username = $auth->user_for_cookie($key);
-    echo '<a href="/logout.php?returnto=', $_SERVER['REQUEST_URI'], '">Log out</a>';
+    $op = 'out';
   }
   catch (ErrorException $e) {
-    echo '<a href="/login.php?returnto=', $_SERVER['REQUEST_URI'], '">Log in</a>';
+    $op = 'in';
   } 
 }   
 else {
-  echo '<a href="/login.php?returnto=', $_SERVER['REQUEST_URI'], '">Log in</a>';
+  $op = 'in';
 } 
+
+echo "<a href=\"/log$op.php?returnto=$returnto\">Log $op</a>";
 
 ?>
 </div>
