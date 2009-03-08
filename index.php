@@ -60,7 +60,7 @@
 
     <div id="vassal-contribute">
       <h1>Get Involved</h1>
-      <p>The <acronym>Vassal</acronym> project is run by volunteers and makes progress by the efforts of volunteers. Is there a feature you'd like to see in the next release? Did you find a bug? Request that feature or report the bug <a href="/tracker/">here</a>. Are you a programmer? We could use your help. Join us in the <a href="">developers' forum</a>. Not a programmer? Help us improve our <a href="">documentation</a>.</p>
+      <p>The <acronym>Vassal</acronym> project is run by volunteers and makes progress by the efforts of volunteers. Is there a feature you'd like to see in the next release? Did you find a bug? Request that feature or report the bug <a href="/tracker/">here</a>. Are you a programmer? We could use your help. Join us in the <a href="/forum/viewforum.php?f=8">developers' forum</a>. Not a programmer? Help us improve our <a href="">documentation</a>.</p>
     </div>
   </div>
 
