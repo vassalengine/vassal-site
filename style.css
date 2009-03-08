@@ -60,6 +60,7 @@ acronym {
 
   font-size: 1.2em;
 /*  line-height: 1.25em; */
+  overflow: auto;
 }
 
 #content h1 {
@@ -191,5 +192,3 @@ div.date {
 div.date:first-line {
   font-size: 70%;
 }
-
-
