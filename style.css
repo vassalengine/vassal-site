@@ -143,10 +143,12 @@ table.screenshot td {
 ul.news {
   margin: 0;
   padding: 0;
+}
+
+.threecol {
   -moz-column-count: 3;
   -moz-column-gap: 5px;
 }
-
 
 li.day {
   margin: 0.5em;
@@ -181,7 +183,7 @@ div.date {
 	margin: 0 0.5em 0em 0;
 }
 
-#more-news {
+.news-nav {
   float: right;
   clear: both;
 }

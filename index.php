@@ -4,7 +4,7 @@
 <head profile="http://www.w3.org/2005/10/profile">
   <link rel="stylesheet" type="text/css" href="/style.css"/>
   <link rel="stylesheet" type="text/css" href="/css/site.css"/>
-  <link rel="alternate" type="application/rss+xml" title="RSS" href="" />
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/news_rss.php" />
   <link rel="icon" type="image/png" href="/images/VASSAL.png"/>
   <title>VASSAL</title>
 </head>
@@ -55,62 +55,62 @@
 
     <div id="vassal-help">
       <h1>Get Help</h1>
-      <p>Need help using <acronym>Vassal</acronym>? Stuck while creating a module? If you can't find an answer in our extensive <a href="">documentation</a>, check our friendly <a href="forum/">forum</a> for help.</p>
+      <p>Need help using <acronym>Vassal</acronym>? Stuck while creating a module? If you can't find an answer in our extensive <a href="">documentation</a>, check our friendly <a href="/forum/">forum</a> for help.</p>
     </div>
 
     <div id="vassal-contribute">
       <h1>Get Involved</h1>
-      <p>The <acronym>Vassal</acronym> project is run by volunteers and makes progress by the efforts of volunteers. Is there a feature you'd like to see in the next release? Did you find a bug? Request that feature or report the bug <a href="bugzilla/">here</a>. Are you a programmer? We could use your help. Join us in the <a href="">developers' forum</a>. Not a programmer? Help us improve our <a href="">documentation</a>.</p>
+      <p>The <acronym>Vassal</acronym> project is run by volunteers and makes progress by the efforts of volunteers. Is there a feature you'd like to see in the next release? Did you find a bug? Request that feature or report the bug <a href="/tracker/">here</a>. Are you a programmer? We could use your help. Join us in the <a href="">developers' forum</a>. Not a programmer? Help us improve our <a href="">documentation</a>.</p>
     </div>
   </div>
 
   <div class="content_box_full" id="vassal-news">
-    <h1>Latest News <a href="news.php"><img src="/images/feed-icon-14x14.png"/></a></h1>
-    <ul class="news">
-      <li class="day">
-        <div class="date">Feb<br/>1</div>
-        <ul class="events">
-          <li><a href="">This is a news item in the future</a></li>
-        </ul>
-      </li>
-      <li class="day">
-        <div class="date">Jan<br/>31</div>
-        <ul class="events">
-          <li><a href=""><acronym>Vassal</acronym> 3.1.0 released</a></li>
-          <li><a href=""><acronym>Vassal</acronym> has a new web site</a></li>
-          <li><a href="">This is a test news item</a></li>
-          <li><a href="">No news is good news</a></li>
-        </ul>
-      </li>
-      <li class="day">
-        <div class="date">Jan<br/>30</div>
-        <ul class="events">
-          <li><a href="">Monsterpocalypse 1.01 released</a></li>
-        </ul>
-      </li>
-      <li class="day">
-        <div class="date">Jan<br/>26</div>
-        <ul class="events">
-          <li><a href=""><acronym>Vassal</acronym> 3.1.0-beta8 released</a></li>
-          <li><a href="">Zombies are eating my brain</a></li>
-        </ul>
-      </li>
-      <li class="day">
-        <div class="date">Jan<br/>25</div>
-        <ul class="events">
-          <li><a href=""><acronym>Vassal</acronym> 3.1.0-beta8 released</a></li>
-          <li><a href="">Zombies are eating my brain</a></li>
-        </ul>
-      </li>
-      <li class="day">
-        <div class="date">Jan<br/>24</div>
-        <ul class="events">
-          <li><a href="">Star Wars Tactics Version 1.4 released</a></li>
-          <li><a href="">This is a very, very long news item, put here just to test what happens when we have a very, very long news item</a></li>
-        </ul>
-      </li>
-    </ul>
-    <em><a id="more-news" href="">...more news</a></em>
+    <h1>Latest News <a href="/news_rss.php"><img src="/images/feed-icon-14x14.png"/></a></h1>
+<?php
+
+$rows = array();
+
+try {
+  require_once('sso/NewsDB.php');
+
+  $news = new NewsDB();
+  $limit = 10;
+  $query = "SELECT id, DATE_FORMAT(date,\"%b\") AS month, DAYOFMONTH(date) AS day, headline FROM news ORDER BY date DESC LIMIT $limit";
+  
+  $rows = $news->read_all($query);
+}
+catch (ErrorException $e) {
+  warn($e->getMessage());
+}
+
+if (count($rows) > 0) {
+  echo '<ul class="news threecol">';
+
+  $month = '';
+  $day = 0;
+
+  # print each item
+  foreach ($rows as $item) {
+    if ($day != $item['day'] || $month != $item['month']) {
+      if ($day != 0) echo '</ul></li>';
+
+      echo '<li class="day"><div class="date">',
+        $item['month'], '<br/>', $item['day'], '</div><ul class="events">';
+
+      $day = $item['day'];
+      $month = $item['month'];
+    }
+
+    echo '<li><a href="/news.php#', $item['id'], '">',
+      $item['headline'], '</a></li>';
+  }
+
+  echo '</ul></li></ul>';
+}
+?>
+    <div class="news-nav">
+      <em><a href="/news.php">...more news</a></em>
+    </div>
   </div>
 </div>
 
