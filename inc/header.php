@@ -5,5 +5,6 @@
   <?php 
     include(dirname(__FILE__) . '/navigation.shtml');
     include(dirname(__FILE__) . '/login-logout.php');
+    include(dirname(__FILE__) . '/search.shtml');
   ?>
 </div>
