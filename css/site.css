@@ -70,6 +70,14 @@
   text-decoration: underline;
 }
 
+/* Site search */
+
+#vassal-search {
+  float: right;
+  clear: right;
+  margin: 5px 5px 0 0;
+}
+
 /* Site footer */
 
 #vassal-footer {
