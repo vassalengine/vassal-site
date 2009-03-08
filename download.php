@@ -53,7 +53,7 @@ code {
   <table>
     <tr>
       <td>
-        <img src="/images/linux.png"/>
+        <img src="/images/linux.png" alt="Linux" />
         <dl>
           <dt>Linux</dt>
           <dd>Download <a href="http://downloads.sourceforge.net/vassalengine/VASSAL-3.1.0-linux.zip">ZIP archive</a> (13MB) <br/>Unpack it and run <code>VASSAL.sh</code></dd>
@@ -69,7 +69,7 @@ code {
     </tr>
     <tr>
       <td>
-        <img src="/images/macosx.png"/>
+        <img src="/images/macosx.png" alt="Mac OS X"/>
         <dl>
           <dt>Mac OS X</dt>
           <dd>Download <a href="http://downloads.sourceforge.net/vassalengine/VASSAL-3.1.0-macosx.dmg">disk image</a> (16MB)</dd>
@@ -85,7 +85,7 @@ code {
     </tr>
     <tr>
       <td>
-        <img src="/images/windows.png"/>
+        <img src="/images/windows.png" alt="Windows" />
         <dl>
           <dt>Windows</dt>
           <dd>Download and run <a href="">installer</a> (12MB)</dd>

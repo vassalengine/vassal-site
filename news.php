@@ -13,7 +13,7 @@
 
 <div id="content">
   <div class="content_box_full">
-  <h1>News <a href="/news_rss.php"><img src="/images/feed-icon-14x14.png"/></a></h1>
+  <h1>News <a href="/news_rss.php"><img src="/images/feed-icon-14x14.png" alt="RSS feed" /></a></h1>
 
 <?php
 
@@ -119,7 +119,7 @@ foreach ($rows as $item) {
     $month = $item['month'];
   }
 
-  echo '<li><h2><a name="', $item['id'], '">', $item['headline'],
+  echo '<li><h2><a id="_', $item['id'], '">', $item['headline'],
        '</a></h2><p>', $item['text'], '</p></li>'; 
 } 
   

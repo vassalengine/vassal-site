@@ -13,10 +13,10 @@
 <div id="content">
   <div id="content_box_full">
     <h1>About</h1>
-    <h2><a name="vassal">About <acronym>Vassal</acronym></a></h2>
-    <h2><a name="team">About The <acronym>Vassal</acronym> Team</a></h2>
+    <h2><a id="vassal">About <acronym>Vassal</acronym></a></h2>
+    <h2><a id="team">About The <acronym>Vassal</acronym> Team</a></h2>
 
-    <h2><a name="site">About the Website</a></h2>
+    <h2><a id="site">About the Website</a></h2>
     <p>The site was originally designed by <a href="">Joel Uckelman</a> using <a href="http://www.php.net">PHP</a> and <a href="http://www.vim.org">Vim</a>. Source code for the site is available in the <acronym>Vassal</acronym> <a href="http://vassalengine.svn.sourceforge.net/viewvc/vassalengine/">Subversion repository</a> under <code>/site-src</code>.</p>
 
     <p>All hand-coded pages on the site are intended to be valid XHTML and CSS. If you find that is not the case, please notify the <a href="webmaster@vassalengine.org">webmaster</a> so the problem can be rectified.</p>

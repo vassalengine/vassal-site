@@ -20,8 +20,8 @@
 
       <table class="screenshot">
         <tr>
-          <td><a href="/images/screenshot1.png"><img src="/thumbs/screenshot1.png" /></a></td>
-          <td><a href="/images/screenshot2.png"><img src="/thumbs/screenshot2.png" /></a></td>
+          <td><a href="/images/screenshot1.png"><img src="/thumbs/screenshot1.png" alt="screenshot" /></a></td>
+          <td><a href="/images/screenshot2.png"><img src="/thumbs/screenshot2.png" alt="screenshot" /></a></td>
         </tr>
       </table>
   
@@ -30,8 +30,8 @@
 
       <table class="screenshot">
         <tr>
-          <td><a href="/images/screenshot2.png"><img src="/thumbs/screenshot2.png" /></a></td>
-          <td><a href="/images/screenshot1.png"><img src="/thumbs/screenshot1.png" /></a></td>
+          <td><a href="/images/screenshot2.png"><img src="/thumbs/screenshot2.png" alt="screenshot" /></a></td>
+          <td><a href="/images/screenshot1.png"><img src="/thumbs/screenshot1.png" alt="screenshot" /></a></td>
         </tr>
       </table>
     </div>
@@ -44,11 +44,11 @@
       <div class="dlbutton">
         <?php
           include 'inc/download-detect.php';
-          echo "<a href=\"$download_url\"><span>Download <acronym>Vassal</acronym><br/>$version$download_os</span><img src=\"/images/button.download.png\"/></a>";
+          echo "<a href=\"$download_url\"><span>Download <acronym>Vassal</acronym><br/>$version$download_os</span><img src=\"/images/button.download.png\" alt=\"\" /></a>";
         ?>
       </div>
       <div class="dlbutton">
-        <a target="_blank" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=_flow&SESSION=gS5hJbXNrYzfhrwcaHyrBsSqND22MpcGz07W_M7D94YX9wq1CFH4rbdTb7e&dispatch=5885d80a13c0db1fa798f5a5f5ae42e779d4b5655493f6171509c5b2ec019b86"><span>Support <acronym>Vassal</acronym></span><img src="/images/paypal_donate.png"/></a>
+        <a target="_blank" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=_flow&amp;SESSION=gS5hJbXNrYzfhrwcaHyrBsSqND22MpcGz07W_M7D94YX9wq1CFH4rbdTb7e&amp;dispatch=5885d80a13c0db1fa798f5a5f5ae42e779d4b5655493f6171509c5b2ec019b86"><span>Support <acronym>Vassal</acronym></span><img src="/images/paypal_donate.png" alt="" /></a>
       </div>
       <p><acronym>Vassal</acronym> is free, but development and hosting are not. If you enjoy using <acronym>Vassal</acronym>, please consider helping us with these costs.</p>
     </div>
@@ -65,7 +65,7 @@
   </div>
 
   <div class="content_box_full" id="vassal-news">
-    <h1>Latest News <a href="/news_rss.php"><img src="/images/feed-icon-14x14.png"/></a></h1>
+    <h1>Latest News <a href="/news_rss.php"><img src="/images/feed-icon-14x14.png" alt="RSS feed" /></a></h1>
 <?php
 
 $rows = array();
@@ -101,7 +101,7 @@ if (count($rows) > 0) {
       $month = $item['month'];
     }
 
-    echo '<li><a href="/news.php#', $item['id'], '">',
+    echo '<li><a href="/news.php#_', $item['id'], '">',
       $item['headline'], '</a></li>';
   }
 
