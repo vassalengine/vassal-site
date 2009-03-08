@@ -21,7 +21,14 @@ else {
   $op = 'in';
 } 
 
-echo "<a href=\"/log$op.php?returnto=$returnto\">Log $op</a>";
+if ($op == 'in') {
+  echo "<a href=\"/register.php\">Create account</a>";
+}
+else {
+  echo "<a href=\"/modify.php\">Modify account</a>";
+}
+
+echo " / <a href=\"/log$op.php?returnto=$returnto\">Log $op</a>";
 
 ?>
 </div>
