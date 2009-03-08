@@ -5,12 +5,13 @@
     <link>http://www.test.nomic.net</link>
     <description>News about the VASSAL Engine and VASSAL modules</description>
     <language>en-us</language>
-<!--    <image>
+    <image>
       <title>VASSAL News</title>
       <url>http://www.test.nomic.net/images/header.png</url>
       <link>http://www.test.nomic.net</link>
+      <width>270</width>
+      <height>72</height>
     </image>
--->
     <generator>news_rss.php</generator>
     <managingEditor>webmaster@www.test.nomic.net</managingEditor>
     <webMaster>webmaster@www.test.nomic.net</webMaster>
