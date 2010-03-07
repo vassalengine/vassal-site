@@ -116,7 +116,7 @@ function phpbb_login($url, $username, $password) {
   }
 
   if ($content != '1') {
-    throw new ErrorException('phpBB login failed.');
+    throw new ErrorException("phpBB login failed: $content");
   }
 
   return extract_cookies($http_response_header);
