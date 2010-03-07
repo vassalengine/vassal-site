@@ -23,7 +23,7 @@ function mediawiki_login($url, $username, $password) {
   $opts = array(
     'http' => array(
       'method' => 'POST',
-      'header' => "Content-type: application/x-www-form-urlencoded\r\n" .
+      'header' => "Content-Type: application/x-www-form-urlencoded\r\n" .
                   'Content-Length: ' . strlen($request) . "\r\n",
       'content' => $request
     )
@@ -31,6 +31,9 @@ function mediawiki_login($url, $username, $password) {
 
   $ctx = stream_context_create($opts);
   $content = file_get_contents($url, 0 , $ctx);
+  if (!$content) {
+    throw new ErrorException("Failed to open $url");
+  }
 
   $reply = unserialize($content);
   $reply = $reply['login'];
@@ -70,7 +73,7 @@ function mediawiki_logout($url) {
   $opts = array(
     'http' => array(
       'method' => 'POST',
-      'header' => "Content-type: application/x-www-form-urlencoded\r\n" .
+      'header' => "Content-Type: application/x-www-form-urlencoded\r\n" .
                   'Content-Length: ' . strlen($request) . "\r\n" .
                   'Cookie: ' . cookies_list($_COOKIE) . "\r\n",
       'content' => $request
@@ -79,6 +82,9 @@ function mediawiki_logout($url) {
 
   $ctx = stream_context_create($opts);
   $content = file_get_contents($url, 0 , $ctx);
+  if (!$content) {
+    throw new ErrorException("Failed to open $url");
+  }
 
   return extract_cookies($http_response_header);
 }
@@ -97,7 +103,7 @@ function phpbb_login($url, $username, $password) {
   $opts = array(
     'http' => array(
       'method' => 'POST',
-      'header' => "Content-type: application/x-www-form-urlencoded\r\n" .
+      'header' => "Content-Type: application/x-www-form-urlencoded\r\n" .
                   'Content-Length: ' . strlen($request) . "\r\n",
       'content' => $request
     )
@@ -105,6 +111,9 @@ function phpbb_login($url, $username, $password) {
 
   $ctx = stream_context_create($opts);
   $content = file_get_contents($url, 0 , $ctx);
+  if (!$content) {
+    throw new ErrorException("Failed to open $url");
+  }
 
   if ($content != '1') {
     throw new ErrorException('phpBB login failed.');
@@ -126,6 +135,9 @@ function phpBB_logout($url) {
 
   $ctx = stream_context_create($opts);
   $content = file_get_contents($url, 0 , $ctx);
+  if (!$content) {
+    throw new ErrorException("Failed to open $url");
+  }
 
   return extract_cookies($http_response_header);
 }
@@ -145,7 +157,7 @@ function bugzilla_login($url, $username, $password) {
   $opts = array(
     'http' => array(
       'method' => 'POST',
-      'header' => "Content-type: text/xml\r\n" .
+      'header' => "Content-Type: text/xml\r\n" .
                   'Content-Length: ' . strlen($request) . "\r\n",
       'content' => $request
     )
@@ -153,6 +165,9 @@ function bugzilla_login($url, $username, $password) {
 
   $ctx = stream_context_create($opts);
   $content = file_get_contents($url, 0 , $ctx);
+  if (!$content) {
+    throw new ErrorException("Failed to open $url");
+  }
 
   $reply = xmlrpc_decode($content);
   if (xmlrpc_is_fault($reply)) {
@@ -172,7 +187,7 @@ function bugzilla_logout($url) {
   $opts = array(
     'http' => array(
       'method' => 'POST',
-      'header' => "Content-type: text/xml\r\n" .
+      'header' => "Content-Type: text/xml\r\n" .
                   'Content-Length: ' . strlen($request) . "\r\n" .
                   'Cookie: ' . cookies_list($_COOKIE) . "\r\n",
       'content' => $request
@@ -181,6 +196,9 @@ function bugzilla_logout($url) {
 
   $ctx = stream_context_create($opts);
   $content = file_get_contents($url, 0 , $ctx);
+  if (!$content) {
+    throw new ErrorException("Failed to open $url");
+  }
 
   return extract_cookies($http_response_header);
 }
