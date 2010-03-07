@@ -70,8 +70,13 @@ try {
     true
   );
 
+  # return to front page by default; also if the returnto is the
+  # logout page, since returning there would immediately log us out
+  if (empty($returnto) || $returnto == '/logout.php') {
+    $returnto = '/index.php';
+  }
+
   # go back where we came from
-  if (empty($returnto)) $returnto = '/index.php';
   header("Location: $returnto");
   exit;
 }
