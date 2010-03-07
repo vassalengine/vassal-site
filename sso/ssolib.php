@@ -260,7 +260,7 @@ function print_top($title) {
   <link rel="stylesheet" type="text/css" href="/style.css"/>
   <link rel="stylesheet" type="text/css" href="/css/site.css"/>
   <link rel="stylesheet" type="text/css" href="/css/sso.css"/>
-  <link rel="icon" type="image/png" href="VASSAL.png"/>
+  <link rel="icon" type="image/png" href="/images/VASSAL.png"/>
   <title>$title</title>
 </head>
 <body>
