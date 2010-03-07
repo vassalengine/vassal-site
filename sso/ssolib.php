@@ -135,9 +135,7 @@ function phpBB_logout($url) {
 
   $ctx = stream_context_create($opts);
   $content = file_get_contents($url, 0 , $ctx);
-  if (!$content) {
-    throw new ErrorException("Failed to open $url");
-  }
+  # NB: No content is returned, don't check for it.
 
   return extract_cookies($http_response_header);
 }
