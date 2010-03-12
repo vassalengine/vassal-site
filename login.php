@@ -72,7 +72,9 @@ try {
 
   # return to front page by default; also if the returnto is the
   # logout page, since returning there would immediately log us out
-  if (empty($returnto) || $returnto == '/logout.php') {
+  if (empty($returnto) ||
+      strpos($returnto, 'logout.php') === 0 ||
+      strpos($returnto, '/logout.php') === 0) {
     $returnto = '/index.php';
   }
 
