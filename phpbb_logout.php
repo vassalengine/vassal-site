@@ -6,8 +6,15 @@
 define('IN_PHPBB', true);
 $phpbb_root_path = '../forum/';
 $phpEx = 'php';
-include($phpbb_root_path . 'common.' . $phpEx);
+require($phpbb_root_path . 'common.' . $phpEx);
 
-$user->session_kill(false);
+$user->session_begin(false);
+$auth->acl($user->data);
+$user->setup();
+
+if ($user->data['is_registered']) {
+  $user->session_kill();
+  $user->session_begin(false);
+}
 
 ?>
