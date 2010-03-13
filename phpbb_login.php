@@ -19,20 +19,20 @@ if (empty($password)) {
 define('IN_PHPBB', true);
 $phpbb_root_path = '../forum/';
 $phpEx = 'php';
-include($phpbb_root_path . 'common.' . $phpEx);
+require($phpbb_root_path . 'common.' . $phpEx);
 
 $user->session_begin(false);
 $auth->acl($user->data);
 $user->setup();
 
-$autologin = true;
-$viewonline = true;
-
 if (!$user->data['is_registered']) {
-  $reply = $auth->login($username, $password, $autologin, $viewonline);
+  $autologin = true;
+  $viewonline = true;
 
-  if ($reply['status'] != LOGIN_SUCCESS) {
-    print $reply['error_msg'];
+  $result = $auth->login($username, $password, $autologin, $viewonline);
+
+  if ($result['status'] != LOGIN_SUCCESS) {
+    print $result['error_msg'];
     exit;
   }
 }
