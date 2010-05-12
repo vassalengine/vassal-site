@@ -5,7 +5,7 @@
 
 define('IN_PHPBB', true);
 $phpbb_root_path = '../forum/';
-$phpEx = 'php';
+$phpEx = substr(strrchr(__FILE__, '.'), 1);
 require($phpbb_root_path . 'common.' . $phpEx);
 
 $user->session_begin(false);
