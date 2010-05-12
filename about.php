@@ -34,7 +34,7 @@
     <p>Need help using <acronym>Vassal</acronym>? Stuck while creating a module? If you can't find an answer in our extensive <a href="">documentation</a>, check our friendly <a href="http://www.test.nomic.net/forum/">forum</a> for help.</p>
 
     <h3>How can I get involved?</h3>
-    <p>The <acronym>Vassal</acronym>project is run by volunteers and progresses through the efforts of volunteers. Is there a feature you'd like to see in the next release? Did you find a bug? Request that feature or report the bug <a href="http://www.test.nomic.net/tracker/">here</a>. Are you a programmer? We could use your help. Join us in the <a href="http://www.test.nomic.net/forum/viewforum.php?f=8">developers' forum</a>. Not a programmer? Help us improve our <a href="">documentation</a>.</p>
+    <p>The <acronym>Vassal</acronym> project is run by volunteers and progresses through the efforts of volunteers. Is there a feature you'd like to see in the next release? Did you find a bug? Request that feature or report the bug <a href="http://www.test.nomic.net/tracker/">here</a>. Are you a programmer? We could use your help. Join us in the <a href="http://www.test.nomic.net/forum/viewforum.php?f=8">developers' forum</a>. Not a programmer? Help us improve our <a href="">documentation</a>.</p>
 
     <h2><a id="team">About The <acronym>Vassal</acronym> Team</a></h2>
 
