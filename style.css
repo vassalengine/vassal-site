@@ -127,9 +127,6 @@ div.dlbutton a img {
   vertical-align: middle;
 }
 
-
-
-
 table.screenshot {
   margin: 0 auto;
 }
@@ -141,11 +138,6 @@ table.screenshot td {
 ul.news {
   margin: 0;
   padding: 0;
-}
-
-.threecol {
-  -moz-column-count: 3;
-  -moz-column-gap: 5px;
 }
 
 li.day {

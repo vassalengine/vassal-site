@@ -1,9 +1,10 @@
 <?php
 
-$version = '3.1.0';
+# NB: $version should already be defined before calling this script
+
 $base_url = 'http://downloads.sourceforge.net/vassalengine';
  
-// Get the user's browser
+# Get the user's browser
 $useragent = $_SERVER['HTTP_USER_AGENT'];
 
 if (strstr($useragent, 'Win')) {

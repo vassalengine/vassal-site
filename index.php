@@ -13,37 +13,34 @@
 
 <div id="content">
   <div class="content_box_left">
-    <div id="vassal-about">
+    <div id="about">
       <h1>What is <acronym>Vassal</acronym>?</h1>
-      <p><acronym>Vassal</acronym> is a game engine for building and playing online adaptations of board games and card games. It allows users to play in real time over the Internet, or by email. <acronym>Vassal</acronym> runs on all platforms, and is free, open-source software.</p>
-      <p>Click <a href="foo">here</a> to learn more about <acronym>Vassal</acronym>.</p>
+      <p><acronym>Vassal</acronym> is a game engine for building and playing online adaptations of board games and card games. Play live on the Internet or by email. <acronym>Vassal</acronym> runs on all platforms, and is free, open-source software.</p>
+
+      <p><a href="/about.php">Learn more</a> about <acronym>Vassal</acronym>.</p>
 
       <table class="screenshot">
-        <tr>
-          <td><a href="/images/screenshot1.png"><img src="/thumbs/screenshot1.png" alt="screenshot" /></a></td>
-          <td><a href="/images/screenshot2.png"><img src="/thumbs/screenshot2.png" alt="screenshot" /></a></td>
-        </tr>
-      </table>
-  
-      <h1>What Games Are There?</h1>
-      <p>Hundreds of boardgames have been converted for use with <acronym>Vassal</acronym>, so there's a good chance that you'll find the games you own in our <a href="">module library</a> already. If there is not yet a <acronym>Vassal</acronym> module for your favorite game, you can use the <acronym>Vassal</acronym> Editor to build your own module, and should you run into trouble, help is only a click away in our <a href="forum/">forum</a>.</p>
-
-      <table class="screenshot">
-        <tr>
-          <td><a href="/images/screenshot2.png"><img src="/thumbs/screenshot2.png" alt="screenshot" /></a></td>
-          <td><a href="/images/screenshot1.png"><img src="/thumbs/screenshot1.png" alt="screenshot" /></a></td>
-        </tr>
+        <tbody>
+          <tr>
+            <td><a href="/images/screenshot1.png"><img src="/thumbs/screenshot1.png" alt="screenshot"></a></td>
+            <td><a href="/images/screenshot2.png"><img src="/thumbs/screenshot2.png" alt="screenshot"></a></td>
+          </tr>
+        </tbody>
       </table>
     </div>
-  </div>
 
-  <div class="content_box_right">
-    <div id="vassal-download">
+    <div id="download">
       <h1>Get <acronym>Vassal</acronym></h1>
-      <p><acronym>Vassal</acronym> is free, open-source software, created by volunteers. Our current release is 3.1.0.</p> 
+      <p><acronym>Vassal</acronym> is free, open-source software, created by volunteers. Our current release is 
+        <?php 
+          $version = file_get_contents('util/release-current');
+          echo $version;
+        ?>
+      .</p> 
+
       <div class="dlbutton">
         <?php
-          include 'inc/download-detect.php';
+          include('inc/download-detect.php');
           echo "<a href=\"$download_url\"><span>Download <acronym>Vassal</acronym><br/>$version$download_os</span><img src=\"/images/button.download.png\" alt=\"\" /></a>";
         ?>
       </div>
@@ -52,20 +49,12 @@
       </div>
       <p><acronym>Vassal</acronym> is free, but development and hosting are not. If you enjoy using <acronym>Vassal</acronym>, please consider helping us with these costs.</p>
     </div>
-
-    <div id="vassal-help">
-      <h1>Get Help</h1>
-      <p>Need help using <acronym>Vassal</acronym>? Stuck while creating a module? If you can't find an answer in our extensive <a href="">documentation</a>, check our friendly <a href="/forum/">forum</a> for help.</p>
-    </div>
-
-    <div id="vassal-contribute">
-      <h1>Get Involved</h1>
-      <p>The <acronym>Vassal</acronym> project is run by volunteers and makes progress by the efforts of volunteers. Is there a feature you'd like to see in the next release? Did you find a bug? Request that feature or report the bug <a href="/tracker/">here</a>. Are you a programmer? We could use your help. Join us in the <a href="/forum/viewforum.php?f=8">developers' forum</a>. Not a programmer? Help us improve our <a href="">documentation</a>.</p>
-    </div>
   </div>
 
-  <div class="content_box_full" id="vassal-news">
-    <h1>Latest News <a href="/news_rss.php"><img src="/images/feed-icon-14x14.png" alt="RSS feed" /></a></h1>
+  <div class="content_box_right">
+    <div id="news">
+      <h1>Latest News <a href="/news_rss.php"><img src="/images/feed-icon-14x14.png" alt="RSS feed"></a></h1>
+
 <?php
 
 $rows = array();
@@ -84,7 +73,7 @@ catch (ErrorException $e) {
 }
 
 if (count($rows) > 0) {
-  echo '<ul class="news threecol">';
+  echo '<ul>';
 
   $month = '';
   $day = 0;
@@ -108,8 +97,9 @@ if (count($rows) > 0) {
   echo '</ul></li></ul>';
 }
 ?>
-    <div class="news-nav">
-      <em><a href="/news.php">...more news</a></em>
+      <div class="news-nav">
+        <em><a href="/news.php">...more news</a></em>
+      </div>
     </div>
   </div>
 </div>
