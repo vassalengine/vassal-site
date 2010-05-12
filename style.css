@@ -179,3 +179,7 @@ div.date {
 div.date:first-line {
   font-size: 70%;
 }
+
+div.costbox div {
+  margin: 1em auto;
+}
