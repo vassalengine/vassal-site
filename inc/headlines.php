@@ -31,7 +31,7 @@ foreach ($xml->channel->item as $item) {
     echo "<ul class=\"events\">\n";
   }
 
-  echo "<li><a href=\"{$item['link']}\">{$item['title']}</a></li>\n";
+  echo "<li><a href=\"{$item->link}\">{$item->title}</a></li>\n";
 }
 
 ?>
