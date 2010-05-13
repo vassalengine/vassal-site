@@ -9,37 +9,29 @@ if ($rss === false) {
 
 $xml = simplexml_load_string($rss);
 
-$cal = array();
+$mname = array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+               'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec');
+
+$month = $day = 0;
 
 foreach ($xml->channel->item as $item) {
   $date = date_parse($item->pubDate);
 
-  $cal[$date['month']][$date['day']][] = array(
-    'title' => $item->title,
-    'link'  => $item->link
-  );
-}
+  if ($date['month'] != $month || $date['day'] != $day) {
+    if ($day != 0) {
+      # end the previous day
+      echo "</ul>\n</li>\n";
+    }
 
-$mname = array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-               'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec');
-
-krsort($cal, SORT_NUMERIC);
-
-foreach ($cal as $month => $days) {
-  krsort($days, SORT_NUMERIC);
-
-  foreach ($days as $day => $items) {
+    $month = $date['month'];
+    $day = $date['day'];
 
     echo "<li class=\"day\">\n";
     echo "<div class=\"date\">{$mname[$month-1]}<br/>$day</div>\n";
     echo "<ul class=\"events\">\n";
-
-    foreach ($items as $item) {
-      echo "<li><a href=\"{$item['link']}\">{$item['title']}</a></li>\n";
-    }
-
-    echo "</ul>\n</li>\n";
   }
+
+  echo "<li><a href=\"{$item['link']}\">{$item['title']}</a></li>\n";
 }
 
 ?>
