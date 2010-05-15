@@ -56,9 +56,7 @@ acronym {
   max-width: 790px;
   width: 790px;
   clear: both;
-
   font-size: 1.2em;
-  overflow: auto;
 }
 
 #content h1 {
@@ -154,7 +152,7 @@ ul.events {
 
 ul.events li {
   list-style-type: disc;
-  margin-left: 3.5em;
+  margin: 0 0 0.5em 3.5em;
   padding-left: 0;
 }
 
