@@ -58,14 +58,14 @@ code {
         <img src="/images/linux.png" alt="Linux" />
         <dl>
           <dt>Linux</dt>
-          <dd>Download <a href="http://downloads.sourceforge.net/vassalengine/VASSAL-<?php echo $version; ?>-linux.zip">ZIP archive</a> (13MB) <br/>Unpack it and run <code>VASSAL.sh</code></dd>
+          <dd>Download <a href="http://downloads.sourceforge.net/vassalengine/VASSAL-<?php echo $version; ?>-linux.tar.bz2">tarball</a> (16MB) <br/>Unpack it and run <code>VASSAL.sh</code></dd>
         </dl>
       </td>
       <td>
         <span style="font-size: 48px;">*</span>
         <dl>
           <dt>Other</dt>
-          <dd>Download <a href="http://downloads.sourceforge.net/vassalengine/VASSAL-<?php echo $version; ?>-other.zip">ZIP archive</a> (13MB)<br/>Unpack it and run <code>VASSAL.sh</code></dd>
+          <dd>Download <a href="http://downloads.sourceforge.net/vassalengine/VASSAL-<?php echo $version; ?>-other.zip">ZIP archive</a> (16MB)<br/>Unpack it and run <code>VASSAL.sh</code></dd>
         </dl>
       </td>
     </tr>
@@ -74,14 +74,14 @@ code {
         <img src="/images/macosx.png" alt="Mac OS X"/>
         <dl>
           <dt>Mac OS X</dt>
-          <dd>Download <a href="http://downloads.sourceforge.net/vassalengine/VASSAL-<?php echo $version; ?>-macosx.dmg">disk image</a> (16MB)</dd>
+          <dd>Download <a href="http://downloads.sourceforge.net/vassalengine/VASSAL-<?php echo $version; ?>-macosx.dmg">disk image</a> (19MB)</dd>
         </dl>
       </td>
       <td>
         <span style="font-size: 24px;">{}</span>
         <dl>
           <dt>Source</dt>
-          <dd>Download <a href="http://downloads.sourceforge.net/vassalengine/VASSAL-<?php echo $version; ?>-src.zip">ZIP archive</a> (13MB)<br/>Look <a href="">here</a> for build instructions.</dd>
+          <dd>Download <a href="http://downloads.sourceforge.net/vassalengine/VASSAL-<?php echo $version; ?>-src.zip">ZIP archive</a> (16MB)<br/>Look <a href="">here</a> for build instructions.</dd>
         </dl>
       </td>
     </tr>
@@ -90,7 +90,7 @@ code {
         <img src="/images/windows.png" alt="Windows" />
         <dl>
           <dt>Windows</dt>
-          <dd>Download and run <a href="">installer</a> (12MB)</dd>
+          <dd>Download and run <a href="">installer</a> (16MB)</dd>
         </dl>
       </td>
     </tr>
