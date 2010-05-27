@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /wiki/index.php?
+Disallow: /wiki/Special:Search
+Disallow: /wiki/Special:Random
