@@ -7,6 +7,9 @@ if ($rss === false) {
   die('Something went wrong.');
 }
 
+# We have to do this because simplexml doesn't understand HTML entities
+$rss = html_entity_decode($rss, ENT_NOQUOTES, 'UTF-8');
+
 $xml = simplexml_load_string($rss);
 
 $mname = array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
