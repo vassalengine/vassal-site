@@ -5,37 +5,6 @@
   <link rel="stylesheet" type="text/css" href="/css/style.css"/>
   <link rel="stylesheet" type="text/css" href="/css/site.css"/>
   <link rel="icon" type="image/png" href="/images/VASSAL.png"/>
-
-  <style type="text/css">
-dt {
-  font-weight: bold;
-}
-
-dd{
-  margin: 0.5em 0 0.5em 0px;
-  padding-left: 10px;
-}
-
-dl{
-  margin-bottom: 0;
-  padding: 0em 2em 1em 1em;
-  display: inline-block;
-}
-
-td img, td span {
-  vertical-align: top;
-}
-
-table {
-  margin: 1em auto;
-}
-
-code {
-  color: blue;
-}
-
-  </style>
-
   <title>Download VASSAL</title>
 </head>
 <body>
@@ -52,7 +21,7 @@ code {
   <h2><acronym>Vassal</acronym> <?php echo $version; ?></h2>
   <p>This is the current release. <acronym>Vassal</acronym> <?php echo $version; ?> contains a large number of changes over 3.0.17. See the <a href="">release notes</a> for details.</p>
 
-  <table>
+  <table class="dl">
     <tr>
       <td>
         <img src="/images/linux.png" alt="Linux" />
