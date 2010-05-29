@@ -30,25 +30,6 @@ a img {
   border: 0;
 }
 
-acronym {
-  font-variant: small-caps;
-}
-
-.errorbox {
-  margin: 10px auto;
-  border: 2px red solid;
-  padding: 0.5em 1em;
-  background-color: #fff2f2;
-}
-
-.errorbox h2 {
-  font-size: 1em;
-  font-weight: bold;
-  display: inline;
-  margin: 0 .5em 0 0;
-  border: none;
-}
-
 #content {
   margin: 0 auto;
   padding: 0;
@@ -79,9 +60,6 @@ acronym {
 .content_box_full {
   clear: both;
 }
-
-
-
 
 div.dlbutton {
   padding: 1em;
