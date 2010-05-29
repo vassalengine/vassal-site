@@ -172,6 +172,7 @@ div.date {
 .news-nav {
   float: right;
   clear: both;
+  margin: 0 0 1em 0;
 }
 
 div.date:first-line {
