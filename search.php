@@ -38,8 +38,6 @@
 #content {
   overflow: visible;
 }
-
-
   </style>
 </head>
 <body>
