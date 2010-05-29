@@ -61,7 +61,9 @@
     <div id="news">
       <h1>Latest News <a href="/news_rss.php"><img src="/images/feed-icon-14x14.png" alt="RSS feed"></a></h1>
 
+      <ul class="news">
       <?php include('inc/headlines.php'); ?>
+      </ul>
 
       <div class="news-nav">
         <em><a href="/news.php">...more news</a></em>

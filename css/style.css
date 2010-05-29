@@ -134,7 +134,7 @@ table.screenshot td {
 }
 
 ul.news {
-  margin: 0;
+  margin: 0.5em 0 0.5em 1em;
   padding: 0;
 }
 
@@ -143,6 +143,7 @@ li.day {
 	padding: 0;
 	list-style-type: none;
   float: left;
+  clear: both;
 }
 
 ul.events {
