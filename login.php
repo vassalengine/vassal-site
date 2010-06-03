@@ -37,7 +37,7 @@ try {
   $cookies = array();
 
   # MediaWiki login
-  $url = 'http://www.test.nomic.net/wiki/api.php';
+  $url = 'http://www.test.nomic.net/mediawiki/api.php';
   $cookies += mediawiki_login($url, $username, $password);
 
   # phpBB login

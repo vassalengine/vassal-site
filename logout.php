@@ -28,7 +28,7 @@ try {
   $cookies = array();
 
   # MediaWiki logout
-  $url = 'http://www.test.nomic.net/wiki/api.php';
+  $url = 'http://www.test.nomic.net/mediawiki/api.php';
   $cookies += mediawiki_logout($url);
 
   # phpBB logout

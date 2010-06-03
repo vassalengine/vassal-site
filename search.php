@@ -75,11 +75,11 @@
 
 <!-- search code from MediaWiki -->
     <div class="search-block">
-      <form action="/wiki/index.php/Special:Search" method="get">
+      <form action="/wiki/Special:Search" method="get">
         <div>
           <input name="search" type="text" size="31" />
           <input type='submit' name="fulltext" value="Search Wiki" />
-          <a href="/wiki/index.php/Special:Search">Advanced search</a>
+          <a href="/wiki/Special:Search">Advanced search</a>
         </div>
       </form>
     </div>
