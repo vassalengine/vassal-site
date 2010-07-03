@@ -37,15 +37,15 @@ try {
   $cookies = array();
 
   # MediaWiki login
-  $url = 'http://www.test.nomic.net/mediawiki/api.php';
+  $url = 'http://www.test2.nomic.net/mediawiki/api.php';
   $cookies += mediawiki_login($url, $username, $password);
 
   # phpBB login
-  $url = 'http://www.test.nomic.net/phpbb_login.php';
+  $url = 'http://www.test2.nomic.net/phpbb_login.php';
   $cookies += phpbb_login($url, $username, $password);
 
   # Bugzilla login
-  $url = 'http://www.test.nomic.net/tracker/xmlrpc.cgi';
+  $url = 'http://www.test2.nomic.net/tracker/xmlrpc.cgi';
   $cookies += bugzilla_login($url, $username, $password);
 
   # write out the cookies captured from the logins 
@@ -65,7 +65,7 @@ try {
     $key,
     $expires,
     '/',
-    'www.test.nomic.net',
+    'www.test2.nomic.net',
     false,
     true
   );

@@ -98,16 +98,16 @@ Someone claiming to be "$realname", probably you, from IP address {$_SERVER['REM
 
 To confirm this email address, simply reply to this message, or open this link in your browser:
 
-http://www.test.nomic.net/confirm_email.php?key=$key
+http://www.test2.nomic.net/confirm_email.php?key=$key
 
-If you do not wish to switch to this email address, please disregard this message. If you are not requesting to change the email address associated with this account, or you have any other questions, please contact webmaster@test.nomic.net.
+If you do not wish to switch to this email address, please disregard this message. If you are not requesting to change the email address associated with this account, or you have any other questions, please contact webmaster@test2.nomic.net.
 
 END;
 
     $message = wordwrap($message, 70);
     $headers =
-      "From: webmaster@test.nomic.net\r\n" .
-      "Reply-To: confirm+$key@test.nomic.net\r\n";
+      "From: webmaster@test2.nomic.net\r\n" .
+      "Reply-To: confirm+$key@test2.nomic.net\r\n";
 
     if (!mail($email, $subject, $message, $headers)) {
       throw new ErrorException('Failed to send confirmation email.');

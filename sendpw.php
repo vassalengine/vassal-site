@@ -60,14 +60,14 @@ Someone. probably you, from IP address {$_SERVER['REMOTE_ADDR']}, has requested 
 
 To reset the password for your account, simply open this link in your browser:
 
-http://www.test.nomic.net/resetpw.php?key=$key
+http://www.test2.nomic.net/resetpw.php?key=$key
 
-If you do not wish to reset your password, please disregard this message. If you receive multiple such notifications which you did not request, or you have any other questions, please conact webmaster@test.nomic.net.
+If you do not wish to reset your password, please disregard this message. If you receive multiple such notifications which you did not request, or you have any other questions, please conact webmaster@test2.nomic.net.
 
 END;
 
     $message = wordwrap($message, 70);
-    $headers = 'From: webmaster@test.nomic.net';
+    $headers = 'From: webmaster@test2.nomic.net';
 
     if (!mail($e['mail'][0], $subject, $message, $headers)) {
       throw new ErrorException('Failed to send confirmation email.');

@@ -1,5 +1,5 @@
 <div id="vassal-search">
-  <form action="http://www.test.nomic.net/search.php" id="cse-search-box">
+  <form action="http://www.test2.nomic.net/search.php" id="cse-search-box">
     <div>
       <input type="hidden" name="cx" value="009624425637032310479:wa4dtyo3sma" />
       <input type="hidden" name="cof" value="FORID:9" />
