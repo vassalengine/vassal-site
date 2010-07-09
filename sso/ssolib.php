@@ -1,5 +1,8 @@
 <?php
 
+define('MIME_FORM', 'application/x-www-form-urlencoded');
+define('MIME_XML',  'text/xml');
+
 function rand_base64_key() {
   $key = base64_encode(pack('L6', mt_rand(), mt_rand(), mt_rand(),
                                   mt_rand(), mt_rand(), mt_rand()));
@@ -20,58 +23,26 @@ function mediawiki_login($url, $username, $password) {
 
   $request = http_build_query($params);
 
-  $opts = array(
-    'http' => array(
-      'method' => 'POST',
-      'header' => "Content-Type: application/x-www-form-urlencoded\r\n" .
-                  'Content-Length: ' . strlen($request) . "\r\n",
-      'content' => $request
-    )
-  );
-
-  $ctx = stream_context_create($opts);
-  $content = file_get_contents($url, 0 , $ctx);
-  if (!$content) {
-    throw new ErrorException("Failed to open $url");
-  }
-
+  extract(do_http_post($url, MIME_FORM, $request));
   $reply = unserialize($content);
   $reply = $reply['login'];
 
-  $cookies = array();
+  $set_cookies = array();
 
   # As of MW 1.15.3, we must confirm the returned token
   if ($reply['result'] == 'NeedToken') {
     $params['lgtoken'] = $reply['token'];
     $request = http_build_query($params);
 
-    $cookies = extract_cookies($http_response_header);
+    $set_cookies = extract_cookies($header);
 
-    $cstr = '';
-    $first = true;
-    foreach ($cookies as $name => $attr) {
-      if ($first) $first = false;
-      else $cstr .= '; ';
-  
-      $cstr .= $name . '=' . $attr['value'];
+    # convert extract_cookies format to $_COOKIES format for sending
+    $cookies = array();
+    foreach ($set_cookies as $name => $attr) {
+      $cookies[$name] = $attr['value'];
     }
 
-    $opts = array(
-      'http' => array(
-        'method' => 'POST',
-        'header' => "Content-Type: application/x-www-form-urlencoded\r\n" .
-                    'Content-Length: ' . strlen($request) . "\r\n" .
-                    'Cookie: ' . $cstr . "\r\n",
-        'content' => $request
-      )
-    );
-
-    $ctx = stream_context_create($opts);
-    $content = file_get_contents($url, 0 , $ctx);
-    if (!$content) {
-      throw new ErrorException("Failed to open $url");
-    }
-
+    extract(do_http_post($url, MIME_FORM, $request, $cookies));
     $reply = unserialize($content);
     $reply = $reply['login'];
   }
@@ -94,7 +65,7 @@ function mediawiki_login($url, $username, $password) {
     }
   }
 
-  return array_merge($cookies, extract_cookies($http_response_header));
+  return array_merge($set_cookies, extract_cookies($header));
 }
 
 #
@@ -108,23 +79,9 @@ function mediawiki_logout($url) {
 
   $request = http_build_query($params);
 
-  $opts = array(
-    'http' => array(
-      'method' => 'POST',
-      'header' => "Content-Type: application/x-www-form-urlencoded\r\n" .
-                  'Content-Length: ' . strlen($request) . "\r\n" .
-                  'Cookie: ' . cookies_list($_COOKIE) . "\r\n",
-      'content' => $request
-    )
-  );
+  extract(do_http_post($url, MIME_FORM, $request, $_COOKIE)); 
 
-  $ctx = stream_context_create($opts);
-  $content = file_get_contents($url, 0 , $ctx);
-  if (!$content) {
-    throw new ErrorException("Failed to open $url");
-  }
-
-  return extract_cookies($http_response_header);
+  return extract_cookies($header);
 }
 
 #
@@ -138,26 +95,13 @@ function phpbb_login($url, $username, $password) {
 
   $request = http_build_query($params);
 
-  $opts = array(
-    'http' => array(
-      'method' => 'POST',
-      'header' => "Content-Type: application/x-www-form-urlencoded\r\n" .
-                  'Content-Length: ' . strlen($request) . "\r\n",
-      'content' => $request
-    )
-  );
-
-  $ctx = stream_context_create($opts);
-  $content = file_get_contents($url, 0 , $ctx);
-  if (!$content) {
-    throw new ErrorException("Failed to open $url");
-  }
+  extract(do_http_post($url, MIME_FORM, $request));
 
   if ($content != '1') {
     throw new ErrorException("phpBB login failed: $content");
   }
 
-  return extract_cookies($http_response_header);
+  return extract_cookies($header);
 }
 
 #
@@ -190,20 +134,7 @@ function bugzilla_login($url, $username, $password) {
 
   $request = xmlrpc_encode_request('User.login', $params);
 
-  $opts = array(
-    'http' => array(
-      'method' => 'POST',
-      'header' => "Content-Type: text/xml\r\n" .
-                  'Content-Length: ' . strlen($request) . "\r\n",
-      'content' => $request
-    )
-  );
-
-  $ctx = stream_context_create($opts);
-  $content = file_get_contents($url, 0 , $ctx);
-  if (!$content) {
-    throw new ErrorException("Failed to open $url");
-  }
+  extract(do_http_post($url, MIME_XML, $request)); 
 
   $reply = xmlrpc_decode($content);
   if (xmlrpc_is_fault($reply)) {
@@ -211,7 +142,7 @@ function bugzilla_login($url, $username, $password) {
       $reply['faultString'] . ' (' . $reply['faultCode'] . ')');
   }
 
-  return extract_cookies($http_response_header);
+  return extract_cookies($header);
 }
 
 #
@@ -220,13 +151,28 @@ function bugzilla_login($url, $username, $password) {
 function bugzilla_logout($url) {
   $request = xmlrpc_encode_request('User.logout', null);
 
+  extract(do_http_post($url, MIME_XML, $request, $_COOKIE)); 
+
+  return extract_cookies($header);
+}
+
+#
+# Do a HTTP POST with the given parameters, and return the result.
+#
+function do_http_post($url, $type, $data, $cookies = false) {
+
+  $header = 'Content-Type: ' . $type . "\r\n" .
+            'Content-Length: ' . strlen($data) . "\r\n";
+
+  if ($cookies !== false) {
+    $header .= 'Cookie: ' . cookies_list($cookies) . "\r\n";
+  }
+
   $opts = array(
     'http' => array(
-      'method' => 'POST',
-      'header' => "Content-Type: text/xml\r\n" .
-                  'Content-Length: ' . strlen($request) . "\r\n" .
-                  'Cookie: ' . cookies_list($_COOKIE) . "\r\n",
-      'content' => $request
+      'method'  => 'POST',
+      'header'  => $header,
+      'content' => $data
     )
   );
 
@@ -236,16 +182,20 @@ function bugzilla_logout($url) {
     throw new ErrorException("Failed to open $url");
   }
 
-  return extract_cookies($http_response_header);
+  return array(
+    'header'  => $http_response_header,
+    'content' => $content
+  );
 }
 
 #
 # Create a list of cookies for use in a 'Cookie:' header.
+# Expects cookies to be a map of name-value pairs (as $_COOKIES is).
 #
 function cookies_list($cookies) {
   $str = '';
-
   $first = true;
+
   foreach ($cookies as $name => $value) {
     if ($first) $first = false;
     else $str .= '; ';
