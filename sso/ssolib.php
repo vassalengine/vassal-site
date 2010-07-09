@@ -38,6 +38,44 @@ function mediawiki_login($url, $username, $password) {
   $reply = unserialize($content);
   $reply = $reply['login'];
 
+  $cookies = array();
+
+  # As of MW 1.15.3, we must confirm the returned token
+  if ($reply['result'] == 'NeedToken') {
+    $params['lgtoken'] = $reply['token'];
+    $request = http_build_query($params);
+
+    $cookies = extract_cookies($http_response_header);
+
+    $cstr = '';
+    $first = true;
+    foreach ($cookies as $name => $attr) {
+      if ($first) $first = false;
+      else $cstr .= '; ';
+  
+      $cstr .= $name . '=' . $attr['value'];
+    }
+
+    $opts = array(
+      'http' => array(
+        'method' => 'POST',
+        'header' => "Content-Type: application/x-www-form-urlencoded\r\n" .
+                    'Content-Length: ' . strlen($request) . "\r\n" .
+                    'Cookie: ' . $cstr . "\r\n",
+        'content' => $request
+      )
+    );
+
+    $ctx = stream_context_create($opts);
+    $content = file_get_contents($url, 0 , $ctx);
+    if (!$content) {
+      throw new ErrorException("Failed to open $url");
+    }
+
+    $reply = unserialize($content);
+    $reply = $reply['login'];
+  }
+
   if ($reply['result'] != 'Success') {
     if ($reply['result'] == 'Illegal') {
       throw new ErrorException('MediaWiki login failed: Invalid username.');
@@ -56,7 +94,7 @@ function mediawiki_login($url, $username, $password) {
     }
   }
 
-  return extract_cookies($http_response_header);
+  return array_merge($cookies, extract_cookies($http_response_header));
 }
 
 #
@@ -169,7 +207,7 @@ function bugzilla_login($url, $username, $password) {
 
   $reply = xmlrpc_decode($content);
   if (xmlrpc_is_fault($reply)) {
-    throw new ErrorException(
+    throw new ErrorException('bugzilla: ' .
       $reply['faultString'] . ' (' . $reply['faultCode'] . ')');
   }
 
