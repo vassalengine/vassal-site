@@ -8,7 +8,7 @@ if ($rss === false) {
 }
 
 # We have to do this because simplexml doesn't understand HTML entities
-$rss = html_entity_decode($rss, ENT_NOQUOTES, 'UTF-8');
+$rss = html_entity_decode($rss, ENT_QUOTES, 'UTF-8');
 
 $xml = simplexml_load_string($rss);
 
