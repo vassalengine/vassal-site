@@ -27,7 +27,7 @@ try {
   $user = new UserDB();
 
   # search by username if it was given, otherwise by email
-  $entries = $auth->search(empty($username) ? "mail=$email" : "uid=$username");
+  $entries = $user->search(empty($username) ? "mail=$email" : "uid=$username");
   $count = $entries['count'];
   if ($count < 1) {
     throw new ErrorException(
