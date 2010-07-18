@@ -8,7 +8,7 @@ $title = 'Reset Password';
 # check whether this is an inital attempt to reset
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   # sanitize the input
-  $key = addslashes($_GET['key']);
+  $key = isset($_GET['key']) ? addslashes($_GET['key']) : ''; 
 
   if (empty($key)) {
     print_top($title);
@@ -32,9 +32,10 @@ if (empty($_POST)) {
 }
 
 # sanitize the input
-$key = addslashes($_POST['key']);
-$password = addslashes($_POST['password']);
-$retype_password = addslashes($_POST['retype_password']);
+$key = isset($_POST['key']) ? addslashes($_POST['key']) : '';
+$password = isset($_POST['password']) ? addslashes($_POST['password']) : '';
+$retype_password = isset($_POST['retype_password']) ?
+                        addslashes($_POST['retype_password']) : '';
 
 # check for blank key
 if (empty($key)) {
@@ -45,20 +46,7 @@ if (empty($key)) {
 }
 
 try {
-  # check for blank password
-  if (empty($password)) {
-    throw new ErrorException('Blank password.');
-  }
-
-  # check for password mismatch
-  if ($password != $retype_password) {
-    throw new ErrorException('Password mismatch.');
-  }
-
-  # check password strength
-  if (strlen($password) < 6) {
-    throw new ErrorException('Password must be at least 6 characters long.');
-  }
+  validate_password($password, $retype_password);
 
   # get data for key from the registration database
   $auth = new AuthDB();

@@ -41,28 +41,7 @@ try {
       'Username must be no more than 32 characters long.');
   }
 
-  # check for blank password
-  if (empty($password)) {
-    throw new ErrorException('Blank password.');
-  }
-
-  # check for password mismatch
-  if ($password != $retype_password) {
-    throw new ErrorException('Password mismatch.');
-  }
-
-  $pwlen = strlen($password);
-
-  # check password strength
-  if ($pwlen < 6) {
-    throw new ErrorException('Password must be at least 6 characters long.');
-  }
-  
-  # reject ridiculously long passwords
-  if ($pwlen > 128) {
-    throw new ErrorException(
-      'Password must be no more than 128 characters long.');
-  }
+  validate_password($password, $retype_password);
 
   # check for blank email
   if (empty($email)) {

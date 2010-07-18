@@ -251,6 +251,34 @@ function set_cookies($cookies) {
   }
 }
 
+#
+# Check that a password meets our standards.
+#
+function validate_password($password, $retype_password) {
+  # check for blank password
+  if (empty($password)) {
+    throw new ErrorException('Blank password.');
+  }
+
+  # check for password mismatch
+  if ($password != $retype_password) {
+    throw new ErrorException('Password mismatch.');
+  }
+
+  $pwlen = strlen($password);
+
+  # reject ridiculously short passwords
+  if ($pwlen < 6) {
+    throw new ErrorException('Password must be at least 6 characters long.');
+  }
+
+  # reject ridiculously long passwords
+  if ($pwlen > 128) {
+    throw new ErrorException(
+      'Password must be no more than 128 characters long.');
+  }
+}
+
 function warn($err) {
   print '<div class="errorbox"><h2>Error:</h2>' . $err . '</div>';
 }
