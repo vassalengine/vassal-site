@@ -30,6 +30,12 @@ try {
     throw new ErrorException('Invalid username.');
   }
 
+  # reject usernames with weird characters
+  if (preg_match('/[^a-zA-Z0-9_.+-]/', $username)) {
+    unset($_POST['username']);
+    throw new ErrorException('Invalid username.');
+  }
+
   # reject ridiculously long usernames
   if (strlen($username) > 32) {
     unset($_POST['username']);
