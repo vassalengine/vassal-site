@@ -1,6 +1,4 @@
 <?php
-require_once('sso/AuthDB.php');
-require_once('sso/UserDB.php');
 require_once('sso/ssolib.php');
 
 $title = 'Reset Password';
@@ -46,7 +44,31 @@ if (empty($key)) {
 }
 
 try {
-  validate_password($password, $retype_password);
+  # check for blank password
+  if (empty($password)) {
+    throw new ErrorException('Blank password.');
+  }
+
+  # check for password mismatch
+  if ($password != $retype_password) {
+    throw new ErrorException('Password mismatch.');
+  }
+
+  $pwlen = strlen($password);
+
+  # reject ridiculously short passwords
+  if ($pwlen < 6) {
+    throw new ErrorException('Password must be at least 6 characters long.');
+  }
+
+  # reject ridiculously long passwords
+  if ($pwlen > 128) {
+    throw new ErrorException(
+      'Password must be no more than 128 characters long.');
+  }
+
+  require_once('sso/AuthDB.php');
+  require_once('sso/UserDB.php');
 
   # get data for key from the registration database
   $auth = new AuthDB();

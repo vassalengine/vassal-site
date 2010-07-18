@@ -1,10 +1,7 @@
 <?php
-require_once('sso/AuthDB.php');
-require_once('sso/UserDB.php');
 require_once('sso/config.php');
 require_once('sso/ssolib.php');
 require_once('sso/recaptchalib.php');
-require_once('sso/EmailAddressValidator.php');
 
 $title = 'Create Account';
 
@@ -15,9 +12,6 @@ if (empty($_POST)) {
   print_bottom();
   exit;
 }
-
-# FIXME: Don't clear all the fields on error. This is frustrating
-# for the user.
 
 # sanitize the input
 $username = isset($_POST['username']) ? addslashes($_POST['username']) : '';
@@ -32,40 +26,74 @@ $realname = isset($_POST['realname']) ? addslashes($_POST['realname']) : '';
 try {
   # check for blank username
   if (empty($username)) {
+    unset($_POST['username']);
     throw new ErrorException('Invalid username.');
   }
 
   # reject ridiculously long usernames
   if (strlen($username) > 32) {
+    unset($_POST['username']);
     throw new ErrorException(
       'Username must be no more than 32 characters long.');
   }
 
-  validate_password($password, $retype_password);
+  # check for blank password
+  if (empty($password)) {
+    unset($_POST['password'], $_POST['retype_password']);
+    throw new ErrorException('Blank password.');
+  }
+
+  # check for password mismatch
+  if ($password != $retype_password) {
+    unset($_POST['password'], $_POST['retype_password']);
+    throw new ErrorException('Password mismatch.');
+  }
+
+  $pwlen = strlen($password);
+
+  # reject ridiculously short passwords
+  if ($pwlen < 6) {
+    unset($_POST['password'], $_POST['retype_password']);
+    throw new ErrorException('Password must be at least 6 characters long.');
+  }
+
+  # reject ridiculously long passwords
+  if ($pwlen > 128) {
+    unset($_POST['password'], $_POST['retype_password']);
+    throw new ErrorException(
+      'Password must be no more than 128 characters long.');
+  }
 
   # check for blank email
   if (empty($email)) {
+    unset($_POST['email'], $_POST['retype_email']);
     throw new ErrorException('Blank email.');
   }
 
   # check for email mismatch
   if ($email != $retype_email) {
+    unset($_POST['email'], $_POST['retype_email']);
     throw new ErrorException('Email mismatch.');
   }
+
+  require_once('sso/EmailAddressValidator.php');
 
   # check for bad email address
   $validator = new EmailAddressValidator;
   if (!$validator->check_email_address($email)) {
+    unset($_POST['email'], $_POST['retype_email']);
     throw new ErrorException('Bad email address.');
   }
 
   # check for blank realname
   if (empty($realname)) {
+    unset($_POST['realname']);
     throw new ErrorException('Blank realname.');
   }
 
   # reject ridiculously long realname 
   if (strlen($realname) > 64) {
+    unset($_POST['realname']);
     throw new ErrorException(
       'Real name must be no more than 64 characters long.');
   }
@@ -96,10 +124,14 @@ try {
       '(reCAPTCHA said: ' . $resp->error . ')');
   }
 
+  require_once('sso/AuthDB.php');
+  require_once('sso/UserDB.php');
+
   # check that the username is not already taken
   $user = new UserDB();
   
   if ($user->exists($username)) {
+    unset($_POST['username']);
     throw new ErrorException('The account "' . $username . '" already exists.');
   }
 
@@ -159,7 +191,18 @@ catch (ErrorException $e) {
   exit;
 }
 
+function HTMLify_POST($key) {
+  return isset($_POST[$key]) ? htmlspecialchars($_POST[$key]) : '';
+}
+
 function print_form() {
+  $username = HTMLify_POST('username');
+  $password = HTMLify_POST('password');
+  $retype_password = HTMLify_POST('retype_password');
+  $email = HTMLify_POST('email');
+  $retype_email = HTMLify_POST('retype_email');
+  $realname = HTMLify_POST('realname');
+
   print <<<END
 <script type="text/javascript">
 <!--
@@ -173,30 +216,30 @@ function print_form() {
     <table>
       <tr>
         <th><label for="username">Username:</label></th>
-        <td><input type="text" id="username" name="username" size="20"/></td>
+        <td><input type="text" id="username" name="username" size="20" value="$username"/></td>
       </tr>
       <tr>
         <th><label for="password">Password:</label></th>
-        <td><input type="password" id="password" name="password" size="20"/></td
+        <td><input type="password" id="password" name="password" size="20" value="$password"/></td
 >
       </tr>
       <tr>
         <th><label for="retype_password">Retype password:</label></th>
-        <td><input type="password" id="retype_password" name="retype_password" size="20"/></td
+        <td><input type="password" id="retype_password" name="retype_password" size="20" value="$retype_password"/></td
 >
       </tr>
       <tr>
         <th><label for="email">Email address:</label></th>
-        <td><input type="text" id="email" name="email" size="20"/></td
+        <td><input type="text" id="email" name="email" size="20" value="$email"/></td
 >
       </tr>
       <tr>
         <th><label for="retype_email">Retype email address:</label></th>
-        <td><input type="text" id="retype_email" name="retype_email" size="20"/></td>
+        <td><input type="text" id="retype_email" name="retype_email" size="20" value="$retype_email"/></td>
       </tr>
       <tr>
         <th><label for="realname">Real name:</label></th>
-        <td><input type="text" id="realname" name="realname" size="20"/></td>
+        <td><input type="text" id="realname" name="realname" size="20" value="$realname"/></td>
       </tr>
       <tr>
         <th><label>Type some words:</label></th>
