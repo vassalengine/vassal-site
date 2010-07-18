@@ -3,20 +3,16 @@ require_once('sso/AuthDB.php');
 require_once('sso/UserDB.php');
 require_once('sso/ssolib.php');
 
-$tilte = 'Confirm account';
+$title = 'Confirm account';
 
 try {
   # check whether this was an attempt to confirm
-  if (empty($_GET)) {
+  if (!isset($_GET['key'])) {
     throw new ErrorException('No confirmation code.');
   }
 
   # sanitize the input
   $key = addslashes($_GET['key']);
-
-  if (empty($key)) {
-    throw new ErrorException('No confirmation key.');
-  }
 
   # get data for key from the registration database
   $auth = new AuthDB();
