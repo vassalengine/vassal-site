@@ -32,7 +32,8 @@ class UserDB {
   }
 
   public function exists($username) {
-    return ${$this->search("uid=$username")}['count'] > 0;
+    $result = $this->search("uid=$username");
+    return $result['count'] > 0;
   }
 
   public function auth($username, $password) {
