@@ -16,18 +16,29 @@ if (empty($_POST)) {
   exit;
 }
 
+# FIXME: Don't clear all the fields on error. This is frustrating
+# for the user.
+
 # sanitize the input
-$username = addslashes($_POST['username']);
-$password = addslashes($_POST['password']);
-$retype_password = addslashes($_POST['retype_password']);
-$email = addslashes($_POST['email']);
-$retype_email = addslashes($_POST['retype_email']);
-$realname = addslashes($_POST['realname']);
+$username = isset($_POST['username']) ? addslashes($_POST['username']) : '';
+$password = isset($_POST['password']) ? addslashes($_POST['password']) : '';
+$retype_password = isset($_POST['retype_password']) ?
+                         addslashes($_POST['retype_password']) : '';
+$email = isset($_POST['email']) ? addslashes($_POST['email']) : '';
+$retype_email = isset($_POST['retype_email']) ?
+                      addslashes($_POST['retype_email']) : '';
+$realname = isset($_POST['realname']) ? addslashes($_POST['realname']) : '';
 
 try {
   # check for blank username
   if (empty($username)) {
     throw new ErrorException('Invalid username.');
+  }
+
+  # reject ridiculously long usernames
+  if (strlen($username) > 32) {
+    throw new ErrorException(
+      'Username must be no more than 32 characters long.');
   }
 
   # check for blank password
@@ -40,9 +51,17 @@ try {
     throw new ErrorException('Password mismatch.');
   }
 
+  $pwlen = strlen($password);
+
   # check password strength
-  if (strlen($password) < 6) {
+  if ($pwlen < 6) {
     throw new ErrorException('Password must be at least 6 characters long.');
+  }
+  
+  # reject ridiculously long passwords
+  if ($pwlen > 128) {
+    throw new ErrorException(
+      'Password must be no more than 128 characters long.');
   }
 
   # check for blank email
@@ -65,6 +84,24 @@ try {
   if (empty($realname)) {
     throw new ErrorException('Blank realname.');
   }
+
+  # reject ridiculously long realname 
+  if (strlen($realname) > 64) {
+    throw new ErrorException(
+      'Real name must be no more than 64 characters long.');
+  }
+
+  # check that the captcha fields were filled in
+  if (!isset($_POST['recaptcha_challenge_field'])) {
+    throw new ErrorException('No reCAPTCHA challenge.');
+  }
+
+  if (!isset($_POST['recaptcha_response_field'])) {
+    throw new ErrorException('No reCAPTCHA response.');
+  }
+
+# FIXME: Check the CAPTCHA POST vars to ensure that we're not getting 
+# some ridiculously long crap.
 
   # check the CAPTCHA
   $resp = recaptcha_check_answer(
