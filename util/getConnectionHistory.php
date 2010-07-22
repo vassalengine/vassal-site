@@ -3,8 +3,8 @@ include_once "date.php";
 $start=$_REQUEST['start'];
 $end=$_REQUEST['end'];
 
-$db = mysql_connect( "localhost", "vassal2_mambo", "vassalme");
-mysql_select_db("vassal2_mambo");
+$db = mysql_connect( "localhost");
+mysql_select_db("test");
 
 $touchFile = "historyCleanup";
 if (file_exists($touchFile)) {

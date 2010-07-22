@@ -9,8 +9,8 @@ $connections = fopen("connections/connectionStatus","w");
 fwrite($connections,$STATUS);
 fclose($connections);
 
-$db = mysql_connect( "localhost", "test");
-mysql_select_db("vassal2_mambo");
+$db = mysql_connect( "localhost");
+mysql_select_db("test");
 
 $line = strtok($STATUS,"\n");
 while ($line) {
