@@ -1,0 +1,38 @@
+<?php
+include_once "date.php";
+$STATUS=stripSlashes($_REQUEST['STATUS']);
+
+$connections = fopen("connections/connectionStatus","w");
+fwrite($connections,$STATUS);
+fclose($connections);
+
+cleanHistory();
+$now = getGmtTimeMillis();
+$history = fopen("connections/connectionHistory","a");
+$tok = strtok($STATUS,"\n");
+while ($tok) {
+  fwrite($history,"$tok\t$now\n");
+  $tok = strtok("\n");
+}
+fclose($history);
+
+function cleanHistory() {
+  $now = getGmtTimeMillis();
+  $expiration = $now - 30*24*3600*1000;
+  $filename = "connections/connectionHistory";
+  if (is_writeable($filename)) {
+    $entries = file($filename);
+    $history = fopen("$filename","w");
+    foreach ($entries as $entry) {
+      strtok($entry,"\t"); 
+      strtok("\t");
+      strtok("\t"); // Skip first three fields
+      $time = strtok("\t");
+      if ($time >= $expiration) {
+	fwrite($history,$entry);
+      }
+    }
+    fclose($history);
+  }
+}
+?>

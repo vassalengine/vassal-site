@@ -1,0 +1,6 @@
+<?php 
+$module=$_REQUEST['module'];
+?>
+type = node
+nodeHost = 63.144.41.3
+nodePort = 5050
