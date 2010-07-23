@@ -16,7 +16,7 @@
 
   <p>Download <acronym>Vassal</acronym>, the free, open-source boardgame engine. <acronym>Vassal</acronym> runs on Linux, Mac OS X, Windows, and any other system which has a Java JRE. Find your operating system below for instructions for downloading and installing <acronym>Vassal</acronym>.</p>
 
-  <?php $version = file_get_contents('util/release-current'); ?>
+  <?php $version = file_get_contents('util/release-stable'); ?>
 
   <h2><acronym>Vassal</acronym> <?php echo $version; ?></h2>
   <p>This is the current release. <acronym>Vassal</acronym> <?php echo $version; ?> contains a large number of changes over 3.0.17. See the <a href="">release notes</a> for details.</p>

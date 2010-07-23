@@ -41,7 +41,7 @@
       <h1>Get <acronym>Vassal</acronym></h1>
       <p><acronym>Vassal</acronym> is free, open-source software, created by volunteers. Our current release is 
         <?php 
-          $version = trim(file_get_contents('util/release-current'));
+          $version = trim(file_get_contents('util/release-stable'));
           echo $version;
         ?>.</p> 
 
