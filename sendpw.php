@@ -56,7 +56,7 @@ try {
     # send confirmation email
     $subject = 'vassalengine.org password reset';
     $message = <<<END
-Someone. probably you, from IP address {$_SERVER['REMOTE_ADDR']}, has requested that a new password be set for your account at vassalengine.org.
+Someone, probably you, from IP address {$_SERVER['REMOTE_ADDR']}, has requested that a new password be set for your account at vassalengine.org.
 
 To reset the password for your account, simply open this link in your browser:
 
