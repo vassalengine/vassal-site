@@ -118,7 +118,7 @@ catch (ErrorException $e) {
 
 function print_form($key) {
   print <<<END
-<form class="resetpw_form" action="resetpw.php" method="post">
+<form class="sso_form" action="resetpw.php" method="post">
   <fieldset>
     <legend>Reset Password</legend>
     <input type="hidden" id="key" name="key" value="$key"/>
