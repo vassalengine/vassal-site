@@ -55,6 +55,12 @@ try {
     throw new ErrorException('Password mismatch.');
   }
 
+  # reject password == username
+  if ($password == $username) {
+    unset($_POST['password'], $_POST['retype_password']);
+    throw new ErrorException('Password must differ from username.');
+  }
+
   $pwlen = strlen($password);
 
   # reject ridiculously short passwords
