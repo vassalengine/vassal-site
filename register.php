@@ -165,7 +165,7 @@ try {
   $message = <<<END
 Someone claiming to be "$realname", probably you, from IP address {$_SERVER['REMOTE_ADDR']}, has attempted to register the account "$username" with this email address at vassalengine.org.
 
-To active this account, simply reply to this message, or open this link in your browser:
+To active this account, simply open this link in your browser:
 
 http://www.vassalengine.org/confirm.php?key=$key
 
@@ -185,7 +185,7 @@ END;
   # success!
   print_top($title);
   print '<p>A confirmation email has been sent.
-         Reply to it to activate your account.</p>'; 
+         Click on the link in the email to activate your account.</p>'; 
   print_bottom();
   exit;
 }
