@@ -15,7 +15,21 @@
   <div class="content_box_full">
   <h1>News <a href="/news_rss.php"><img src="/images/feed-icon-14x14.png" alt="RSS feed" /></a></h1>
 
-  <?php include('/var/www/news/shownews.php'); ?>
+<?php
+  $phpns = array(
+    'limit'                        => 9999,
+    'template'                     => 9,
+    'offset'                       => 0,
+    'order'                        => 'DESC',
+    'sef'                          => 'news/',
+    'comment_override'             => false,
+    'items_per_page'               => 20,
+    'always_show_extended_article' => false,
+    'script_link'                  => 'http://www.vassalengine.org/news.php',
+  );
+
+  include('/var/www/news/shownews.php');
+?>
 
   </div>
 </div>
