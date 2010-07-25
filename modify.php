@@ -7,7 +7,7 @@ require_once('sso/EmailAddressValidator.php');
 
 $title = 'Modify Account';
 
-$key = $_COOKIE['VASSAL_login'];
+$key = isset($_COOKIE['VASSAL_login']) ? $_COOKIE['VASSAL_login'] : '';
 
 try {
   if (empty($key)) {
@@ -27,15 +27,37 @@ try {
   }
 
   # sanitize the input
-  $password = addslashes($_POST['password']);
-  $retype_password = addslashes($_POST['retype_password']);
-  $email = addslashes($_POST['email']);
-  $retype_email = addslashes($_POST['retype_email']);
-  $realname = addslashes($_POST['realname']);
+  $password = isset($_POST['password']) ? addslashes($_POST['password']) : '';
+  $retype_password = isset($_POST['retype_password']) ?
+                           addslashes($_POST['retype_password']) : '';
+  $email = isset($_POST['email']) ? addslashes($_POST['email']) : '';
+  $retype_email = isset($_POST['retype_email']) ?
+                        addslashes($_POST['retype_email']) : '';
+  $realname = isset($_POST['realname']) ? addslashes($_POST['realname']) : '';
 
   # check for password mismatch
   if ($password != $retype_password) {
     throw new ErrorException('Password mismatch.');
+  }
+
+  if (!empty($password)) {
+    # reject password == username
+    if ($password == $username) {
+      throw new ErrorException('Password must differ from username.');
+    }
+  
+    $pwlen = strlen($password);
+
+    # reject ridiculously short passwords
+    if ($pwlen < 6) {
+      throw new ErrorException('Password must be at least 6 characters long.');
+    }
+
+    # reject ridiculously long passwords
+    if ($pwlen > 128) {
+      throw new ErrorException(
+        'Password must be no more than 128 characters long.');
+    }
   }
 
   # check for email mismatch
