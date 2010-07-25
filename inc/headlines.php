@@ -1,6 +1,6 @@
 <?php
 
-$url = 'http://test2.nomic.net/news_rss.php';
+$url = 'http://localhost/news_rss.php';
 
 $rss = file_get_contents($url);
 if ($rss === false) {
