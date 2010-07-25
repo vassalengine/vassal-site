@@ -19,7 +19,7 @@
   <?php $version = file_get_contents('util/release-stable'); ?>
 
   <h2><acronym>Vassal</acronym> <?php echo $version; ?></h2>
-  <p>This is the current release. <acronym>Vassal</acronym> <?php echo $version; ?> contains a large number of changes over 3.0.17. See the <a href="">release notes</a> for details.</p>
+  <p>This is the current release. <acronym>Vassal</acronym> <?php echo $version; ?> contains a large number of changes over 3.0.17. See the <a href="https://sourceforge.net/projects/vassalengine/files/VASSAL-current/VASSAL-<?php echo $version; ?>/NOTES/view">release notes</a> for details.</p>
 
   <table class="dl">
     <tr>
@@ -59,7 +59,7 @@
         <img src="/images/windows.png" alt="Windows" />
         <dl>
           <dt>Windows</dt>
-          <dd>Download and run <a href="">installer</a> (16MB)</dd>
+          <dd>Download and run <a href="http://downloads.sourceforge.net/vassalengine/VASSAL-<?php echo $version; ?>-windows.exe">installer</a> (16MB)</dd>
         </dl>
       </td>
     </tr>
