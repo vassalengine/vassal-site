@@ -5,7 +5,8 @@
 $base_url = 'http://downloads.sourceforge.net/vassalengine';
  
 # Get the user's browser
-$useragent = $_SERVER['HTTP_USER_AGENT'];
+$useragent = isset($_SERVER['HTTP_USER_AGENT']) ?
+  $_SERVER['HTTP_USER_AGENT'] : '';
 
 if (strstr($useragent, 'Win')) {
   $download_os = ' for Windows';
