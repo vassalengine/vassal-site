@@ -4,16 +4,16 @@ require_once('sso/AuthDB.php');
 require_once('sso/UserDB.php');
 require_once('sso/ssolib.php');
 
-$tilte = 'Confirm email';
+$title = 'Confirm email';
 
 try {
   # check whether this was an attempt to confirm
-  if (empty($_GET)) {
+  if (!isset($_GET['key'])) {
     throw new ErrorException('No confirmation key.');
   }
 
   # sanitize the input
-  $key = addslashes($_GET['key']);
+  $key = mysql_real_escape_string($_GET['key']);
 
   if (empty($key)) {
     throw new ErrorException('No confirmation key.');
@@ -26,7 +26,7 @@ try {
     "SELECT username, email
      FROM confirmemail
      WHERE id='%s'",
-    mysql_real_escape_string($key)
+    $key
   );
 
   $row = $auth->read($query);
@@ -43,7 +43,7 @@ try {
   # remove row from the registration database
   $query = sprintf(
     "DELETE FROM confirmemail WHERE id='%s'",
-    mysql_real_escape_string($key)
+    $key
   );
 
   $auth->write($query);

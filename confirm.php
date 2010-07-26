@@ -12,7 +12,7 @@ try {
   }
 
   # sanitize the input
-  $key = addslashes($_GET['key']);
+  $key = mysql_real_escape_string($_GET['key']);
 
   # get data for key from the registration database
   $auth = new AuthDB();
@@ -21,7 +21,7 @@ try {
     "SELECT username, password, email, realname
      FROM pending
      WHERE id='%s'",
-    mysql_real_escape_string($key)
+    $key
   );
 
   $row = $auth->read($query);
@@ -48,7 +48,7 @@ try {
   # remove row from the registration database
   $query = sprintf(
     "DELETE FROM pending WHERE id='%s'",
-    mysql_real_escape_string($key)
+    $key
   );
   $auth->write($query);
 
