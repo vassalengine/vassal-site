@@ -244,7 +244,7 @@ function set_cookies($cookies) {
       $attr['value'],
       array_key_exists('expires', $attr) ? strtotime($attr['expires']) : 0,
       $attr['path'],
-      'www.vassalengine.org',
+      '.www.vassalengine.org',
       false,
       array_key_exists('httponly', $attr)
     );
