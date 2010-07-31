@@ -49,7 +49,7 @@ for ($line = strtok($status, "\n"); $line; $line = strtok("\n")) {
 
   $r = mysql_query($query, $dbh);
   if (!$r) {
-    throw new ErrorException('Replace failed: ' . mysql_error());
+    throw new ErrorException('INSERT failed: ' . mysql_error());
   }
 }
 
