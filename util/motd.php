@@ -1,5 +1,7 @@
 <?php
 
+header('Content-type: text/plain; charset=utf-8');
+
 $dir = '/var/www/html/util/motd_files';
 $module = isset($_REQUEST['module']) ? $_REQUEST['module'] : '';
 
