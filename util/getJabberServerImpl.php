@@ -1,11 +1,13 @@
 <?php 
-$module=$_REQUEST['module'];
+
+header('Content-type: text/plain; charset=utf-8');
+ 
+# if (isset($_REQUEST['module']) {
+# }
+# else {
+# }
+
 ?>
 type = jabber
-<? if ($module == "Server Test") { ?>
 jabberHost = test.nomic.net
-<? } else { ?>
-<? //nodeHost = 63.144.41.3 ?>
-jabberHost = test.nomic.net
-<? } ?>
 jabberPort = 5222

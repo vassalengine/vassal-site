@@ -1,11 +1,13 @@
-<?php 
-$module=$_REQUEST['module'];
+<?php
+
+header('Content-type: text/plain; charset=utf-8');
+ 
+# if (isset($_REQUEST['module']) {
+# }
+# else {
+# }
+
 ?>
 type = node
-<? if ($module == "Server Test") { ?>
 nodeHost = test.nomic.net
-<? } else { ?>
-<? //nodeHost = 63.144.41.3 ?>
-nodeHost = test.nomic.net
-<? } ?>
 nodePort = 5050
