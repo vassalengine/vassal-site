@@ -17,7 +17,7 @@ $now = time();
 $status = $_REQUEST['STATUS'];
 
 # connect to the SQL server
-require_once(dirname(__FILE__) . '/config.php');
+require_once(dirname(__FILE__) . '/vserver-config.php');
 
 $dbh = mysql_connect(SQL_HOST, SQL_USERNAME, SQL_PASSWORD);
 if (!$dbh) {

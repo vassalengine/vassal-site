@@ -3,7 +3,7 @@
 header('Content-type: text/plain; charset=utf-8');
 
 # connect to the SQL server
-require_once(dirname(__FILE__) . '/config.php');
+require_once(dirname(__FILE__) . '/vserver-config.php');
 
 $dbh = mysql_connect(SQL_HOST, SQL_USERNAME, SQL_PASSWORD);
 if (!$dbh) {
