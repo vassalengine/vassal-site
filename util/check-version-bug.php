@@ -3,7 +3,7 @@
 /*
  * $Id: check-version-bug.php 4190 2008-10-08 14:50:19Z uckelman $
  *
- * Copyright (c) 2008 by Joel Uckelman
+ * Copyright (c) 2008, 2010 by Joel Uckelman
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -29,22 +29,27 @@
 #
 
 # reject unspecified versions
-if (!array_key_exists('version', $_GET)) exit; 
+if (!isset($_GET['version'])) exit;
 
 # v0 is the least version from which we want reports
-$v0 = '3.1.0-beta3';
+$v0 = '3.1.0';
 $v1 = $_GET['version'];
 
 # parse the version numbers
 $tok0 = new VassalVersionTokenizer($v0);
 $tok1 = new VassalVersionTokenizer($v1);
 
+try {
   while ($tok0->hasNext() && $tok1->hasNext()) {
     $n0 = $tok0->next();
     $n1 = $tok1->next();
 
     if ($n0 != $n1) reply($v0, $v1, $n1 > $n0 ? 1 : 0);
   }
+}
+catch (Exception $e) {
+  reply($v0, $v1, 0);
+}
 
 reply($v0, $v1, !$tok0->hasNext() ? 1 : 0);
 
@@ -82,9 +87,6 @@ class VassalVersionTokenizer {
   private $state = self::NUM;
 
   private static $tags = array(
-    'beta1' => 3606,
-    'beta2' => 3664,
-    'beta3' => 4023
   );
 
   function __construct($version) {
