@@ -24,6 +24,9 @@
 # and redirect them on to our bug tracker of choice.
 #
 
+require_once('Log.php');
+$logger = &Log::singleton('file', '/var/log/bugs', 'one');
+
 ini_set('display_errors', 1);
 
 #
@@ -41,9 +44,7 @@ $log = file_get_contents($_FILES['log']['tmp_name']);
 #
 # Log bug report in case something goes wrong
 #
-$fh = fopen('bug_log', 'ab');
-fwrite($fh, "$time\n$email\n$summary\n\n$description\n\n$log\n\n\n");
-fclose($fh);
+$logger->info("$email\n$summary\n\n$description\n\n$log\n\n\n");
 
 #
 # Relay bug report on to bug tracker at SourceForge 
