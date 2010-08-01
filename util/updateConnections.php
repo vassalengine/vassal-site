@@ -16,10 +16,6 @@ $now = time();
 # FIXME: used to stripslashes(), was this necessary?
 $status = $_REQUEST['STATUS'];
 
-#$connections = fopen('connections/connectionStatus','w');
-#fwrite($connections,$STATUS);
-#fclose($connections);
-
 # connect to the SQL server
 require_once(dirname(__FILE__) . '/config.php');
 
