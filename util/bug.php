@@ -32,7 +32,7 @@ ini_set('display_errors', 1);
 #
 # Read bug report
 #
-if (!array_key_exists('version', $_POST)) die('Not a bug report.');
+if (!isset($_POST['version'])) die('Not a bug report.');
 
 $time = date("M d H:i:s", $_SERVER['REQUEST_TIME']);
 $version = $_POST['version'];
