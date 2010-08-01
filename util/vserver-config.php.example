@@ -1,0 +1,9 @@
+<?php
+
+# constants used for vserver database
+define('SQL_HOST', 'localhost');
+define('SQL_USERNAME', 'vserver');
+define('SQL_PASSWORD', 'password');
+define('SQL_DB', 'vserver');
+
+?>

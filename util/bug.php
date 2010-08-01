@@ -89,9 +89,11 @@ $url = 'http://www.vassalengine.org/tracker/xmlrpc.cgi';
 #
 # Login to Bugzilla
 #
+require_once(dirname(__FILE__) . '/bug-config.php');
+
 $params = array(
-  'login'    => 'username',
-  'password' => 'password'
+  'login'    => BZ_USERNAME,
+  'password' => BZ_PASSWORD
 );
 
 $request = xmlrpc_encode_request('User.login', $params);
