@@ -2,7 +2,12 @@
 
 # bail if there's no input
 if (!isset($_REQUEST['STATUS'])) {
-  exit;
+  throw new ErrorException('No input');
+}
+
+# reject input from anywhere but our game server
+if ($_SERVER['REMOTE_ADDR'] != '66.253.49.166') {
+  throw new ErrorException('You are not our game server.');
 }
 
 $now = time();
