@@ -1,5 +1,7 @@
 <?php
 
+header('Content-type: text/plain; charset=utf-8');
+
 # connect to the SQL server
 require_once(dirname(__FILE__) . '/config.php');
 
@@ -29,7 +31,7 @@ if (!$r) {
 
 # header('Content-type: text/html; charset=utf-8');
 
-while (($row = mysql_fetch_row($r)) {
+while (($row = mysql_fetch_row($r))) {
   echo implode("\t", $row), "\n";
 }
 
