@@ -6,20 +6,22 @@ class AuthDB {
   private $dbh;
 
   public function __construct() {
-    $this->dbh = mysql_connect(SQL_HOST, SQL_USERNAME, SQL_PASSWORD);
+    $this->dbh =
+      mysql_connect(AUTH_SQL_HOST, AUTH_SQL_USERNAME, AUTH_SQL_PASSWORD);
+
     if (!$this->dbh) {
       throw new ErrorException(
         'Cannot connect to MySQL server: ' . mysql_error());
     }
 
-    if (!mysql_select_db(SQL_DB, $this->dbh)) {
+    if (!mysql_select_db(AUTH_SQL_DB, $this->dbh)) {
       throw new ErrorException(
         'Cannot select database: ' . mysql_error());
     }
   }
 
   public function __destruct() {
-    mysql_close($this->dbh);
+#    mysql_close($this->dbh);
   }
 
   public function user_for_cookie($key) {

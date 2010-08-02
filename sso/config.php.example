@@ -1,10 +1,10 @@
 <?php
 
 # constants used by AuthDB
-define('SQL_HOST', 'localhost');
-define('SQL_USERNAME', 'registration');
-define('SQL_PASSWORD', 'password');
-define('SQL_DB', 'registration');
+define('AUTH_SQL_HOST', 'localhost');
+define('AUTH_SQL_USERNAME', 'registration');
+define('AUTH_SQL_PASSWORD', 'password');
+define('AUTH_SQL_DB', 'registration');
 
 # constants used by UserDB
 define('LDAP_HOST', 'localhost');
