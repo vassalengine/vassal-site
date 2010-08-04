@@ -37,4 +37,9 @@ foreach ($xml->channel->item as $item) {
   echo "<li><a href=\"{$item->link}\">{$item->title}</a></li>\n";
 }
 
+# end the last day
+if ($day != 0) {
+  echo "</ul>\n</li>\n";
+}
+
 ?>
