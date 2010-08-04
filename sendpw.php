@@ -14,8 +14,8 @@ if (empty($_POST)) {
 }
 
 # sanitize the input
-$username = addslashes($_POST['username']);
-$email = addslashes($_POST['email']);
+$username = isset($_POST['username']) ? addslashes($_POST['username']) : '';
+$email = isset($_POST['email']) ? addslashes($_POST['email']) : '';
 
 try {
   # check for blank username and email
@@ -56,7 +56,7 @@ try {
     # send confirmation email
     $subject = 'vassalengine.org password reset';
     $message = <<<END
-Someone, probably you, from IP address {$_SERVER['REMOTE_ADDR']}, has requested that a new password be set for your account at vassalengine.org.
+Someone, probably you, from IP address {$_SERVER['REMOTE_ADDR']}, has requested that a new password be set for your account '{$e['uid'][0]}' at vassalengine.org.
 
 To reset the password for your account, simply open this link in your browser:
 
