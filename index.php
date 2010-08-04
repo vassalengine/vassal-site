@@ -30,8 +30,8 @@
       <table class="screenshot">
         <tbody>
           <tr>
-            <td><a href="/images/screenshot1.png"><img src="/thumbs/screenshot1.png" alt="screenshot"></a></td>
-            <td><a href="/images/screenshot2.png"><img src="/thumbs/screenshot2.png" alt="screenshot"></a></td>
+            <td><a href="/images/screenshot1.png"><img src="/thumbs/screenshot1.png" alt="screenshot"/></a></td>
+            <td><a href="/images/screenshot2.png"><img src="/thumbs/screenshot2.png" alt="screenshot"/></a></td>
           </tr>
         </tbody>
       </table>
@@ -62,7 +62,7 @@
 
   <div class="content_box_right">
     <div id="news">
-      <h1>Latest News <a href="/news_rss.php"><img src="/images/feed-icon-14x14.png" alt="RSS feed"></a></h1>
+      <h1>Latest News <a href="/news_rss.php"><img src="/images/feed-icon-14x14.png" alt="RSS feed"/></a></h1>
 
       <ul class="news">
       <?php include('inc/headlines.php'); ?>
