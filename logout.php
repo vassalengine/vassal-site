@@ -28,15 +28,15 @@ try {
   $cookies = array();
 
   # MediaWiki logout
-  $url = 'http://www.test2.nomic.net/mediawiki/api.php';
+  $url = 'http://localhost/mediawiki/api.php';
   $cookies += mediawiki_logout($url);
 
   # phpBB logout
-  $url = 'http://www.test2.nomic.net/phpbb_logout.php';
+  $url = 'http://localhost/phpbb_logout.php';
   $cookies += phpbb_logout($url);
 
   # Bugzilla logout
-  $url = 'http://www.test2.nomic.net/tracker/xmlrpc.cgi';
+  $url = 'http://www.vassalengine.org/tracker/xmlrpc.cgi';
   $cookies += bugzilla_logout($url);
 
   set_cookies($cookies);  
