@@ -30,10 +30,11 @@ if (empty($_POST)) {
 }
 
 # sanitize the input
-$key = isset($_POST['key']) ? addslashes($_POST['key']) : '';
-$password = isset($_POST['password']) ? addslashes($_POST['password']) : '';
+$key = isset($_POST['key']) ? mysql_real_escape_string($_POST['key']) : '';
+
+$password = isset($_POST['password']) ? $_POST['password'] : '';
 $retype_password = isset($_POST['retype_password']) ?
-                        addslashes($_POST['retype_password']) : '';
+                         $_POST['retype_password'] : '';
 
 # check for blank key
 if (empty($key)) {
@@ -75,7 +76,7 @@ try {
 
   $query = sprintf(
     "SELECT username FROM resetpw WHERE id='%s'",
-    mysql_real_escape_string($key)
+    $key
   );
 
   $row = $auth->read($query);
@@ -92,7 +93,7 @@ try {
   # remove row from the registration database
   $query = sprintf(
     "DELETE FROM pending WHERE id='%s'",
-    mysql_real_escape_string($key)
+    $key
   );
 
   $auth->write($query);
