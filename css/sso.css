@@ -17,3 +17,9 @@
   font-weight: normal;
 }
 
+.sso_form textarea,
+.sso_form input[type="text"],
+.sso_form input[type="password"] {
+  font-size: 100%;
+  width: 100%;
+}
