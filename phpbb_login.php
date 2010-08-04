@@ -3,8 +3,8 @@
 # This is a shim for phpBB's login so that we can capture the Set-Cookie
 # headers it sends.
 
-$username = addslashes($_POST['username']);
-$password = addslashes($_POST['password']);
+$username = isset($_POST['username']) ? $_POST['username'] : '';
+$password = isset($_POST['password']) ? $_POST['password'] : '';
 
 if (empty($username)) {
   print 'Empty username.';
