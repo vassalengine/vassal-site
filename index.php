@@ -51,12 +51,18 @@
           echo "<a href=\"$download_url\"><span>Download <acronym>Vassal</acronym><br/>$version$download_os</span><img src=\"/images/button.download.png\" alt=\"\" /></a>";
         ?>
       </div>
-      <p>Or, <a href="/download.php">download <acronym>Vassal</acronym></a> for other operating systems. 
+      <p>Or, <a href="/download.php">download <acronym>Vassal</acronym></a> for other operating systems.</p> 
 
       <div class="dlbutton">
-        <a target="_blank" href="https://www.paypal.com/us/cgi-bin/webscr?cmd=_flow&amp;SESSION=gS5hJbXNrYzfhrwcaHyrBsSqND22MpcGz07W_M7D94YX9wq1CFH4rbdTb7e&amp;dispatch=5885d80a13c0db1fa798f5a5f5ae42e779d4b5655493f6171509c5b2ec019b86"><span>Support <acronym>Vassal</acronym></span><img src="/images/paypal_donate.png" alt="" /></a>
+        <a href="https://www.paypal.com/us/cgi-bin/webscr?cmd=_flow&amp;SESSION=gS5hJbXNrYzfhrwcaHyrBsSqND22MpcGz07W_M7D94YX9wq1CFH4rbdTb7e&amp;dispatch=5885d80a13c0db1fa798f5a5f5ae42e779d4b5655493f6171509c5b2ec019b86"><span>Support <acronym>Vassal</acronym></span><img src="/images/paypal_donate.png" alt="" /></a>
       </div>
       <p><acronym>Vassal</acronym> is free, but development and hosting are not. If you enjoy using <acronym>Vassal</acronym>, please consider helping us with these costs.</p>
+    </div>
+  
+    <div id="status">
+        <h1>Who's Playing?</h1>
+
+        <p>Check the <a href="/status.php">server status</a> to see what games are being played right now.</p>
     </div>
   </div>
 
