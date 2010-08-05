@@ -21,8 +21,8 @@
     <table class="screenshot">
       <tbody>
         <tr>
-          <td><a href="/images/screenshot1.png"><img src="/thumbs/screenshot1.png" alt="screenshot"></a></td>
-          <td><a href="/images/screenshot2.png"><img src="/thumbs/screenshot2.png" alt="screenshot"></a></td>
+          <td><a href="/images/screenshot1.png"><img src="/thumbs/screenshot1.png" alt="screenshot"/></a></td>
+          <td><a href="/images/screenshot2.png"><img src="/thumbs/screenshot2.png" alt="screenshot"/></a></td>
         </tr>
       </tbody>
     </table>
