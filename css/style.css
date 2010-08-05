@@ -8,7 +8,6 @@ body {
   padding: 0 0 1em 0;
   font-size: 72.5%;
   background-color: white;
-  max-width: 900px;
 }
 
 body, td, th, input, textarea, pre, h1, h2, h3, h4, h5, h6 { color: #222222; }
