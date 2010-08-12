@@ -1,0 +1,7 @@
+<?php
+
+# constants used by news bot
+define('NEWSBOT_USERNAME', 'news_bot');
+define('NEWSBOT_PASSWORD', 'password');
+
+?>
