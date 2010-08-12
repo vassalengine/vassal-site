@@ -74,8 +74,14 @@
       <?php include('inc/headlines.php'); ?>
       </ul>
 
-      <div class="news-nav">
-        <em><a href="/news.php">...more news</a></em>
+      <div id="news-nav">
+        <div id="news-submit">
+          <em><a href="/news_submit.php">Submit News</a></em>
+        </div>
+  
+        <div id="news-more">
+          <em><a href="/news.php">&hellip;more news</a></em>
+        </div>
       </div>
     </div>
   </div>

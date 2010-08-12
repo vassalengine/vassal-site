@@ -157,10 +157,18 @@ div.date {
 	margin: 0 0.5em 1em 0;
 }
 
-.news-nav {
-  float: right;
+#news-nav {
   clear: both;
   margin: 0 0 1em 0;
+  padding: 0.5em 0 0 0;
+}
+
+#news-submit {
+  float: left;
+}
+
+#news-more {
+  float: right;
 }
 
 div.date:first-line {
