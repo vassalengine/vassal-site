@@ -159,16 +159,16 @@ div.date {
 
 #news-nav {
   clear: both;
-  margin: 0 0 1em 0;
-  padding: 0.5em 0 0 0;
 }
 
 #news-submit {
   float: left;
+  padding-bottom: 10px;
 }
 
 #news-more {
   float: right;
+  padding-bottom: 10px;
 }
 
 div.date:first-line {
