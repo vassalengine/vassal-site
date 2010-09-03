@@ -111,7 +111,7 @@ $bz_xml = <<<END
     <rep_platform>All</rep_platform>
     <op_sys>All</op_sys>
     <bug_status>NEW</bug_status>
-    <priority>none</priority>
+    <priority>unspecified</priority>
     <bug_severity>normal</bug_severity>
     <target_milestone>---</target_milestone>
     <actual_time>0.00</actual_time>
