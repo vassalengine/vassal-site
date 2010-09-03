@@ -84,6 +84,79 @@ if (curl_errno($ch) != 0) {
 #
 # Relay bug report on to our Bugzilla
 #
+# FIXME: This is a hack to work around the fact that prior to BZ 3.7,
+# the XML-RPC interface doesn't support adding attachments. We can
+# use the much nicer XML-RPC code once we move to BZ 3.7.
+#
+$data = base64_encode(file_get_contents($_FILES['log']['tmp_name']));
+$size = filesize($_FILES['log']['tmp_name']);
+
+$bz_xml = <<<END
+<?xml version="1.0"?>
+<bugzilla version="3.4.7" urlbase="http://www.vassalengine.org/tracker" maintainer="uckelman@nomic.net" exporter="uckelman@nomic.net">
+  <bug>
+    <short_desc>ABR: $summary</short_desc>
+    <long_desc is_private="0">
+      <who name="Joel Uckelman">uckelman@nomic.net</who>
+      <thetext>$description</thetext>
+    </long_desc>
+    <reporter name="Joel Uckelman">uckelman@nomic.net</reporter>
+    <reporter_accessible>1</reporter_accessible>
+    <cclist_accessible>1</cclist_accessible>
+    <classification_id>1</classification_id>
+    <classification>Unclassified</classification>
+    <product>VASSAL</product>
+    <component>unknown</component>
+    <version>$version</version>
+    <rep_platform>All</rep_platform>
+    <op_sys>All</op_sys>
+    <bug_status>NEW</bug_status>
+    <priority>none</priority>
+    <bug_severity>normal</bug_severity>
+    <target_milestone>---</target_milestone>
+    <actual_time>0.00</actual_time>
+    <assigned_to name="Joel Uckelman">uckelman@nomic.net</assigned_to>
+    <attachment isobsolete="0" ispatch="0" isprivate="0">
+      <attachid>1</attachid>
+      <desc>the errorLog</desc>
+      <filename>errorLog</filename>
+      <type>text/plain</type>
+      <size>$size</size>
+      <data encoding="base64">$data</data>
+    </attachment>
+  </bug>
+</bugzilla>
+END;
+
+$desc = array(
+  0 => array('pipe', 'r'),
+  1 => array('pipe', 'w'),
+  2 => array('pipe', 'w')
+);
+
+$proc = proc_open('/var/www/util/importxml-abr.pl', $desc, $pipes);
+
+if (is_resource($proc)) {
+  fwrite($pipes[0], $bz_xml);
+  fclose($pipes[0]);
+
+#  echo stream_get_contents($pipes[1]);
+  fclose($pipes[1]);
+
+#  echo stream_get_contents($pipes[2]);
+  fclose($pipes[2]);
+
+  echo proc_close($proc);
+}
+else {
+  echo 1;
+}
+
+/*
+
+#
+# Relay bug report on to our Bugzilla
+#
 $url = 'http://www.vassalengine.org/tracker/xmlrpc.cgi';
 
 #
@@ -169,5 +242,7 @@ function extract_cookies($headers) {
 
   return $cookies;
 }
+
+*/
 
 ?>
