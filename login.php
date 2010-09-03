@@ -16,8 +16,9 @@ if (empty($_POST)) {
 }
 
 # sanitize the input
-$username = addslashes($_POST['username']);
-$password = addslashes($_POST['password']);
+$username = isset($_POST['username']) ? addslashes($_POST['username']) : '';
+# NB: password does NOT need to be sanitized, it's never used in a query
+$password = isset($_POST['password']) ? $_POST['password'] : '';
 
 try {
   # check for blank username
@@ -36,16 +37,18 @@ try {
 
   $cookies = array();
 
+  $slpassword = addslashes($password);
+
   # MediaWiki login
-  $url = 'http://www.test2.nomic.net/mediawiki/api.php';
+  $url = 'http://localhost/mediawiki/api.php';
   $cookies += mediawiki_login($url, $username, $password);
 
   # phpBB login
-  $url = 'http://www.test2.nomic.net/phpbb_login.php';
-  $cookies += phpbb_login($url, $username, $password);
+  $url = 'http://localhost/phpbb_login.php';
+  $cookies += phpbb_login($url, $username, $slpassword);
 
   # Bugzilla login
-  $url = 'http://www.test2.nomic.net/tracker/xmlrpc.cgi';
+  $url = 'http://www.vassalengine.org/tracker/xmlrpc.cgi';
   $cookies += bugzilla_login($url, $username, $password);
 
   # write out the cookies captured from the logins 
@@ -65,16 +68,22 @@ try {
     $key,
     $expires,
     '/',
-    'www.test2.nomic.net',
+    'www.vassalengine.org',
     false,
     true
   );
 
-  # return to front page by default; also if the returnto is the
-  # logout page, since returning there would immediately log us out
+  # return to front page
+  # * by default; 
+  # * if the returnto is the logout page, since returning there would
+  #   immediately log us out
+  # * if the returnto is the account confirmation page, since going
+  #   back there makes no sense
   if (empty($returnto) ||
-      strpos($returnto, 'logout.php') === 0 ||
-      strpos($returnto, '/logout.php') === 0) {
+      strpos($returnto, 'logout.php')   === 0 ||
+      strpos($returnto, '/logout.php')  === 0 || 
+      strpos($returnto, 'confirm.php')  === 0 || 
+      strpos($returnto, '/confirm.php') === 0) {
     $returnto = '/index.php';
   }
 
@@ -92,7 +101,7 @@ catch (ErrorException $e) {
 
 function print_form($returnto) {
   $action = 'login.php';
-  if (!empty($returnto)) $action .= '?returnto=' . urlencode($returnto) . '"';
+  if (!empty($returnto)) $action .= '?returnto=' . urlencode($returnto);
 
   print <<<END
 <form class="sso_form" action="$action" method="post">
