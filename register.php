@@ -33,7 +33,7 @@ try {
   }
 
   # reject usernames with weird characters
-  if (preg_match('/[^a-zA-Z0-9_.+-]/', $username)) {
+  if (preg_match('/[^a-zA-Z0-9.+-]/', $username)) {
     unset($_POST['username']);
     throw new ErrorException('Invalid username.');
   }
