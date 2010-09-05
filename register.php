@@ -15,9 +15,11 @@ if (empty($_POST)) {
 
 # sanitize the input
 $username = isset($_POST['username']) ? addslashes($_POST['username']) : '';
-$password = isset($_POST['password']) ? addslashes($_POST['password']) : '';
+
+$password = isset($_POST['password']) ? $_POST['password'] : '';
 $retype_password = isset($_POST['retype_password']) ?
-                         addslashes($_POST['retype_password']) : '';
+                         $_POST['retype_password'] : '';
+
 $email = isset($_POST['email']) ? addslashes($_POST['email']) : '';
 $retype_email = isset($_POST['retype_email']) ?
                       addslashes($_POST['retype_email']) : '';
@@ -74,6 +76,12 @@ try {
     unset($_POST['password'], $_POST['retype_password']);
     throw new ErrorException(
       'Password must be no more than 128 characters long.');
+  }
+
+  # reject passwords with problematic characters
+  if (preg_match('/[\']/', $password)) {
+    unset($_POST['password'], $_POST['retype_password']);
+    throw new ErrorException('Password must not contain single quotes.');
   }
 
   # check for blank email

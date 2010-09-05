@@ -27,9 +27,10 @@ try {
   }
 
   # sanitize the input
-  $password = isset($_POST['password']) ? addslashes($_POST['password']) : '';
+  $password = isset($_POST['password']) ? $_POST['password'] : '';
   $retype_password = isset($_POST['retype_password']) ?
-                           addslashes($_POST['retype_password']) : '';
+                           $_POST['retype_password'] : '';
+
   $email = isset($_POST['email']) ? addslashes($_POST['email']) : '';
   $retype_email = isset($_POST['retype_email']) ?
                         addslashes($_POST['retype_email']) : '';
@@ -58,6 +59,11 @@ try {
       throw new ErrorException(
         'Password must be no more than 128 characters long.');
     }
+
+     # reject passwords with problematic characters
+    if (preg_match('/[\']/', $password)) {
+      throw new ErrorException('Password must not contain single quotes.');
+    }
   }
 
   # check for email mismatch
@@ -69,11 +75,6 @@ try {
   $attr = array();
 
   if (!empty($password)) {
-    # check password strength
-    if (strlen($password) < 6) {
-      throw new ErrorException('Password must be at least 6 characters long.');
-    }
-
     $attr['userPassword'] = $password;
   }
 
@@ -116,7 +117,7 @@ try {
     # send confirmation email
     $subject = 'vassalengine.org email address confirmation';
     $message = <<<END
-Someone claiming to be "$realname", probably you, from IP address {$_SERVER['REMOTE_ADDR']}, has attempted to register the account "$username" with this email address at vassalengine.org.
+Someone claiming to be "$realname", probably you, from IP address {$_SERVER['REMOTE_ADDR']}, has attempted to associate the account "$username" at vassalengine.org with this email address.
 
 To confirm this email address, simply reply to this message, or open this link in your browser:
 
