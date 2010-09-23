@@ -91,6 +91,11 @@ if (curl_errno($ch) != 0) {
 $data = base64_encode(file_get_contents($_FILES['log']['tmp_name']));
 $size = filesize($_FILES['log']['tmp_name']);
 
+if (strlen($email) > 0) {
+  # include the reporter's email, if given
+  $description = "Reported by $email\n\n$description";
+}
+
 $bz_xml = <<<END
 <?xml version="1.0"?>
 <bugzilla version="3.4.7" urlbase="http://www.vassalengine.org/tracker" maintainer="uckelman@nomic.net" exporter="uckelman@nomic.net">
