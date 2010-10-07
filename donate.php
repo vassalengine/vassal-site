@@ -16,8 +16,16 @@
    
     <p><acronym>Vassal</acronym> is free, open-source software, created by volunteers. While <acronym>Vassal</acronym> is free, development and hosting are not. If you enjoy using <acronym>Vassal</acronym>, please consider helping us with these costs.</p>
 
-    <div class="dlbutton">
-      <a href="https://www.paypal.com/us/cgi-bin/webscr?cmd=_flow&amp;SESSION=gS5hJbXNrYzfhrwcaHyrBsSqND22MpcGz07W_M7D94YX9wq1CFH4rbdTb7e&amp;dispatch=5885d80a13c0db1fa798f5a5f5ae42e779d4b5655493f6171509c5b2ec019b86"><span>Support <acronym>Vassal</acronym></span><img src="/images/paypal_donate.png" alt="PayPal" /></a>
+    <div class="roadsign">
+      <form id="donate" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <button type="submit" name="submit">
+          <span>Support <acronym>Vassal</acronym></span>
+          <img src="https://www.paypal.com/en_GB/i/btn/btn_donate_LG.gif" alt="Donate"/>
+        </button>
+        <input type="hidden" name="cmd" value="_s-xclick"/>
+        <input type="hidden" name="hosted_button_id" value="Y584SZ4XBMGW6"/>
+        <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1"/>
+      </form>
     </div>
 
     <p>Have you ever wondered just how much effort we've put into <acronym>Vassal</acronym>? Have a look a this project cost calculator to get an idea:</p>

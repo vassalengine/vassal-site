@@ -69,7 +69,7 @@ a img {
 
 /* Front page */
 
-div.dlbutton {
+div.roadsign {
   padding: 1em;
   margin: 1em auto;
   border: 1px solid #8dea34;
@@ -84,31 +84,57 @@ div.dlbutton {
   text-align: center;
 }
 
-div.dlbutton a {
+div.roadsign a {
   display: block;
   overflow: auto;
   color: white;
   text-decoration: none;
 }
 
-div.dlbutton a:hover {
+div.roadsign a:hover {
   color: white;
   text-decoration: none;
 }
 
-div.dlbutton a span {
+div.roadsign a span {
   display: inline-block;
   vertical-align: middle;
   text-align: center;
   padding: 12px;
 }
 
-div.dlbutton a:hover span {
+div.roadsign a:hover span {
   text-decoration: underline;
 }
 
-div.dlbutton a img {
+div.roadsign a img {
   vertical-align: middle;
+}
+
+div.roadsign form span {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  padding: 12px;
+}
+
+form#donate button[type="submit"] img {
+  vertical-align: middle;
+}
+
+form#donate button[type="submit"] {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 100%;
+  color: white;
+}
+
+form#donate button[type="submit"]:hover span {
+  text-decoration: underline;
 }
 
 table.screenshot {
