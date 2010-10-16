@@ -66,6 +66,9 @@ Including as many details as possible will help us help you faster.</p>
     <h3>Other site issues</h3>
     <p>If you're having a problem with the site which does not prevent you from posting to our <a href="http://www.vassalengine.org/forum/viewforum.php?f=3">forum</a>, please ask about it there.</p>
 
+    <h3>Spamming</h3>
+    <p>If you'd like to report spamming in our forum or wiki, please email our <a href="mailto:webmaster@vassalengine.org">webmaster</a>. We have a zero-tollerance policy toward spam. We want none of it on our site, and will take steps to remove it as soon as we're notified.</p>
+
   </div>
 </div>
 
