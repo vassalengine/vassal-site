@@ -26,7 +26,7 @@ try {
 
   $row = $auth->read($query);
   if (!$row) {
-    throw new ErrorException('No results.');
+    throw new ErrorException('Your confirmation code could not be found. Please try registering again.');
   }
 
   extract($row);
