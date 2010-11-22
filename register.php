@@ -179,11 +179,15 @@ try {
   $message = <<<END
 Someone claiming to be "$realname", probably you, from IP address {$_SERVER['REMOTE_ADDR']}, has attempted to register the account "$username" with this email address at vassalengine.org.
 
-To active this account, simply open this link in your browser:
+To active this account, simply open this link in your browser within three days:
 
 http://www.vassalengine.org/confirm.php?key=$key
 
+After three days, if you have not activated your account, you will need to re-register.
+
 If you do not wish to activate this account, please disregard this message. If you think your email address is being maliciously associated with this account, or you have any other questions, please send them to webmaster@vassalengine.org.
+
+
 
 END;
 
