@@ -31,10 +31,10 @@
     <p>Hundreds of boardgames have been converted for use with <acronym>Vassal</acronym>, so there's a good chance that you'll find the games you own in our <a href="/wiki/Category:Modules">module library</a> already. If there is not yet a <acronym>Vassal</acronym> module for your favorite game, you can use the <acronym>Vassal</acronym> Editor to build your own module, and should you run into trouble, help is only a click away in our <a href="/forum/">forum</a>.</p>
 
     <h3>How can I get help?</h3>
-    <p>Need help using <acronym>Vassal</acronym>? Stuck while creating a module? If you can't find an answer in our extensive <a href="">documentation</a>, check our friendly <a href="/forum/">forum</a> for help.</p>
+    <p>Need help using <acronym>Vassal</acronym>? Stuck while creating a module? If you can't find an answer in our extensive <a href="http://www.vassalengine.org/wiki/Category:Documentation">documentation</a>, check our friendly <a href="/forum/">forum</a> for help.</p>
 
     <h3>How can I get involved?</h3>
-    <p>The <acronym>Vassal</acronym> project is run by volunteers and progresses through the efforts of volunteers. Is there a feature you'd like to see in the next release? Did you find a bug? Request that feature or report the bug <a href="/tracker/">here</a>. Are you a programmer? We could use your help. Join us in the <a href="/forum/viewforum.php?f=5">developers' forum</a>. Not a programmer? Help us improve our <a href="">documentation</a>.</p>
+    <p>The <acronym>Vassal</acronym> project is run by volunteers and progresses through the efforts of volunteers. Is there a feature you'd like to see in the next release? Did you find a bug? Request that feature or report the bug <a href="/tracker/">here</a>. Are you a programmer? We could use your help. Join us in the <a href="/forum/viewforum.php?f=5">developers' forum</a>. Not a programmer? Help us improve our <a href="http://www.vassalengine.org/wiki/Category:Documentation">documentation</a>.</p>
 
     <h2><a id="team">About The <acronym>Vassal</acronym> Team</a></h2>
 
