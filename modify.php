@@ -119,7 +119,7 @@ try {
     $message = <<<END
 Someone claiming to be "$realname", probably you, from IP address {$_SERVER['REMOTE_ADDR']}, has attempted to associate the account "$username" at vassalengine.org with this email address.
 
-To confirm this email address, simply reply to this message, or open this link in your browser:
+To confirm this email address, simply open this link in your browser:
 
 http://www.vassalengine.org/confirm_email.php?key=$key
 
