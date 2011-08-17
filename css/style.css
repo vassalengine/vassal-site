@@ -240,14 +240,14 @@ code {
 
 #irc-container {
   width: 50em;
-  height: 50em;
+  height: 40em;
   margin: 3em auto 0em auto;
   border: 1px solid #222222;
   padding: 1px;
 }
 
 #irc-widget {
-  width: 50em; 
-  height: 50em;   
+  width: 100%; 
+  height: 100%;   
 }
 

@@ -19,7 +19,7 @@
     <div id="irc-container">
       <object id="irc-widget" data="http://webchat.freenode.net?channels=vassal&amp;uio=OT10cnVlde" type="text/html"> 
         <!--[if IE]>
-          <iframe src="http://webchat.freenode.net?channels=vassal&amp;uio=OT10cnVlde" style="width: 50em; height: 50em; border: none;">
+          <iframe src="http://webchat.freenode.net?channels=vassal&amp;uio=OT10cnVlde" style="width: 100%; height: 100%; border: none;">
             <p>If you see this message, it means that your browser was unable to display the IRC widget. Please try joining the IRC channel via this <a href="ttp://webchat.freenode.net?channels=vassal&amp;uio=OT10cnVlde">link</a>.</p>
           </iframe>
         <![endif]-->
