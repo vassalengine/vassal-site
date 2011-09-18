@@ -16,10 +16,6 @@
 <?php include('inc/header.php'); ?>
 
 <div id="content">
-  <div class="errorbox">
-     <p><b>Welcome to our new site!</b> Because we have just moved, there might be problems with the site. If you find any, please tell the <a href="mailto:webmaster@nomic.net">webmaster</a> so they can be fixed.</p>
-  </div>
-
   <div class="content_box_left">
     <div id="about">
       <h1>What is <acronym>Vassal</acronym>?</h1>
