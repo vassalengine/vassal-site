@@ -43,14 +43,14 @@
         <img src="/images/macosx.png" alt="Mac OS X"/>
         <dl>
           <dt>Mac OS X</dt>
-          <dd>Download <a href="http://downloads.sourceforge.net/vassalengine/VASSAL-<?php echo $version; ?>-macosx.dmg">disk image</a> (19MB)</dd>
+          <dd>Download <a href="http://downloads.sourceforge.net/vassalengine/VASSAL-<?php echo $version; ?>-macosx.dmg">disk image</a> (20MB)</dd>
         </dl>
       </td>
       <td>
         <span style="font-size: 24px;">{}</span>
         <dl>
           <dt>Source</dt>
-          <dd>Download <a href="http://downloads.sourceforge.net/vassalengine/VASSAL-<?php echo $version; ?>-src.zip">ZIP archive</a> (16MB)<br/>Look <a href="">here</a> for build instructions.</dd>
+          <dd>Download <a href="http://downloads.sourceforge.net/vassalengine/VASSAL-<?php echo $version; ?>-src.zip">ZIP archive</a> (17MB)<br/>Look <a href="">here</a> for build instructions.</dd>
         </dl>
       </td>
     </tr>
