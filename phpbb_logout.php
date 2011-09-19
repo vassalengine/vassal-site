@@ -4,7 +4,7 @@
 # headers it sends.
 
 define('IN_PHPBB', true);
-$phpbb_root_path = '../forum/';
+$phpbb_root_path = '../../forum/';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
 require($phpbb_root_path . 'common.' . $phpEx);
 
