@@ -202,8 +202,7 @@ END;
 
   # success!
   print_top($title);
-  print '<p>A confirmation email has been sent.
-         Click on the link in the email to activate your account.</p>'; 
+  print '<p>A confirmation email has been sent. Click on the link in the email to activate your account. If you have not received this confirmation email within a few hours, check your spam box, and then email the <a href="mail:webmaster@vassalengine.org">webmaster</a> for assistance.</p>'; 
   print_bottom();
   exit;
 }
