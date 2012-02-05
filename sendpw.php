@@ -76,7 +76,7 @@ END;
 
   # success!
   print_top($title);
-  print '<p>A password reset email has been sent, which contains a link you can follow to reset your password.</p>';
+  print '<p>A password reset email has been sent, which contains a link you can follow to reset your password. If you have not received this confirmation email within a few hours, check your spam box, and then email the <a href="mail:webmaster@vassalengine.org">webmaster</a> for assistance.</p>';
   print_bottom();
   exit;
 }
