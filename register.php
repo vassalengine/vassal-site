@@ -26,6 +26,11 @@ $retype_email = isset($_POST['retype_email']) ?
 $realname = isset($_POST['realname']) ? addslashes($_POST['realname']) : '';
 
 try {
+  # check that the spambox unticked
+  if (isset($_POST['spambox']) && $_POST['spambox'] == '!') {
+    throw new ErrorException('Uncheck the box.');
+  }
+
   # check for blank username
   if (empty($username)) {
     unset($_POST['username']);
@@ -263,6 +268,10 @@ function print_form() {
       <tr>
         <th><label for="realname">Real name:</label></th>
         <td><input type="text" id="realname" name="realname" size="20" value="$realname"/></td>
+      </tr>
+      <tr>
+        <th><label for="spambox">Uncheck this box:</label></th>
+        <td><input type="checkbox" name="spambox" checked="true" value="!"/>
       </tr>
       <tr>
         <th><label>Type some words:</label></th>
