@@ -26,7 +26,7 @@ $retype_email = isset($_POST['retype_email']) ?
 $realname = isset($_POST['realname']) ? addslashes($_POST['realname']) : '';
 
 try {
-  # check that the spambox unticked
+  # check that the spambox is unticked
   if (isset($_POST['spambox']) && $_POST['spambox'] == '!') {
     throw new ErrorException('Uncheck the box.');
   }
