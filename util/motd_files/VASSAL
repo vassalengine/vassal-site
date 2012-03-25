@@ -1,0 +1,8 @@
+CHAT
+CHAT  Welcome to the VASSAL server
+CHAT  
+CHECK	runningVassalVersion<3.1	ALERT\	VASSAL version 3.1 is now available.
+CHAT
+CHAT For help, see the VASSAL Forum at http://www.vassalengine.org/forum
+CHAT
+
