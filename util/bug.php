@@ -98,7 +98,7 @@ if (strlen($email) > 0) {
 
 $bz_xml = <<<END
 <?xml version="1.0"?>
-<bugzilla version="3.4.7" urlbase="http://www.vassalengine.org/tracker" maintainer="uckelman@nomic.net" exporter="uckelman@nomic.net">
+<bugzilla version="4.0.5" urlbase="http://www.vassalengine.org/tracker" maintainer="uckelman@nomic.net" exporter="uckelman@nomic.net">
   <bug>
     <short_desc>ABR: $summary</short_desc>
     <long_desc is_private="0">
@@ -139,7 +139,7 @@ $desc = array(
   2 => array('pipe', 'w')
 );
 
-$proc = proc_open('/var/www/util/importxml-abr.pl', $desc, $pipes);
+$proc = proc_open('/usr/share/bugzilla/importxml.pl', $desc, $pipes);
 
 if (is_resource($proc)) {
   fwrite($pipes[0], $bz_xml);
