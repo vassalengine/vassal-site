@@ -8,7 +8,7 @@
   <title>VASSAL on IRC</title>
 </head>
 <body>
-<?php include('/var/www/html/inc/header.php'); ?>
+<?php include('inc/header.php'); ?>
 
 <div id="content">
   <div id="content_box_full">
@@ -29,6 +29,6 @@
   </div>
 </div>
 
-<?php include('/var/www/html/inc/footer.shtml'); ?>
+<?php include('inc/footer.shtml'); ?>
 </body>
 </html>
