@@ -89,7 +89,7 @@
   <p>Older releases of <acronym>Vassal</acronym> are available in our <a href="/releases/">release archive</a>. We do not recommend older releases for normal use. If you find it necessary to use an older release due to a flaw in the current release, please <a href="/tracker/">file a bug report</a>.</p>
 
   <h2>Development Snapshots</h2>
-  <p><acronym>Vassal</acronym> is under constant development. Current development snapshots are available <a href="/builds/">here</a>. The development build named <code>VASSAL-x.y.z-svnNNNN-branch</code> is a development build for version <code>x.y.z</code> of <acronym>Vassal</acronym> based on revision <code>NNNN</code> on branch <code>branch</code> in our Subversion repository. We do not provide support for development builds, nor do we guarantee the they even work. If you use one for regular play or module design, you do so at your own risk. However, we greatfully accept bug reports from <em>current</em> development builds.</p>
+  <p><acronym>Vassal</acronym> is under constant development. Current development snapshots are available <a href="http://vassalengine.sourceforge.net/builds/">here</a>. The development build named <code>VASSAL-x.y.z-svnNNNN-branch</code> is a development build for version <code>x.y.z</code> of <acronym>Vassal</acronym> based on revision <code>NNNN</code> on branch <code>branch</code> in our Subversion repository. We do not provide support for development builds, nor do we guarantee the they even work. If you use one for regular play or module design, you do so at your own risk. However, we greatfully accept bug reports from <em>current</em> development builds.</p>
  
 
 </div>
