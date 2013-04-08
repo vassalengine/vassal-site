@@ -29,6 +29,10 @@ $logger = &Log::singleton('file', '/var/log/bugs', 'one');
 
 ini_set('display_errors', 1);
 
+if ($_SERVER['REMOTE_ADDR'] == '129.93.229.141') {
+  die('Bogus.'); 
+}
+
 #
 # Read bug report
 #
