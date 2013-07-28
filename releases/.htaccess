@@ -1,4 +1,4 @@
 # Redirect downloads to SourceForge when possible
 RewriteEngine on
 RewriteBase /releases
-RewriteRule ^(VASSAL-3\.(1\.20|2\.[3-7])-.+)$ http://downloads.sourceforge.net/vassalengine/$1 [R]
+RewriteRule ^(VASSAL-3\.(1\.20|2\.[6-8])-.+)$ http://downloads.sourceforge.net/vassalengine/$1 [R]
