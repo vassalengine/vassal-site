@@ -16,6 +16,10 @@
 <?php include('inc/header.php'); ?>
 
 <div id="content">
+  <div class="errorbox">
+    <p><b>We've moved to a new host!</b> The site should be much faster now, but we might have broken things in the process. If you encounter problems, please tell the <a href="mailto:webmaster@nomic.net">webmaster</a> so they may be fixed.</p>
+  </div>
+
   <div class="content_box_left">
     <div id="about">
       <h1>What is <acronym>Vassal</acronym>?</h1>
