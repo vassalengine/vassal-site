@@ -12,6 +12,9 @@ try {
     throw new ErrorException('No confirmation key.');
   }
 
+  # get data for key from the registration database
+  $auth = new AuthDB();
+  
   # sanitize the input
   $key = mysql_real_escape_string($_GET['key']);
 
@@ -19,9 +22,6 @@ try {
     throw new ErrorException('No confirmation key.');
   }
 
-  # get data for key from the registration database
-  $auth = new AuthDB();
-  
   $query = sprintf(
     "SELECT username, email
      FROM confirmemail

@@ -11,11 +11,11 @@ try {
     throw new ErrorException('No confirmation code.');
   }
 
-  # sanitize the input
-  $key = mysql_real_escape_string($_GET['key']);
-
   # get data for key from the registration database
   $auth = new AuthDB();
+
+  # sanitize the input
+  $key = mysql_real_escape_string($_GET['key']);
 
   $query = sprintf(
     "SELECT username, password, email, realname

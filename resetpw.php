@@ -30,19 +30,20 @@ if (empty($_POST)) {
 }
 
 # sanitize the input
-$key = isset($_POST['key']) ? mysql_real_escape_string($_POST['key']) : '';
-
 $password = isset($_POST['password']) ? $_POST['password'] : '';
 $retype_password = isset($_POST['retype_password']) ?
                          $_POST['retype_password'] : '';
 
 # check for blank key
-if (empty($key)) {
+if (!isset($_POST['key'])) {
   print_top($title);
   warn('No key.');
   print_bottom();
   exit;
 }
+
+# ensure that key is set because we use it in the catch below
+$key = $_POST['key']
 
 try {
   # check for blank password
@@ -73,6 +74,8 @@ try {
 
   # get data for key from the registration database
   $auth = new AuthDB();
+
+  $key = mysql_real_escape_string($key);
 
   $query = sprintf(
     "SELECT username FROM resetpw WHERE id='%s'",
