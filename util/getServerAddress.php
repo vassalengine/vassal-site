@@ -4,5 +4,5 @@
 # VASSAL 3.0 and later use getServerImpl.php instead.
 # 
 header('Content-type: text/plain; charset=utf-8');
-echo '68.14.242.201:5050';
+echo '62.210.178.7:5050';
 ?>
