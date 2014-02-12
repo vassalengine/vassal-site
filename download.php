@@ -83,7 +83,7 @@
   <p>This is the package to use if you run an OS without a dedicated package. In order to run <acronym>Vassal</acronym>, you will need to obtain a JRE for your OS.</p>
 
   <h4>Source</h4>
-  <p>This is the source code for <acronym>Vassal</acronym>. If you want to <em>use</em> <acronym>Vassal</acronym>, you should consider installing the pre-built package for your operating system, found above. If, instead, you are interested in doing development work on <acronym>Vassal</acronym>, you might instead want to check out the current code from our <a href="">source repository</a>.</p>
+  <p>This is the source code for <acronym>Vassal</acronym>. If you want to <em>use</em> <acronym>Vassal</acronym>, you should consider installing the pre-built package for your operating system, found above. If, instead, you are interested in doing development work on <acronym>Vassal</acronym>, you might instead want to check out the current code from our <a href="https://sourceforge.net/p/vassalengine/svn/HEAD/tree/VASSAL-src/">source repository</a>.</p>
 
   <h2>Older Releases</h2>
   <p>Older releases of <acronym>Vassal</acronym> are available in our <a href="/releases/">release archive</a>. We do not recommend older releases for normal use. If you find it necessary to use an older release due to a flaw in the current release, please <a href="/tracker/">file a bug report</a>.</p>
