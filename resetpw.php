@@ -43,7 +43,7 @@ if (!isset($_POST['key'])) {
 }
 
 # ensure that key is set because we use it in the catch below
-$key = $_POST['key']
+$key = $_POST['key'];
 
 try {
   # check for blank password
