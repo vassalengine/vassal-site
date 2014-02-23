@@ -37,23 +37,10 @@ class UserDB {
   }
 
   public function auth($username, $password) {
-    $this->bind();
-
-    $r = @ldap_search($this->ds, LDAP_BASE, "uid=$username");
-    if (!$r) {
+    if (!@ldap_bind($this->ds, "uid=$username," . LDAP_BASE, $password)) {
       throw new ErrorException(
-        'LDAP search failed: ' . ldap_error($this->ds));
-    }
-
-    if (@ldap_count_entries($this->ds, $r) < 1) {
-      throw new ErrorException(
-        'The account "' . $username . '" does not exist.');
-    }
-
-    $result = @ldap_get_entries($this->ds, $r);
-
-    if (!@ldap_bind($this->ds, $result[0]['dn'], $password)) {
-      throw new ErrorException('Bad password.');
+        'The username or password you entered is incorrect.'
+      );
     }
   }
 
