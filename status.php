@@ -4,7 +4,6 @@
 <head profile="http://www.w3.org/2005/10/profile">
   <link rel="stylesheet" type="text/css" href="/css/style.css"/>
   <link rel="stylesheet" type="text/css" href="/css/site.css"/>
-  <link rel="alternate" type="application/rss+xml" title="RSS" href="/news_rss.php" />
   <link rel="icon" type="image/png" href="/images/VASSAL.png"/>
   <title>VASSAL</title>
 
