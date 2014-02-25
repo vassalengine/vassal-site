@@ -22,17 +22,22 @@ try {
     throw new ErrorException('Empty headline.');
   }
 
+  # check for header injection in headline
+  if (preg_match('/\r|\n|%0A|%0D/i', $headline)) {
+    throw new ErrorException('Headline contains prohibited characters.');
+  }
+
   # check for blank text
   if (empty($text)) {
     throw new ErrorException('Empty text.');
   }
 
   # check cookie
-   if (empty($key)) {
-    throw new ErrorException('No key.');
+  if (empty($key)) {
+    throw new ErrorException('Please log in before submitting news.');
   }
 
-  require_once('sso/AuthDB.php');  
+  require_once('sso/AuthDB.php');
 
   $auth = new AuthDB();
   $username = $auth->user_for_cookie($key);
@@ -77,104 +82,76 @@ END;
 }
 
 #
-# This is a shim for submitting items to phpns
+# This is a shim for submitting items to WordPress
 #
-function submit_story($username, $headline, $text) {
-  $ch = curl_init();
+function submit_story($username, $title, $text) {
+  require_once('/usr/share/wordpress/wp-load.php');
 
-  $cfile = tempnam('/tmp', 'cookies');
+  # check if the user exists in WordPress
+  $uid = NULL;
+  $user = get_user_by('login', $username);
+  if (!$user) {
+    # create the user in WordPress if not
+    require_once('sso/UserDB.php');
 
-  # login
-  $url = 'http://localhost/news/login.php?do=p';
+    $udb = new UserDB();
+    $result = $udb->search("uid=$username");
 
-  require_once('util/newsbot-config.php');
+    $userdata = array(
+      'user_pass'     => md5(microtime()),
+      'user_login'    => $username,
+      'user_email'    => $result[0]['mail'][0],
+      'display_name'  => $username,
+      'role'          => 'contributor'
+    );
 
-  $data = array(
-    'username' => NEWSBOT_USERNAME,
-    'password' => NEWSBOT_PASSWORD,
-    'remember' => 0
+    $result = wp_insert_user($userdata);
+    if (is_wp_error($result)) {
+      throw new ErrorException(
+        'Failed to create WordPress user: ' . $result->get_error_message()
+      );
+    }
+    $uid = $result;
+  }
+  else {
+    $uid = $user->ID;
+  }
+
+  # push the post to WordPress
+  $post = array(
+    'post_title'   => $title,
+    'post_content' => $text,
+    'post_status'  => 'pending',
+    'post_type'    => 'post',
+    'post_author'  => $uid
   );
 
-  curl_setopt_array($ch, array(
-    CURLOPT_URL            => $url,
-    CURLOPT_HEADER         => false,  # don't need it
-    CURLOPT_RETURNTRANSFER => true,   # prevent printing
-    CURLOPT_COOKIEJAR      => $cfile,
-    CURLOPT_POST           => true,
-    CURLOPT_POSTFIELDS     => $data,
-    CURLOPT_FOLLOWLOCATION => false   # 302 is expected result
-  ));
-
-  curl_exec($ch);
-  if (curl_errno($ch) != 0) {
-    throw new ErrorException('curl: ' . curl_error($ch));
-  }
-  
-  # phpns redirects to index.php on success, so check for 302
-  $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-  if ($code != 302) {
-    throw new ErrorException("login failed: $code");
+  # NB: wp_insert_post is responsible for sanitizing title and text
+  $result = wp_insert_post($post, TRUE);
+  if (is_wp_error($result)) {
+    throw new ErrorException(
+      'Failed to post news item: ' . $result->get_error_message()
+    );
   }
 
-  # post an article
-  $url = 'http://localhost/news/article.php?do=p';
+  $post_id = $result;
 
-  $data = array(
-    'article_title'    => $headline,
-#    'article_subtitle' => '',
-    'article_cat'      => 'all',
-    'article_text'     => $text,
-#    'article_exptext'  => '',
-#    'image'            => '',
-#    'start_date'       => '',
-#    'end_date'         => '',
-#    'acchecked'        => '0',
-#    'achecked'         => '0',
+  # notify news editors
+  $fields = array('user_email');
+  $editors = array_merge(
+    get_users(array('role' => 'Administrator', 'fields' => $fields)),
+    get_users(array('role' => 'Editor', 'fields' => $fields))
   );
 
-  curl_setopt_array($ch, array(
-    CURLOPT_URL            => $url,
-    CURLOPT_HEADER         => false,  # don't need it
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_COOKIEFILE     => $cfile,
-    CURLOPT_POST           => true,
-    CURLOPT_POSTFIELDS     => $data,
-    CURLOPT_FOLLOWLOCATION => false
-  ));
+  $subject = 'New post: ' . $title;
+  $body = "There is a new VASSAL news post to moderate:\n\n" .
+          admin_url("post.php?post=$post_id&action=edit", 'https') . "\n\n" .
+          "Title:\n\n" . $title . "\n\n" .
+          "Text:\n\n" . $text . "\n";
 
-  $result = curl_exec($ch);
-  if (curl_errno($ch) != 0) {
-    throw new ErrorException('curl: ' . curl_error($ch));
+  foreach ($editors as $e) {
+    wp_mail($e->user_email, $subject, $body);
   }
-
-  # check that posting succeeded 
-  if (strpos($result, 'Article Success') === false) {
-    throw new ErrorException('posting failed');
-  }
-
-  # logout
-  $url = 'http://localhost/news/login.php?do=logout';
-
-  curl_setopt_array($ch, array(
-    CURLOPT_URL            => $url,
-    CURLOPT_HEADER         => false,  # don't need it
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_COOKIEFILE     => $cfile,
-    CURLOPT_HTTPGET        => true,
-    CURLOPT_FOLLOWLOCATION => false   # 302 is expected result
-  ));
-
-  $result = curl_exec($ch);
-  if (curl_errno($ch) != 0) {
-    throw new ErrorException('curl: ' . curl_error($ch));
-  }
-
-  # cleanup
-  if (!unlink($cfile)) {
-    die("failed to delete $cfile");
-  }
-
-  curl_close($ch);
 }
 
 ?>

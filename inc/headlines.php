@@ -1,11 +1,13 @@
 <?php
 
 
-$url = 'http://localhost/news_rss.php';
+$url = 'http://localhost/news/feed/';
 $rss = file_get_contents($url);
 if ($rss === false) {
   die('Something went wrong.');
 }
+
+# FIXME: we can probably get this directly from WP now
 
 # We have to change named entities to numeric ones because simplexml doesn't
 # understand HTML entities. We can't use html_entity_decode() because it

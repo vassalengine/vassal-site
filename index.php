@@ -4,7 +4,7 @@
 <head profile="http://www.w3.org/2005/10/profile">
   <link rel="stylesheet" type="text/css" href="/css/style.css"/>
   <link rel="stylesheet" type="text/css" href="/css/site.css"/>
-  <link rel="alternate" type="application/rss+xml" title="RSS" href="/news_rss.php" />
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/news/feed/"/>
   <link rel="icon" type="image/png" href="/images/VASSAL.png"/>
   <title>VASSAL</title>
 
@@ -77,7 +77,7 @@
 
   <div class="content_box_right">
     <div id="news">
-      <h1>Latest News <a href="/news_rss.php"><img src="/images/feed-icon-14x14.png" alt="RSS feed"/></a></h1>
+      <h1>Latest News <a href="/news/feed/"><img src="/images/feed-icon-14x14.png" alt="RSS feed"/></a></h1>
 
       <ul class="news">
       <?php include('inc/headlines.php'); ?>
@@ -89,7 +89,7 @@
         </div>
   
         <div id="news-more">
-          <em><a href="/news.php">&hellip;more news</a></em>
+          <em><a href="/news">&hellip;more news</a></em>
         </div>
       </div>
     </div>

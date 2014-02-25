@@ -6,7 +6,7 @@
     <li><a href="/forum/">Forum</a></li>
     <li><a href="/wiki/">Wiki</a></li>
     <li><a href="/tracker/">Tracker</a></li>
-    <li><a href="/news.php">News</a></li>
+    <li><a href="/news/">News</a></li>
     <li><a href="/irc.php">Chat</a></li>
     <li><a href="/help.php">Help</a></li>
   </ul>
