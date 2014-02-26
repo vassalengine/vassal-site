@@ -4,6 +4,8 @@ require_once('/usr/share/wordpress/wp-load.php');
 
 $args = array(
   'posts_per_page' => 15,
+  'orderby'        => 'post_date',
+  'order'          => 'DESC',
   'poststatus'     => 'publish'
 );
 $posts = wp_get_recent_posts($args);
