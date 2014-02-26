@@ -55,14 +55,12 @@
 
       <div class="roadsign">
         <form id="donate" action="https://www.paypal.com/cgi-bin/webscr" method="post">
-          <div>
-            <button type="submit" name="submit">
-              <span>Support <abbr>Vassal</abbr></span>
-              <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="Donate"/>
-            </button>
-            <input type="hidden" name="cmd" value="_s-xclick"/>
-            <input type="hidden" name="hosted_button_id" value="UQ943LRKHH7DL"/>
-          </div>
+          <button type="submit" name="submit">
+            <span>Support <abbr>Vassal</abbr></span>
+            <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="Donate"/>
+          </button>
+          <input type="hidden" name="cmd" value="_s-xclick"/>
+          <input type="hidden" name="hosted_button_id" value="UQ943LRKHH7DL"/>
         </form>
       </div>
 

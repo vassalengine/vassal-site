@@ -1,4 +1,3 @@
-
 .sso_form {
   margin: 10px auto;
   display: table;
@@ -22,4 +21,12 @@
 .sso_form input[type="password"] {
   font-size: 100%;
   width: 100%;
+}
+
+.sso_form td#recaptcha {
+  text-align: center;
+}
+
+.sso_form #recaptcha_widget_div {
+  display: inline-block;
 }

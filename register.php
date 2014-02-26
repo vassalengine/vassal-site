@@ -271,13 +271,14 @@ function print_form() {
       </tr>
       <tr>
         <th><label for="spambox">Uncheck this box:</label></th>
-        <td><input type="checkbox" name="spambox" checked="true" value="!"/>
+        <td><input type="checkbox" id="spambox" name="spambox" checked="checked" value="!"/>
       </tr>
       <tr>
         <th><label>Type some words:</label></th>
+        <td></td>
       </tr>
       <tr>
-        <td colspan="2" align="center">
+        <td colspan="2" id="recaptcha">
 END;
 
   echo recaptcha_get_html(RECAPTCHA_PUBLIC_KEY);
