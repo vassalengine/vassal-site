@@ -14,7 +14,7 @@
   <div id="content_box_full">
     <h1>#vassal IRC</h1>
 
-    <p>We maintain the #vassal IRC channel at <a href="irc://chat.freenode.net/%23vassal">chat.freenode.net</a> for real-time discussion of <acronym>VASSAL</acronym>, which you can join using your own IRC client or the web-based one below. If you ask a question, please wait in the channel for a reply; at slow times of day, this could be some minutes. See <a href="http://www.irchelp.org/irchelp/irctutorial.html">here</a> for a basic guide to IRC.</p>
+    <p>We maintain the #vassal IRC channel at <a href="irc://chat.freenode.net/%23vassal">chat.freenode.net</a> for real-time discussion of <abbr>VASSAL</abbr>, which you can join using your own IRC client or the web-based one below. If you ask a question, please wait in the channel for a reply; at slow times of day, this could be some minutes. See <a href="http://www.irchelp.org/irchelp/irctutorial.html">here</a> for a basic guide to IRC.</p>
 
     <div id="irc-container">
       <object id="irc-widget" data="http://webchat.freenode.net?channels=vassal&amp;uio=OT10cnVlde" type="text/html"> 

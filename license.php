@@ -12,8 +12,8 @@
 
 <div id="content">
 <div class="content_box_full">
-  <h1><acronym>Vassal</acronym> License</h1>
-  <p><acronym>Vassal</acronym> is released under the <a href="http://creativecommons.org/licenses/LGPL/2.1/">GNU Lesser General Public License, version 2.1 or later</a>.</p>
+  <h1><abbr>Vassal</abbr> License</h1>
+  <p><abbr>Vassal</abbr> is released under the <a href="http://creativecommons.org/licenses/LGPL/2.1/">GNU Lesser General Public License, version 2.1 or later</a>.</p>
 
   <p>This programs free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public

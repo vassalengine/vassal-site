@@ -90,8 +90,11 @@
   background: #ffffff;
 }
 
-#vassal-footer acronym {
+#vassal-footer abbr {
   font-variant: small-caps;
+  border: none;
+  color: inherit;
+  cursor: inherit;
 }
 
 #vassal-footer .copyright {
@@ -130,7 +133,7 @@
 
 /* Miscellaneous */
 
-acronym {
+abbr {
   font-variant: small-caps;
 }
 

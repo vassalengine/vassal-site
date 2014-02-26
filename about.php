@@ -13,10 +13,10 @@
 <div id="content">
   <div id="content_box_full">
     <h1>About</h1>
-    <h2><a id="vassal">About <acronym>Vassal</acronym></a></h2>
+    <h2><a id="vassal">About <abbr>Vassal</abbr></a></h2>
 
-    <h3>What is <acronym>Vassal</acronym>?</h3>
-    <p><acronym>Vassal</acronym> is a game engine for building and playing online adaptations of board games and card games. You can use <acronym>Vassal</acronym> to play in real time over the Internet or by email. <acronym>Vassal</acronym> runs on all platforms, and is free, open-source software.</p>
+    <h3>What is <abbr>Vassal</abbr>?</h3>
+    <p><abbr>Vassal</abbr> is a game engine for building and playing online adaptations of board games and card games. You can use <abbr>Vassal</abbr> to play in real time over the Internet or by email. <abbr>Vassal</abbr> runs on all platforms, and is free, open-source software.</p>
 
     <table class="screenshot">
       <tbody>
@@ -27,19 +27,19 @@
       </tbody>
     </table>
   
-    <h3>What games can I play using <acronym>Vassal</acronym>?</h3>
-    <p>Hundreds of boardgames have been converted for use with <acronym>Vassal</acronym>, so there's a good chance that you'll find the games you own in our <a href="/wiki/Category:Modules">module library</a> already. If there is not yet a <acronym>Vassal</acronym> module for your favorite game, you can use the <acronym>Vassal</acronym> Editor to build your own module, and should you run into trouble, help is only a click away in our <a href="/forum/">forum</a>.</p>
+    <h3>What games can I play using <abbr>Vassal</abbr>?</h3>
+    <p>Hundreds of boardgames have been converted for use with <abbr>Vassal</abbr>, so there's a good chance that you'll find the games you own in our <a href="/wiki/Category:Modules">module library</a> already. If there is not yet a <abbr>Vassal</abbr> module for your favorite game, you can use the <abbr>Vassal</abbr> Editor to build your own module, and should you run into trouble, help is only a click away in our <a href="/forum/">forum</a>.</p>
 
     <h3>How can I get help?</h3>
-    <p>Need help using <acronym>Vassal</acronym>? Stuck while creating a module? If you can't find an answer in our extensive <a href="http://www.vassalengine.org/wiki/Category:Documentation">documentation</a>, check our friendly <a href="/forum/">forum</a> for help.</p>
+    <p>Need help using <abbr>Vassal</abbr>? Stuck while creating a module? If you can't find an answer in our extensive <a href="http://www.vassalengine.org/wiki/Category:Documentation">documentation</a>, check our friendly <a href="/forum/">forum</a> for help.</p>
 
     <h3>How can I get involved?</h3>
-    <p>The <acronym>Vassal</acronym> project is run by volunteers and progresses through the efforts of volunteers. Is there a feature you'd like to see in the next release? Did you find a bug? Request that feature or report the bug <a href="/tracker/">here</a>. Are you a programmer? We could use your help. Join us in the <a href="/forum/viewforum.php?f=5">developers' forum</a>. Not a programmer? Help us improve our <a href="http://www.vassalengine.org/wiki/Category:Documentation">documentation</a>.</p>
+    <p>The <abbr>Vassal</abbr> project is run by volunteers and progresses through the efforts of volunteers. Is there a feature you'd like to see in the next release? Did you find a bug? Request that feature or report the bug <a href="/tracker/">here</a>. Are you a programmer? We could use your help. Join us in the <a href="/forum/viewforum.php?f=5">developers' forum</a>. Not a programmer? Help us improve our <a href="http://www.vassalengine.org/wiki/Category:Documentation">documentation</a>.</p>
 
-    <h2><a id="team">About The <acronym>Vassal</acronym> Team</a></h2>
+    <h2><a id="team">About The <abbr>Vassal</abbr> Team</a></h2>
 
     <h2><a id="site">About the Website</a></h2>
-    <p>The site was originally designed by <a href="">Joel Uckelman</a> using <a href="http://www.php.net">PHP</a> and <a href="http://www.vim.org">Vim</a>. Source code for the site is available in the <acronym>Vassal</acronym> <a href="http://vassalengine.git.sourceforge.net/git/gitweb.cgi?p=vassalengine/site-src;a=summary">Git repository</a> under <code>/site-src</code>.</p>
+    <p>The site was originally designed by <a href="">Joel Uckelman</a> using <a href="http://www.php.net">PHP</a> and <a href="http://www.vim.org">Vim</a>. Source code for the site is available in the <abbr>Vassal</abbr> <a href="http://vassalengine.git.sourceforge.net/git/gitweb.cgi?p=vassalengine/site-src;a=summary">Git repository</a> under <code>/site-src</code>.</p>
 
     <p>All hand-coded pages on the site are intended to be valid XHTML and CSS. If you find that is not the case, please notify the <a href="mailto:webmaster@vassalengine.org">webmaster</a> so the problem can be rectified.</p>
   </div>

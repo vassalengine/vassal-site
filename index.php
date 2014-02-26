@@ -22,10 +22,10 @@
 
   <div class="content_box_left">
     <div id="about">
-      <h1>What is <acronym>Vassal</acronym>?</h1>
-      <p><acronym>Vassal</acronym> is a game engine for building and playing online adaptations of board games and card games. Play live on the Internet or by email. <acronym>Vassal</acronym> runs on all platforms, and is free, open-source software.</p>
+      <h1>What is <abbr>Vassal</abbr>?</h1>
+      <p><abbr>Vassal</abbr> is a game engine for building and playing online adaptations of board games and card games. Play live on the Internet or by email. <abbr>Vassal</abbr> runs on all platforms, and is free, open-source software.</p>
 
-      <p><a href="/about.php">Learn more</a> about <acronym>Vassal</acronym>.</p>
+      <p><a href="/about.php">Learn more</a> about <abbr>Vassal</abbr>.</p>
 
       <table class="screenshot">
         <tbody>
@@ -38,8 +38,8 @@
     </div>
 
     <div id="download">
-      <h1>Get <acronym>Vassal</acronym></h1>
-      <p><acronym>Vassal</acronym> is free, open-source software, created by volunteers. Our current release is 
+      <h1>Get <abbr>Vassal</abbr></h1>
+      <p><abbr>Vassal</abbr> is free, open-source software, created by volunteers. Our current release is 
         <?php 
           $version = trim(file_get_contents('util/release-stable'));
           echo $version;
@@ -48,16 +48,16 @@
       <div class="roadsign">
         <?php
           include('inc/download-detect.php');
-          echo "<a href=\"$download_url\"><span>Download <acronym>Vassal</acronym><br/>$version$download_os</span><img src=\"/images/button.download.png\" alt=\"\" /></a>";
+          echo "<a href=\"$download_url\"><span>Download <abbr>Vassal</abbr><br/>$version$download_os</span><img src=\"/images/button.download.png\" alt=\"\" /></a>";
         ?>
       </div>
-      <p>Or, <a href="/download.php">download <acronym>Vassal</acronym></a> for other operating systems.</p> 
+      <p>Or, <a href="/download.php">download <abbr>Vassal</abbr></a> for other operating systems.</p> 
 
       <div class="roadsign">
         <form id="donate" action="https://www.paypal.com/cgi-bin/webscr" method="post">
           <div>
             <button type="submit" name="submit">
-              <span>Support <acronym>Vassal</acronym></span>
+              <span>Support <abbr>Vassal</abbr></span>
               <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="Donate"/>
             </button>
             <input type="hidden" name="cmd" value="_s-xclick"/>
@@ -66,7 +66,7 @@
         </form>
       </div>
 
-      <p><acronym>Vassal</acronym> is free, but development and hosting are not. If you enjoy using <acronym>Vassal</acronym>, please consider helping us with these costs.</p>
+      <p><abbr>Vassal</abbr> is free, but development and hosting are not. If you enjoy using <abbr>Vassal</abbr>, please consider helping us with these costs.</p>
     </div>
   
     <div id="status">
