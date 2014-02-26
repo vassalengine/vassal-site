@@ -1,7 +1,7 @@
-<?php echo '<?xml version="1.0" encoding="UTF-8"?>' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
-<head profile="http://www.w3.org/2005/10/profile">
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8"/>
   <link rel="stylesheet" type="text/css" href="/css/style.css"/>
   <link rel="stylesheet" type="text/css" href="/css/site.css"/>
   <link rel="icon" type="image/png" href="/images/VASSAL.png"/>
@@ -16,10 +16,10 @@
 
   <p>Download <abbr>Vassal</abbr>, the free, open-source boardgame engine. <abbr>Vassal</abbr> runs on Linux, Mac OS X, Windows, and any other system which has a Java JRE. Find your operating system below for instructions for downloading and installing <abbr>Vassal</abbr>.</p>
 
-  <?php $version = file_get_contents('util/release-stable'); ?>
+  <?php $version = trim(file_get_contents('util/release-stable')); ?>
 
-  <h2><abbr>Vassal</abbr> <?php echo $version; ?></h2>
-  <p>This is the current release. <abbr>Vassal</abbr> <?php echo $version; ?> contains a large number of changes over 3.1. See the <a href="https://sourceforge.net/projects/vassalengine/files/VASSAL-current/VASSAL-<?php echo $version; ?>/README/view">release notes</a> for details.</p>
+  <h2><abbr>Vassal</abbr> <?php print($version); ?></h2>
+  <p>This is the current release. <abbr>Vassal</abbr> <?php print($version); ?> contains a large number of changes over 3.1. See the <a href="https://sourceforge.net/projects/vassalengine/files/VASSAL-current/VASSAL-<?php print($version); ?>/README/view">release notes</a> for details.</p>
 
   <table class="dl">
     <tr>
@@ -27,14 +27,14 @@
         <img src="/images/linux.png" alt="Linux" />
         <dl>
           <dt>Linux</dt>
-          <dd>Download <a href="http://downloads.sourceforge.net/vassalengine/VASSAL-<?php echo $version; ?>-linux.tar.bz2">tarball</a> (16MB) <br/>Unpack it and run <code>VASSAL.sh</code></dd>
+          <dd>Download <a href="http://downloads.sourceforge.net/vassalengine/VASSAL-<?php print($version); ?>-linux.tar.bz2">tarball</a> (16MB) <br/>Unpack it and run <code>VASSAL.sh</code></dd>
         </dl>
       </td>
       <td>
         <span style="font-size: 48px;">*</span>
         <dl>
           <dt>Other</dt>
-          <dd>Download <a href="http://downloads.sourceforge.net/vassalengine/VASSAL-<?php echo $version; ?>-other.zip">ZIP archive</a> (16MB)<br/>Unpack it and run <code>VASSAL.sh</code></dd>
+          <dd>Download <a href="http://downloads.sourceforge.net/vassalengine/VASSAL-<?php print($version); ?>-other.zip">ZIP archive</a> (16MB)<br/>Unpack it and run <code>VASSAL.sh</code></dd>
         </dl>
       </td>
     </tr>
@@ -43,14 +43,14 @@
         <img src="/images/macosx.png" alt="Mac OS X"/>
         <dl>
           <dt>Mac OS X</dt>
-          <dd>Download <a href="http://downloads.sourceforge.net/vassalengine/VASSAL-<?php echo $version; ?>-macosx.dmg">disk image</a> (20MB)</dd>
+          <dd>Download <a href="http://downloads.sourceforge.net/vassalengine/VASSAL-<?php print($version); ?>-macosx.dmg">disk image</a> (20MB)</dd>
         </dl>
       </td>
       <td>
         <span style="font-size: 24px;">{}</span>
         <dl>
           <dt>Source</dt>
-          <dd>Download <a href="http://downloads.sourceforge.net/vassalengine/VASSAL-<?php echo $version; ?>-src.zip">ZIP archive</a> (17MB)<br/>Look <a href="">here</a> for build instructions.</dd>
+          <dd>Download <a href="http://downloads.sourceforge.net/vassalengine/VASSAL-<?php print($version); ?>-src.zip">ZIP archive</a> (17MB)<br/>Look <a href="">here</a> for build instructions.</dd>
         </dl>
       </td>
     </tr>
@@ -59,16 +59,17 @@
         <img src="/images/windows.png" alt="Windows" />
         <dl>
           <dt>Windows</dt>
-          <dd>Download and run <a href="http://downloads.sourceforge.net/vassalengine/VASSAL-<?php echo $version; ?>-windows.exe">installer</a> (16MB)</dd>
+          <dd>Download and run <a href="http://downloads.sourceforge.net/vassalengine/VASSAL-<?php print($version); ?>-windows.exe">installer</a> (16MB)</dd>
         </dl>
       </td>
+      <td></td>
     </tr>
   </table>
 
   <h3>Notes</h3>
 
   <h4>All Operating Systems</h4>
-  <p><abbr>Vassal</abbr> <?php echo $version; ?> requires Java Runtime Envionment (JRE) 5 or later. See the OS-specific notes below for how to get an appropriate JRE for your system.</p>
+  <p><abbr>Vassal</abbr> <?php print($version); ?> requires Java Runtime Envionment (JRE) 5 or later. See the OS-specific notes below for how to get an appropriate JRE for your system.</p>
 
   <h4>Linux</h4>
   <p>Most Linux distributions ship a JRE. If you do not have a JRE installed, you must install one before running <abbr>Vassal</abbr>. On Fedora: <code>yum install java-1.6.0-openjdk</code>, and on Ubuntu: <code>apt-get openjdk-6-jre</code>.</p>
