@@ -32,7 +32,11 @@ foreach ($posts as $p) {
     print("<ul class=\"events\">\n");
   }
 
-  print("<li><a href=\"{$p['guid']}\">{$p['post_title']}</a></li>\n");
+  # strip the URL to the path part
+  $url = $p['guid'];
+  $url = substr($url, strpos($url, '/news'));
+
+  print("<li><a href=\"$url\">{$p['post_title']}</a></li>\n");
 }
 
 # end the last day
