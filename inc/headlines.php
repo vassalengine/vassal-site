@@ -33,7 +33,7 @@ foreach ($posts as $p) {
   }
 
   # strip the URL to the path part
-  $url = $p['guid'];
+  $url = get_permalink($p['ID']);
   $url = substr($url, strpos($url, '/news'));
 
   print("<li><a href=\"$url\">{$p['post_title']}</a></li>\n");
