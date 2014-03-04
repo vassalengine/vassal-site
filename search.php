@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-  <meta charset="UTF-8"/>
-  <link rel="stylesheet" type="text/css" href="/css/style.css"/>
-  <link rel="stylesheet" type="text/css" href="/css/site.css"/>
-  <link rel="icon" type="image/png" href="/images/VASSAL.png"/>
+  <?php include('inc/head.shtml'); ?>
   <title>VASSAL Search</title>
 
   <style type="text/css">

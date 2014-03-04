@@ -1,13 +1,9 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-  <meta charset="UTF-8"/>
-  <link rel="stylesheet" type="text/css" href="/css/style.css"/>
-  <link rel="stylesheet" type="text/css" href="/css/site.css"/>
+  <?php include('inc/head.shtml'); ?>
   <link rel="alternate" type="application/rss+xml" title="RSS" href="/news/feed/"/>
-  <link rel="icon" type="image/png" href="/images/VASSAL.png"/>
   <title>VASSAL</title>
-
   <!--[if lte IE 9]>
     <script src="/js/IE9.js" type="text/javascript">IE7_PNG_SUFFIX=".png";</script>
   <![endif]-->

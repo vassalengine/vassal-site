@@ -260,11 +260,11 @@ function print_top($title) {
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-  <meta charset="UTF-8"/>
-  <link rel="stylesheet" type="text/css" href="/css/style.css"/>
-  <link rel="stylesheet" type="text/css" href="/css/site.css"/>
+END;
+
+  include(dirname(__FILE__) . '/../inc/head.shtml');
+  print <<<END
   <link rel="stylesheet" type="text/css" href="/css/sso.css"/>
-  <link rel="icon" type="image/png" href="/images/VASSAL.png"/>
   <title>$title</title>
 </head>
 <body>
