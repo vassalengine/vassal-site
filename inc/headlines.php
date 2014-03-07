@@ -6,7 +6,7 @@ $args = array(
   'posts_per_page' => 15,
   'orderby'        => 'post_date',
   'order'          => 'DESC',
-  'poststatus'     => 'publish'
+  'post_status'    => 'publish'
 );
 $posts = wp_get_recent_posts($args);
 
