@@ -51,119 +51,6 @@ $log = file_get_contents($_FILES['log']['tmp_name']);
 $logger->info("$email\n$summary\n\n$description\n\n$log\n\n\n");
 
 #
-# Relay bug report on to bug tracker at SourceForge 
-#
-$url = 'http://sourceforge.net/tracker/index.php';
-
-$param = array(
-  'group_id'          => '90612',
-  'atid'              => '594231',
-  'func'              => 'postadd',
-  'category_id'       => '100',
-  'artifact_group_id' => '100',
-  'summary'           => "ABR: $summary",
-  'details'           => "$email\n\n$description",
-  'file_description'  => 'the errorLog',
-  'input_file'        => ('@' . $_FILES['log']['tmp_name']),
-  'submit'            => 'Add Artifact'
-);
-
-$headers = array(
-  'Expect:'  // avoid lighttpd bug in version used by SF
-);
-
-$ch = curl_init($url);
-
-curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-#curl_setopt($ch, CURLOPT_HEADER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-curl_setopt($ch, CURLOPT_USERAGENT, 'curl/7.19.4 (x86_64-redhat-linux-gnu) libcurl/7.19.4 NSS/3.12.3 zlib/1.2.3 libidn/1.9 libssh2/1.0');
-
-$result = curl_exec($ch);
-if (curl_errno($ch) != 0) { 
-  die('curl: ' . curl_error($ch));
-}
-
-#
-# Relay bug report on to our Bugzilla
-#
-# FIXME: This is a hack to work around the fact that prior to BZ 3.7,
-# the XML-RPC interface doesn't support adding attachments. We can
-# use the much nicer XML-RPC code once we move to BZ 3.7.
-#
-$data = base64_encode(file_get_contents($_FILES['log']['tmp_name']));
-$size = filesize($_FILES['log']['tmp_name']);
-
-if (strlen($email) > 0) {
-  # include the reporter's email, if given
-  $description = "Reported by $email\n\n$description";
-}
-
-$bz_xml = <<<END
-<?xml version="1.0"?>
-<bugzilla version="4.0.5" urlbase="http://www.vassalengine.org/tracker" maintainer="uckelman@nomic.net" exporter="uckelman@nomic.net">
-  <bug>
-    <short_desc>ABR: $summary</short_desc>
-    <long_desc is_private="0">
-      <who name="Joel Uckelman">uckelman@nomic.net</who>
-      <thetext>$description</thetext>
-    </long_desc>
-    <reporter name="Joel Uckelman">uckelman@nomic.net</reporter>
-    <reporter_accessible>1</reporter_accessible>
-    <cclist_accessible>1</cclist_accessible>
-    <classification_id>1</classification_id>
-    <classification>Unclassified</classification>
-    <product>VASSAL</product>
-    <component>unknown</component>
-    <version>$version</version>
-    <rep_platform>All</rep_platform>
-    <op_sys>All</op_sys>
-    <bug_status>NEW</bug_status>
-    <priority>unspecified</priority>
-    <bug_severity>normal</bug_severity>
-    <target_milestone>---</target_milestone>
-    <actual_time>0.00</actual_time>
-    <assigned_to name="Joel Uckelman">uckelman@nomic.net</assigned_to>
-    <attachment isobsolete="0" ispatch="0" isprivate="0">
-      <attachid>1</attachid>
-      <desc>the errorLog</desc>
-      <filename>errorLog</filename>
-      <type>text/plain</type>
-      <size>$size</size>
-      <data encoding="base64">$data</data>
-    </attachment>
-  </bug>
-</bugzilla>
-END;
-
-$desc = array(
-  0 => array('pipe', 'r'),
-  1 => array('pipe', 'w'),
-  2 => array('pipe', 'w')
-);
-
-$proc = proc_open('/usr/share/bugzilla/importxml.pl', $desc, $pipes);
-
-if (is_resource($proc)) {
-  fwrite($pipes[0], $bz_xml);
-  fclose($pipes[0]);
-
-#  echo stream_get_contents($pipes[1]);
-  fclose($pipes[1]);
-
-#  echo stream_get_contents($pipes[2]);
-  fclose($pipes[2]);
-
-  echo proc_close($proc);
-}
-else {
-  echo 1;
-}
-
-/*
-
-#
 # Relay bug report on to our Bugzilla
 #
 $url = 'http://www.vassalengine.org/tracker/xmlrpc.cgi';
@@ -178,26 +65,10 @@ $params = array(
   'password' => BZ_PASSWORD
 );
 
-$request = xmlrpc_encode_request('User.login', $params);
+list($header, $reply) = do_request($url, 'User.login', $params, false);
+die_on_failure($reply);
 
-$opts = array(
-  'http' => array(
-    'method' => 'POST',
-    'header' => "Content-Type: text/xml\r\n" .
-                'Content-Length: ' . strlen($request) . "\r\n",
-    'content' => $request
-  )
-);
-
-$ctx = stream_context_create($opts);
-$content = file_get_contents($url, 0 , $ctx);
-$reply = xmlrpc_decode($content);
-
-if (xmlrpc_is_fault($reply)) {
-  die("xmlrpc: {$response['faultString']} ({$response['faultCode']})");
-}
-
-$cookies = extract_cookies($http_response_header);
+$cookies = extract_cookies($header);
 
 #
 # Submit new bug to Bugzilla
@@ -210,31 +81,51 @@ $params = array(
   'description' => "$email\n\n$description",
   'op_sys'      => 'All',
   'platform'    => 'All',
-  'priority'    => 'none',
-  'severity'    => 'medium'
+  'priority'    => 'unspecified',
+  'severity'    => 'normal'
 );
 
-$request = xmlrpc_encode_request('Bug.create', $params);
+$reply = do_request($url, 'Bug.create', $params, $cookies)[1];
+die_on_failure($reply);
 
-$opts = array(
-  'http' => array(
-    'method' => 'POST',
-    'header' => "Content-Type: text/xml\r\n" .
-                'Content-Length: ' . strlen($request) . "\r\n" .
-                'Cookie: ' . implode('; ', $cookies) . "\r\n",
-    'content' => $request
-  )
+$params = array(
+  'ids'          => array($reply['id']),
+  'data'         => $log,
+  'file_name'    => 'errorLog',
+  'summary'      => 'the errorLog',
+  'content_type' => 'text/plain'
 );
 
-$ctx = stream_context_create($opts);
-$content = file_get_contents($url, 0 , $ctx);
-$reply = xmlrpc_decode($content);
-
-if (xmlrpc_is_fault($reply)) {
-  die("xmlrpc: {$response['faultString']} ({$response['faultCode']})\n");
-}
+$reply = do_request($url, 'Bug.add_attachment', $params, $cookies)[1];
+die_on_failure($reply);
 
 echo 0;
+
+function do_request($url, $method, $params, $cookies) {
+  $request = xmlrpc_encode_request($method, $params);
+
+  $opts = array(
+    'http' => array(
+      'method' => 'POST',
+      'header' => "Content-Type: text/xml\r\n" .
+                  'Content-Length: ' . strlen($request) . "\r\n" .
+                  ($cookies ? 'Cookie: ' . implode('; ', $cookies) . "\r\n" : ''),
+      'content' => $request
+    )
+  );
+
+  $ctx = stream_context_create($opts);
+  $content = file_get_contents($url, 0 , $ctx);
+  return array($http_response_header, xmlrpc_decode($content));
+}
+
+function die_on_failure($reply) {
+  if (xmlrpc_is_fault($reply)) {
+    global $logger;
+    $logger->crit("xmlrpc: {$reply['faultString']} ({$reply['faultCode']})\n");
+    exit(1);
+  }
+}
 
 function extract_cookies($headers) {
   $cookies = array();
@@ -251,7 +142,5 @@ function extract_cookies($headers) {
 
   return $cookies;
 }
-
-*/
 
 ?>
