@@ -69,7 +69,7 @@
   <p><abbr>Vassal</abbr> <?php print($version); ?> requires Java Runtime Envionment (JRE) 5 or later. See the OS-specific notes below for how to get an appropriate JRE for your system.</p>
 
   <h4>Linux</h4>
-  <p>Most Linux distributions ship a JRE. If you do not have a JRE installed, you must install one before running <abbr>Vassal</abbr>. On Fedora: <code>yum install java-1.6.0-openjdk</code>, and on Ubuntu: <code>apt-get openjdk-6-jre</code>.</p>
+  <p>Most Linux distributions ship a JRE. If you do not have a JRE installed, you must install one before running <abbr>Vassal</abbr>. On Fedora: <code>yum install java-1.7.0-openjdk</code>, and on Ubuntu: <code>apt-get openjdk-7-jre</code>.</p>
 
   <h4>Mac OS X</h4>
   <p>Mac OS X comes with Java already installed. However, if you use OS X 10.3 or earlier, Apple has decided not to provide you with Java 5 or later, and so the last version of <abbr>Vassal</abbr> you will be able to run without upgrading your OS is 2.9.9.</p>
