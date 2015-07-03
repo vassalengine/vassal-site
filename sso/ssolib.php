@@ -127,20 +127,16 @@ function phpBB_logout($url) {
 #
 function bugzilla_login($url, $username, $password) {
   $params = array(
-    'login'    => $username,
-    'password' => $password
-    #  'remember' => true
+    'Bugzilla_login' => $username,
+    'Bugzilla_password' => $password,
   );
 
-  $request = xmlrpc_encode_request('User.login', $params);
+  $request = http_build_query($params);
+  $referer = "Referer: $url/\r\n";
 
-  extract(do_http_post($url, MIME_XML, $request)); 
-
-  $reply = xmlrpc_decode($content);
-  if (xmlrpc_is_fault($reply)) {
-    throw new ErrorException('bugzilla: ' .
-      $reply['faultString'] . ' (' . $reply['faultCode'] . ')');
-  }
+  extract(do_http_post(
+    $url . '/index.cgi?GoAheadAndLogIn=1', MIME_FORM, $request, false, $referer)
+  );
 
   return extract_cookies($header);
 }
@@ -159,10 +155,10 @@ function bugzilla_logout($url) {
 #
 # Do a HTTP POST with the given parameters, and return the result.
 #
-function do_http_post($url, $type, $data, $cookies = false) {
+function do_http_post($url, $type, $data, $cookies = false, $header = '') {
 
-  $header = 'Content-Type: ' . $type . "\r\n" .
-            'Content-Length: ' . strlen($data) . "\r\n";
+  $header .= 'Content-Type: ' . $type . "\r\n" .
+             'Content-Length: ' . strlen($data) . "\r\n";
 
   if ($cookies !== false) {
     $header .= 'Cookie: ' . cookies_list($cookies) . "\r\n";

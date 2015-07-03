@@ -48,7 +48,7 @@ try {
   $cookies += phpbb_login($url, $username, $slpassword);
 
   # Bugzilla login
-  $url = 'http://www.vassalengine.org/tracker/xmlrpc.cgi';
+  $url = 'http://www.vassalengine.org/tracker';
   $cookies += bugzilla_login($url, $username, $password);
 
   # write out the cookies captured from the logins 
