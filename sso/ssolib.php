@@ -55,7 +55,7 @@ function mediawiki_login($url, $username, $password) {
       throw new ErrorException('MediaWiki login failed: Invalid username.');
     }
     else if ($reply['result'] == 'WrongPass') {
-      throw new ErrorException('MediaWiki login falied: Invalid password.');
+      throw new ErrorException('MediaWiki login failed: Invalid password.');
     }
     else if ($reply['result'] == 'WrongPluginPass') {
       throw new ErrorException('MediaWiki login failed: Invalid password.');
