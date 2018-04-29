@@ -20,13 +20,8 @@
 .sso_form input[type="text"],
 .sso_form input[type="password"] {
   font-size: 100%;
-  width: 100%;
 }
 
-.sso_form td#recaptcha {
-  text-align: center;
-}
-
-.sso_form #recaptcha_widget_div {
-  display: inline-block;
+.sso_form td#recaptcha div {
+  margin: 0 auto;
 }

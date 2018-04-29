@@ -1,7 +1,6 @@
 <?php
 require_once('sso/config.php');
 require_once('sso/ssolib.php');
-require_once('sso/recaptchalib.php');
 
 $title = 'Create Account';
 
@@ -116,37 +115,42 @@ try {
     throw new ErrorException('Blank realname.');
   }
 
-  # reject ridiculously long realname 
+  # reject ridiculously long realname
   if (strlen($realname) > 64) {
     unset($_POST['realname']);
     throw new ErrorException(
       'Real name must be no more than 64 characters long.');
   }
 
-  # check that the captcha fields were filled in
-  if (!isset($_POST['recaptcha_challenge_field'])) {
+  # check the captcha
+  if (!isset($_POST['g-recaptcha-response'])) {
     throw new ErrorException('No reCAPTCHA challenge.');
   }
 
-  if (!isset($_POST['recaptcha_response_field'])) {
-    throw new ErrorException('No reCAPTCHA response.');
-  }
-
-# FIXME: Check the CAPTCHA POST vars to ensure that we're not getting 
-# some ridiculously long crap.
-
-  # check the CAPTCHA
-  $resp = recaptcha_check_answer(
-    RECAPTCHA_PRIVATE_KEY,
-    $_SERVER['REMOTE_ADDR'],
-    $_POST['recaptcha_challenge_field'],
-    $_POST['recaptcha_response_field']
+  $url = 'https://www.google.com/recaptcha/api/siteverify';
+  $response = $_POST['g-recaptcha-response'];
+  $remoteip = $_SERVER['REMOTE_ADDR'];
+  $data = array(
+    'secret'   => RECAPTCHA_PRIVATE_KEY,
+    'response' => $response,
+    'remoteip' => $ip
   );
 
-  if (!$resp->is_valid) {
+  $options = array(
+    'http' => array (
+      'method'  => 'POST',
+      'content' => http_build_query($data)
+    )
+  );
+
+  $ctx = stream_context_create($options);
+  $verify = file_get_contents($url, false, $ctx);
+  $resp = json_decode($verify);
+
+  if ($resp->success == false) {
     throw new ErrorException(
       "The reCAPTCHA wasn't entered correctly. Go back and try it again. " .
-      '(reCAPTCHA said: ' . $resp->error . ')');
+      '(reCAPTCHA said: ' . $verify . ')');
   }
 
   require_once('sso/AuthDB.php');
@@ -154,7 +158,7 @@ try {
 
   # check that the username is not already taken
   $user = new UserDB();
-  
+
   if ($user->exists($username)) {
     unset($_POST['username']);
     throw new ErrorException('The account "' . $username . '" already exists.');
@@ -207,7 +211,7 @@ END;
 
   # success!
   print_top($title);
-  print '<p>A confirmation email has been sent. Click on the link in the email to activate your account. If you have not received this confirmation email within a few hours, check your spam box, and then email the <a href="mail:webmaster@vassalengine.org">webmaster</a> for assistance.</p>'; 
+  print '<p>A confirmation email has been sent. Click on the link in the email to activate your account. If you have not received this confirmation email within a few hours, check your spam box, and then email the <a href="mail:webmaster@vassalengine.org">webmaster</a> for assistance.</p>';
   print_bottom();
   exit;
 }
@@ -231,12 +235,10 @@ function print_form() {
   $retype_email = HTMLify_POST('retype_email');
   $realname = HTMLify_POST('realname');
 
+  $captcha_public_key = RECAPTCHA_PUBLIC_KEY;
+
   print <<<END
-<script type="text/javascript">
-<!--
-  var RecaptchaOptions = { theme : 'white' };
--->
-</script>
+<script src="https://www.google.com/recaptcha/api.js"></script>
 <form class="sso_form" action="register.php" method="post">
   <fieldset>
     <legend>Create an Account</legend>
@@ -274,16 +276,8 @@ function print_form() {
         <td><input type="checkbox" id="spambox" name="spambox" checked="checked" value="!"/>
       </tr>
       <tr>
-        <th><label>Type some words:</label></th>
-        <td></td>
-      </tr>
-      <tr>
         <td colspan="2" id="recaptcha">
-END;
-
-  echo recaptcha_get_html(RECAPTCHA_PUBLIC_KEY);
-
-print <<<END
+          <div class="g-recaptcha" data-sitekey="{$captcha_public_key}"></div>
         </td>
       </tr>
       <tr>
