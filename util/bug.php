@@ -29,10 +29,6 @@ $logger = &Log::singleton('file', '/var/log/bugs', 'one');
 
 ini_set('display_errors', 1);
 
-if ($_SERVER['REMOTE_ADDR'] == '129.93.229.141') {
-  die('Bogus.'); 
-}
-
 #
 # Read bug report
 #
@@ -65,15 +61,16 @@ $params = array(
   'password' => BZ_PASSWORD
 );
 
-list($header, $reply) = do_request($url, 'User.login', $params, false);
+list($header, $reply) = do_request($url, 'User.login', $params);
 die_on_failure($reply);
 
-$cookies = extract_cookies($header);
+$token = $reply['token'];
 
 #
 # Submit new bug to Bugzilla
 #
 $params = array(
+  'token'       => $token,
   'product'     => 'VASSAL',
   'component'   => 'unknown',
   'summary'     => "ABR: $summary",
@@ -85,10 +82,11 @@ $params = array(
   'severity'    => 'normal'
 );
 
-$reply = do_request($url, 'Bug.create', $params, $cookies)[1];
+$reply = do_request($url, 'Bug.create', $params)[1];
 die_on_failure($reply);
 
 $params = array(
+  'token'        => $token,
   'ids'          => array($reply['id']),
   'data'         => $log,
   'file_name'    => 'errorLog',
@@ -96,20 +94,19 @@ $params = array(
   'content_type' => 'text/plain'
 );
 
-$reply = do_request($url, 'Bug.add_attachment', $params, $cookies)[1];
+$reply = do_request($url, 'Bug.add_attachment', $params)[1];
 die_on_failure($reply);
 
 echo 0;
 
-function do_request($url, $method, $params, $cookies) {
+function do_request($url, $method, $params) {
   $request = xmlrpc_encode_request($method, $params);
 
   $opts = array(
     'http' => array(
       'method' => 'POST',
       'header' => "Content-Type: text/xml\r\n" .
-                  'Content-Length: ' . strlen($request) . "\r\n" .
-                  ($cookies ? 'Cookie: ' . implode('; ', $cookies) . "\r\n" : ''),
+                  'Content-Length: ' . strlen($request) . "\r\n",
       'content' => $request
     )
   );
@@ -125,22 +122,6 @@ function die_on_failure($reply) {
     $logger->crit("xmlrpc: {$reply['faultString']} ({$reply['faultCode']})\n");
     exit(1);
   }
-}
-
-function extract_cookies($headers) {
-  $cookies = array();
-
-  foreach ($headers as $header) {
-    if (!strncmp($header, 'Set-Cookie: ', 12)) {
-      # knock off the header name and split on attributes
-      $crumbs = explode('; ', substr($header, 12));
-
-      # get the cookie name and value
-      $cookies[] = $crumbs[0];
-    }
-  }
-
-  return $cookies;
 }
 
 ?>
