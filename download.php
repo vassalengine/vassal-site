@@ -48,8 +48,6 @@
           <dd>Download <a href="<?php print("$base_dl_url/VASSAL-$version-macosx.dmg"); ?>">disk image</a></dd>
         </dl>
       </td>
-    </tr>
-    <tr>
       <td>
         <span style="font-size: 48px;">*</span>
         <dl>
