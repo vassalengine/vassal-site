@@ -31,11 +31,12 @@
           <dd>Download <a href="<?php print("$base_dl_url/VASSAL-$version-linux.tar.bz2"); ?>">tarball</a> <br/>Unpack it and run <code>VASSAL.sh</code></dd>
         </dl>
       </td>
+
       <td>
-        <span style="font-size: 48px;">*</span>
+        <img src="/images/windows.png" alt="Windows" />
         <dl>
-          <dt>Other</dt>
-          <dd>Download <a href="<?php print("$base_dl_url/VASSAL-$version-other.zip"); ?>">ZIP archive</a> <br/>Unpack it and run <code>VASSAL.sh</code></dd>
+          <dt>Windows</dt>
+          <dd>Download and run <a href="<?php print("$base_dl_url/VASSAL-$version-windows.exe"); ?>">installer</a></dd>
         </dl>
       </td>
     </tr>
@@ -50,13 +51,12 @@
     </tr>
     <tr>
       <td>
-        <img src="/images/windows.png" alt="Windows" />
+        <span style="font-size: 48px;">*</span>
         <dl>
-          <dt>Windows</dt>
-          <dd>Download and run <a href="<?php print("$base_dl_url/VASSAL-$version-windows.exe"); ?>">installer</a></dd>
+          <dt>Other</dt>
+          <dd>Download <a href="<?php print("$base_dl_url/VASSAL-$version-other.zip"); ?>">ZIP archive</a> <br/>Unpack it and run <code>VASSAL.sh</code></dd>
         </dl>
       </td>
-      <td></td>
     </tr>
   </table>
 
