@@ -9,8 +9,8 @@ $useragent = isset($_SERVER['HTTP_USER_AGENT']) ?
   $_SERVER['HTTP_USER_AGENT'] : '';
 
 if (strstr($useragent, 'Win')) {
-  $download_os = ' for Windows';
-  $download_url = "$base_url/VASSAL-$version-windows.exe";
+  $download_os = ' for Windows (64-bit)';
+  $download_url = "$base_url/VASSAL-$version-windows-64.exe";
 }
 else if (strstr($useragent, 'Linux')) {
   $download_os = ' for Linux';
