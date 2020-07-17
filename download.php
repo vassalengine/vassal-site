@@ -36,7 +36,8 @@
         <img src="/images/windows.png" alt="Windows" />
         <dl>
           <dt>Windows</dt>
-          <dd>Download and run <a href="<?php print("$base_dl_url/VASSAL-$version-windows.exe"); ?>">installer</a></dd>
+          <dd>64-bit: Download and run <a href="<?php print("$base_dl_url/VASSAL-$version-windows-64.exe"); ?>">installer</a></dd>
+          <dd>32-bit: Download and run <a href="<?php print("$base_dl_url/VASSAL-$version-windows-32.exe"); ?>">installer</a></dd>
         </dl>
       </td>
     </tr>
