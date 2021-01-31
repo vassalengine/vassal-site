@@ -46,7 +46,7 @@
         <img src="/images/macosx.png" alt="Mac OS X"/>
         <dl>
           <dt>Mac OS X</dt>
-          <dd>Download <a href="<?php print("$base_dl_url/VASSAL-$version-macosx.dmg"); ?>">disk image</a></dd>
+          <dd>Download <a href="<?php print("$base_dl_url/VASSAL-$version-macos.dmg"); ?>">disk image</a></dd>
         </dl>
       </td>
       <td>

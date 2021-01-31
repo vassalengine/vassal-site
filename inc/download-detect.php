@@ -18,7 +18,7 @@ else if (strstr($useragent, 'Linux')) {
 }
 else if (strstr($useragent, 'Mac')) {
   $download_os = ' for Mac OS X';
-  $download_url = "$base_url/VASSAL-$version-macosx.dmg";
+  $download_url = "$base_url/VASSAL-$version-macos.dmg";
 }
 else {
   $download_os = '';
