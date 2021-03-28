@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <title>Builds of vassalengine/vassal</title>
+  <style>
+    ul.pagination { 
+      margin: 1em 0;
+      padding: 0;
+    }
+
+    ul.pagination::after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+
+    ul.pagination a {
+      text-decoration: none;
+    }
+
+    ul.pagination li {
+      list-style: none;
+      float: left;
+      border: 1px solid;
+      border-radius: 4px;
+      padding: 5px;
+      margin: 3px;
+    }
+
+    ul.pagination li.active {
+      color: #0000EE;
+      cursor: default;
+    }
+
+    ul.pagination li.active a {
+      color: #0000EE;
+    }
+
+    ul.pagination li.current {
+    }
+
+    ul.pagination li.disabled {
+      cursor: not-allowed;
+      color: darkgray;
+    }
+  </style>
+</head>
+<body>
+<h1>VASSAL Development Builds</h1>
+
+<header>
+{% block nav %}
+<ul class="pagination">
+
+{% if page > 1 %}
+<li class="active"><a href="{{ url_for('show_builds', page=1) }}">|&lt;</a></li>
+{% else %}
+<li class="disabled">|&lt;</li>
+{% endif %}
+</li>
+
+{% if page > 1 %}
+<li class="active"><a href="{{ url_for('show_builds', page=page-1) }}">&lt;</a></li>
+{% else %}
+<li class="disabled">&lt;</li>
+{% endif %}
+
+<li class="current">{{ page }}</li>
+
+{% if page * per_page < total_count %}
+<li class="active"><a href="{{ url_for('show_builds', page=page+1) }}">&gt;</a></li>
+{% else %}
+<li class="disabled">&gt;</li>
+{% endif %}
+
+{% if page * per_page < total_count %}
+<li class="active"><a href="{{ url_for('show_builds', page=(total_count/per_page)|round(0, 'ceil')|int) }}">&gt;|</a></li>
+{% else %}
+<li class="disabled">&gt;|</li>
+{% endif %}
+
+</ul>
+{% endblock %}
+</header>
+
+<table>
+{% for item in items %}
+<tr>
+  <td><a href="{{ url_for('request_build', build_id=item['id']) }}">{{ item['name'] }}</a></td>
+  <td>{{ item['updated_at'].replace('T', ' ').replace('Z', '') }}</td>
+</tr>
+{% endfor %}
+</table>
+
+<footer>
+{{ self.nav() }}
+</footer>
+</body>
+</html>
