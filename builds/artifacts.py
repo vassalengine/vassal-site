@@ -48,7 +48,7 @@ def show_builds():
         total_count = j['total_count']
         items = j['artifacts']
 
-        for p in range(2, math.ceil(total_count / PER_PAGE)):
+        for p in range(2, math.ceil(total_count / PER_PAGE) + 1):
             items += get_page(p, PER_PAGE)['artifacts']
 
         return render_template(
