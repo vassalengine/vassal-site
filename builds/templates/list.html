@@ -43,6 +43,10 @@
       cursor: not-allowed;
       color: darkgray;
     }
+
+    ul.pagination li.showall {
+      float: right;
+    }
   </style>
 </head>
 <body>
@@ -79,6 +83,7 @@
 <li class="disabled">&gt;|</li>
 {% endif %}
 
+<li class="active showall"><a href="{{ url_for('show_builds', page='all') }}">Show all</a></li>
 </ul>
 {% endblock %}
 </header>
