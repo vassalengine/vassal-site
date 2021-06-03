@@ -11,7 +11,7 @@
 <div class="content_box_full">
   <h1>Download <abbr>Vassal</abbr></h1>
 
-  <p>Download <abbr>Vassal</abbr>, the free, open-source boardgame engine. <abbr>Vassal</abbr> runs on Linux, Mac OS X, Windows, and any other system which has a Java JRE. Find your operating system below for instructions for downloading and installing <abbr>Vassal</abbr>.</p>
+  <p>Download <abbr>Vassal</abbr>, the free, open-source boardgame engine. <abbr>Vassal</abbr> runs on Linux, Mac OS, Windows, and any other system which has a Java JRE. Find your operating system below for instructions for downloading and installing <abbr>Vassal</abbr>.</p>
 
   <?php
     $version = trim(file_get_contents('util/release-stable'));
@@ -43,9 +43,9 @@
     </tr>
     <tr>
       <td>
-        <img src="/images/macosx.png" alt="Mac OS X"/>
+        <img src="/images/macosx.png" alt="Mac OS"/>
         <dl>
-          <dt>Mac OS X</dt>
+          <dt>Mac OS</dt>
           <dd>Download <a href="<?php print("$base_dl_url/VASSAL-$version-macos.dmg"); ?>">disk image</a></dd>
         </dl>
       </td>
@@ -62,7 +62,7 @@
   <h3>Notes</h3>
 
   <h4>All Operating Systems</h4>
-  <p><abbr>Vassal</abbr> <?php print($version); ?> requires Java 11 or later. The Mac OS X disk image and the Windows installer come with the version of Java <abbr>Vassal</abbr> will use. For Linux and other operating systems, install Java before running <abbr>Vassal</abbr>.
+  <p><abbr>Vassal</abbr> <?php print($version); ?> requires Java 11 or later. The Mac OS disk image and the Windows installer come with the version of Java <abbr>Vassal</abbr> will use. For Linux and other operating systems, install Java before running <abbr>Vassal</abbr>.
 
   <h2>Older Releases</h2>
   <p>Older releases of <abbr>Vassal</abbr> are available in our <a href="/releases/">release archive</a>. We do not recommend older releases for normal use. If you find it necessary to use an older release due to a flaw in the current release, please <a href="/tracker/">file a bug report</a>.</p>
