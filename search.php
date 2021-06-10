@@ -5,7 +5,7 @@
   <title>VASSAL Search</title>
 
   <style type="text/css">
-@import url(http://www.google.com/cse/api/branding.css);
+@import url(https://www.google.com/cse/api/branding.css);
 
 #cse-search-results {
   margin-top: 2em;
@@ -62,7 +62,7 @@
           </form>
         </div>
         <div class="cse-branding-logo">
-          <img src="http://www.google.com/images/poweredby_transparent/poweredby_FFFFFF.gif" alt="Google" />
+          <img src="https://www.google.com/images/poweredby_transparent/poweredby_FFFFFF.gif" alt="Google" />
         </div>
         <div class="cse-branding-text">
           Custom Search
@@ -116,7 +116,7 @@
       var googleSearchPath = "/cse";
 -->
     </script>
-    <script type="text/javascript" src="http://www.google.com/afsonline/show_afs_search.js"></script>
+    <script type="text/javascript" src="https://www.google.com/afsonline/show_afs_search.js"></script>
   </div>
 </div>
 
