@@ -4,9 +4,6 @@
   <?php include('inc/head.shtml'); ?>
   <link rel="alternate" type="application/rss+xml" title="RSS" href="/news/feed/"/>
   <title>VASSAL</title>
-  <!--[if lte IE 9]>
-    <script src="/js/IE9.js" type="text/javascript">IE7_PNG_SUFFIX=".png";</script>
-  <![endif]-->
 </head>
 <body>
 <?php include('inc/header.php'); ?>
