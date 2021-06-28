@@ -31,7 +31,7 @@
     <p>Need help using <abbr>Vassal</abbr>? Stuck while creating a module? If you can't find an answer in our extensive <a href="/wiki/Category:Documentation">documentation</a>, check our friendly <a href="/forum/">forum</a> for help.</p>
 
     <h3>How can I get involved?</h3>
-    <p>The <abbr>Vassal</abbr> project is run by volunteers and progresses through the efforts of volunteers. Is there a feature you'd like to see in the next release? Did you find a bug? Request that feature or report the bug <a href="/tracker/">here</a>. Are you a programmer? We could use your help. Join us in the <a href="/forum/viewforum.php?f=5">developers' forum</a>. Not a programmer? Help us improve our <a href="/wiki/Category:Documentation">documentation</a>.</p>
+    <p>The <abbr>Vassal</abbr> project is run by volunteers and progresses through the efforts of volunteers. Is there a feature you'd like to see in the next release? Did you find a bug? Request that feature or report the bug <a href="https://github.com/vassalengine/vassal/issues">here</a>. Are you a programmer? We could use your help. Join us in the <a href="/forum/viewforum.php?f=5">developers' forum</a>. Not a programmer? Help us improve our <a href="/wiki/Category:Documentation">documentation</a>.</p>
 
     <h2><a id="team">About The <abbr>Vassal</abbr> Team</a></h2>
 

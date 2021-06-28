@@ -23,7 +23,7 @@
       <li><a href="/news.php">News</a></li>
       <li><a href="/search.php">Search</a></li>
       <li><a href="/sitemap.php">Sitemap</a></li>
-      <li><a href="/tracker/">Tracker</a></li>
+      <li><a href="https://github.com/vassalengine/vassal/issues/">Tracker</a></li>
       <li><a href="/wiki/">Wiki</a></li>
     </ul>
   </div>

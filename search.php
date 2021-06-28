@@ -43,7 +43,7 @@
 <div id="content">
 <div id="content_box_full">
   <h1>Search</h1>
-  <p>Looking for something? You can search our site in four ways: the whole site, only the <a href="/wiki">wiki</a>, only the <a href="/forum">forum</a>, or only the <a href="/tracker">tracker</a>. Additionally, each of the wiki, forum, and tracker provide an advanced search interface for special searches.</p>
+  <p>Looking for something? You can search our site in three ways: the whole site, only the <a href="/wiki">wiki</a>, and only the <a href="/forum">forum</a>. Additionally, each of the wiki, forum, and <a href="https://github.com/vassalengine/vassal/issues">tracker</a> provide an advanced search interface for special searches.</p>
 
 <div id="search-outer">
   <div id="search-inner">
@@ -88,17 +88,6 @@
           <input name="keywords" type="text" maxlength="128" size="31" /> 
           <input value="Search Forum" type="submit" />
           <a href="/forum/search.php" title="View the advanced search options">Advanced search</a>
-        </div>
-      </form>
-    </div>
-
-<!-- search code from Bugzilla -->
-    <div class="search-block">
-      <form action="/tracker/buglist.cgi" method="get">
-        <div>
-          <input type="text" name="quicksearch" size="31" />
-          <input type="submit" value="Search Tracker" />
-          <a href="/tracker/query.cgi?format=advanced">Advanced search</a>
         </div>
       </form>
     </div>

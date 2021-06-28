@@ -1,6 +1,0 @@
-<?php
-
-define('BZ_USERNAME', 'username');
-define('BZ_PASSWORD', 'password');
-
-?>

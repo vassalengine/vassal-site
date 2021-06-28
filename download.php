@@ -65,7 +65,7 @@
   <p><abbr>Vassal</abbr> <?php print($version); ?> requires Java 11 or later. The Mac OS disk image and the Windows installer come with the version of Java <abbr>Vassal</abbr> will use. For Linux and other operating systems, install Java before running <abbr>Vassal</abbr>.
 
   <h2>Older Releases</h2>
-  <p>Older releases of <abbr>Vassal</abbr> are available in our <a href="/releases/">release archive</a>. We do not recommend older releases for normal use. If you find it necessary to use an older release due to a flaw in the current release, please <a href="/tracker/">file a bug report</a>.</p>
+  <p>Older releases of <abbr>Vassal</abbr> are available in our <a href="/releases/">release archive</a>. We do not recommend older releases for normal use. If you find it necessary to use an older release due to a flaw in the current release, please <a href="https://github.com/vassalengine/vassal/issues">file a bug report</a>.</p>
 
 <!--
   <h2>Development Snapshots</h2>

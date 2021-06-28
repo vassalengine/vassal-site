@@ -35,10 +35,6 @@ try {
   $url = 'http://localhost/phpbb_logout.php';
   $cookies += phpbb_logout($url);
 
-  # Bugzilla logout
-  $url = 'http://www.vassalengine.org/tracker/xmlrpc.cgi';
-  $cookies += bugzilla_logout($url);
-
   set_cookies($cookies);  
 }
 catch (ErrorException $e) {

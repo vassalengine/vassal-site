@@ -123,36 +123,6 @@ function phpBB_logout($url) {
 }
 
 #
-# Login to Bugzilla.
-#
-function bugzilla_login($url, $username, $password) {
-  $params = array(
-    'Bugzilla_login' => $username,
-    'Bugzilla_password' => $password,
-  );
-
-  $request = http_build_query($params);
-  $referer = "Referer: $url/\r\n";
-
-  extract(do_http_post(
-    $url . '/index.cgi?GoAheadAndLogIn=1', MIME_FORM, $request, false, $referer)
-  );
-
-  return extract_cookies($header);
-}
-
-#
-# Logout of Bugzilla.
-#
-function bugzilla_logout($url) {
-  $request = xmlrpc_encode_request('User.logout', null);
-
-  extract(do_http_post($url, MIME_XML, $request, $_COOKIE)); 
-
-  return extract_cookies($header);
-}
-
-#
 # Do a HTTP POST with the given parameters, and return the result.
 #
 function do_http_post($url, $type, $data, $cookies = false, $header = '') {
