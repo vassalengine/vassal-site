@@ -35,7 +35,7 @@ GH_HEADERS={
 }
 
 
-LOG_URL = 'http://www.vassalengine.org/files/abr'
+LOG_URL = 'http://www.vassalengine.org/files/gh'
 
 
 @app.errorhandler(HTTPException)
@@ -111,7 +111,7 @@ def handle_request():
     log.seek(0, 0)
 
     # upload the log to S3
-    upload_file(log, log.filename, 'text/plain', 'abr/' + log_sha1, log_md5)
+    upload_file(log, log.filename, 'text/plain', 'tracker/gh/' + log_sha1, log_md5)
 
     log_url = LOG_URL + '/' + log_sha1
 
