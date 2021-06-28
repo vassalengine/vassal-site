@@ -1,0 +1,12 @@
+class Config(object):
+    GH_USER = 'user'
+    GH_REPO = 'repo'
+    GH_TOKEN = 'blahblahblah'
+
+    MAX_CONTENT_LENGTH = 1024 *1024
+
+    S3_KEY = 's3key'
+    S3_SECRET = 's3secret'
+    S3_REGION = 'us-east-1'
+    S3_ENDPOINT = 'https://us-east-1.linodeobjects.com'
+    S3_BUCKET = 'bucket'
