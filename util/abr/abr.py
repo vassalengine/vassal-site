@@ -73,11 +73,13 @@ def upload_file(stream, filename, mime_type, bucket_path, md5):
 
     h64 = base64.b64encode(md5).decode('ascii')
 
+    content_disposition = ('attachment' if mime_type != 'text/plain' and not mime_type.startswith('image/') else 'inline') + '; filename="' + filename + '"'
+
     s3.put_object(
         Bucket=S3_BUCKET,
         ACL='public-read',
         ContentType=mime_type,
-        ContentDisposition='attachment; filename=' + filename,
+        ContentDisposition=content_disposition,
         Key=bucket_path,
         Body=stream,
         ContentMD5=h64
