@@ -33,13 +33,9 @@ if ($start !== null || $end !== null) {
 # connect to the SQL server
 require_once(dirname(__FILE__) . '/vserver-config.php');
 
-$dbh = mysql_connect(SQL_HOST, SQL_USERNAME, SQL_PASSWORD);
-if (!$dbh) {
-  throw new ErrorException('Cannot connect to MySQL server: ' . mysql_error());
-}
-
-if (!mysql_select_db(SQL_DB, $dbh)) {
-  throw new ErrorException('Cannot select database: ' . mysql_error());
+$dbh = mysqli_connect(SQL_HOST, SQL_USERNAME, SQL_PASSWORD, SQL_DB);
+if (mysqli_connect_errno()) {
+  throw new ErrorException('Cannot connect to MySQL server: ' . mysqli_connect_error());
 }
 
 # build the query
@@ -56,12 +52,12 @@ if ($start !== null) {
 }
 
 # get the rows and send them
-$r = mysql_query($query, $dbh);
+$r = mysqli_query($dbh, $query);
 if (!$r) {
-  throw new ErrorException('SELECT failed: ' . mysql_error());
+  throw new ErrorException('SELECT failed: ' . mysqli_error($dbh));
 }
 
-while (($row = mysql_fetch_row($r))) {
+while (($row = mysqli_fetch_row($r))) {
   echo implode("\t", $row), "\n";
 }
 

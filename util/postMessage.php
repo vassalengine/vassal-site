@@ -21,27 +21,23 @@ if (empty($sender)) {
 # connect to the SQL server
 require_once(dirname(__FILE__) . '/vserver-config.php');
 
-$dbh = mysql_connect(SQL_HOST, SQL_USERNAME, SQL_PASSWORD);
-if (!$dbh) {
-  throw new ErrorException('Cannot connect to MySQL server: ' . mysql_error());
-}
-
-if (!mysql_select_db(SQL_DB, $dbh)) {
-  throw new ErrorException('Cannot select database: ' . mysql_error());
+$dbh = mysqli_connect(SQL_HOST, SQL_USERNAME, SQL_PASSWORD, SQL_DB);
+if (mysqli_connect_errno()) {
+  throw new ErrorException('Cannot connect to MySQL server: ' . mysqli_connect_error());
 }
 
 # store the message
 $query = sprintf(
   'INSERT INTO messages (module_name, sender, content) ' .
   'VALUES ("%s", "%s", "%s")',
-  mysql_real_escape_string($module),
-  mysql_real_escape_string($sender),
-  mysql_real_escape_string($content)
+  mysqli_real_escape_string($dbh, $module),
+  mysqli_real_escape_string($dbh, $sender),
+  mysqli_real_escape_string($dbh, $content)
 );
 
-$r = mysql_query($query, $dbh);
+$r = mysqli_query($dbh, $query);
 if (!$r) {
-  throw new ErrorException('INSERT failed: ' . mysql_error());
+  throw new ErrorException('INSERT failed: ' . mysqli_error($dbh));
 }
 
 ?>

@@ -19,13 +19,9 @@ $status = $_REQUEST['STATUS'];
 # connect to the SQL server
 require_once(dirname(__FILE__) . '/vserver-config.php');
 
-$dbh = mysql_connect(SQL_HOST, SQL_USERNAME, SQL_PASSWORD);
-if (!$dbh) {
-  throw new ErrorException('Cannot connect to MySQL server: ' . mysql_error());
-}
-
-if (!mysql_select_db(SQL_DB, $dbh)) {
-  throw new ErrorException('Cannot select database: ' . mysql_error());
+$dbh = mysqli_connect(SQL_HOST, SQL_USERNAME, SQL_PASSWORD, SQL_DB);
+if (mysqli_connect_errno()) {
+  throw new ErrorException('Cannot connect to MySQL server: ' . mysqli_connect_error());
 }
 
 # parse the status data
@@ -41,16 +37,16 @@ for ($line = strtok($status, "\n"); $line; $line = strtok("\n")) {
     'INSERT INTO connections (module_name, game_room, player_name, time) ' .
     'VALUES ("%s", "%s", "%s", FROM_UNIXTIME(%d)) ' .
     'ON DUPLICATE KEY UPDATE time = FROM_UNIXTIME(%d)',
-    mysql_real_escape_string($module),
-    mysql_real_escape_string($game),
-    mysql_real_escape_string($player),
+    mysqli_real_escape_string($dbh, $module),
+    mysqli_real_escape_string($dbh, $game),
+    mysqli_real_escape_string($dbh, $player),
     $now,
     $now
   );
 
-  $r = mysql_query($query, $dbh);
+  $r = mysqli_query($dbh, $query);
   if (!$r) {
-    throw new ErrorException('INSERT failed: ' . mysql_error());
+    throw new ErrorException('INSERT failed: ' . mysqli_error($dbh));
   }
 }
 
