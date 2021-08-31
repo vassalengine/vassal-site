@@ -1,163 +1,157 @@
-/* Site header */
-
-#vassal-header {
-  overflow: auto;
-  border-bottom: 1px solid black;
-  background: #ffffff;
+img {
+  max-width: 100%;
+  height: auto;
 }
 
-#vassal-logo {
-  float: left;
-  margin: 0;
-  padding: 10px 20px 10px 10px;
-  background: transparent url('/images/header_bg-w.png') top left no-repeat;
+.svg-icon {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  display: inline-block;
+  vertical-align: -0.125em;
 }
 
-#vassal-logo a img {
-  border: none;
+.wordmark {
+  width: 8.75em;
 }
 
-/* Site navigation bar */
-
-#vassal-nav-list {
-  margin: 0;
-  padding: 0;
-  height: 29px;
-  background: transparent url('/images/stripe.png') left repeat-x;
-  border-bottom: 1px solid black;
-}
-
-#vassal-nav-list li {
-  display: inline;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  float: left;
-}
-
-#vassal-nav-list a {
-  display: block;
+#alert-bar {
   color: white;
-  padding: 10px 10px 5px 9px;
-  font-family: sans-serif;
-  font-weight: bold;
-  font-size: 8pt;
-  text-decoration: none;
-  line-height: 1;
+  background-color: #62a324;
 }
 
-#vassal-nav-list a:hover {
-  color: #f8d530;
-  background: transparent url('/images/stripe2.png') left repeat-x;
+.hero {
+  background: linear-gradient(-180deg, #ffffff, #62a324);
+  background-size: 100% 100%;
+  background-repeat: repeat-x;
 }
 
-/* Site login/logout block */
-
-#vassal-login {
-  float: right;
-  margin: 5px 5px 0 0;
-  font-size: 9pt;
+.big-icon {
+  width: 8em;
+  padding-bottom: 0.5em;
 }
 
-#vassal-login a:link, #vassal-login a:visited {
-  color: #546035;
-  text-decoration: none;
+.footer-icon {
+  width: 3em;
 }
 
-#vassal-login a:hover {
-  color: #9caa79;
-  text-decoration: underline;
+.cal-icon {
+  width: 3.5em;
+  height: 3.5em;
 }
 
-/* Site search */
-
-#vassal-search {
-  float: right;
-  clear: right;
-  margin: 5px 5px 0 0;
+#testimonials blockquote {
+  quotes: "\201C" "\201D" "\2018" "\2019";
 }
 
-/* Site footer */
-
-#vassal-footer {
-  clear: both;
-  margin: 4em 0 0 0;
-  padding: 10px 0 4em 0;
-  border-top: 1px solid black;
-  color: #222222;
-  font-size: 9pt;
-  font-family: sans-serif;
-  background: #ffffff;
+#testimonials blockquote p::before {
+  content: open-quote;
 }
 
-#vassal-footer abbr {
-  font-variant: small-caps;
-  border: none;
-  color: inherit;
-  cursor: inherit;
+#testimonials blockquote p::after {
+  content: close-quote;
 }
 
-#vassal-footer .copyright {
-  font-size: smaller;
+#news {
+  background: linear-gradient(180deg, #f2e88f, #ffffff);
+  background-size: 100% 100%;
+  background-repeat: repeat-x;
 }
 
-#vassal-footer a:link {
-  color: #546035;
+.screenshot {
+  position: absolute;
+  left: 0;
+  animation-name: fade;
+  animation-duration: 30s;
+  animation-iteration-count: infinite;
+  opacity: 0;
 }
 
-#vassal-footer a:visited {
-  color: #384024;
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  16% {
+    opacity: 1;
+  }
+  26% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
-#vassal-footer a:hover {
-  color: #9caa79;
+.screenshot:nth-of-type(1) {
+  animation-delay: 0s;
 }
 
-#vassal-footer-list {
-  text-align: center;
-  margin: 0;
-  padding: 0 5px;
+.screenshot:nth-of-type(2) {
+  animation-delay: 5s;
 }
 
-#vassal-footer-list li {
-  display: inline;
-  list-style: none;
-  margin: 0;
-  padding: 8px 8px;
+.screenshot:nth-of-type(3) {
+  animation-delay: 10s;
 }
 
-#vassal-footer-list a img {
+.screenshot:nth-of-type(4) {
+  animation-delay: 15s;
+}
+
+.screenshot:nth-of-type(5) {
+  animation-delay: 20s;
+}
+
+.screenshot:nth-of-type(6) {
+  animation-delay: 25s;
+}
+
+#screenshot-outer {
+  height: calc(3 / 4 * 100vw);
+}
+
+@media (min-width: 768px) {
+  #screenshot-outer {
+    height: calc(1200px * 0.45 * 0.75);
+  }
+}
+
+@media (min-width: 992px) {
+  #screenshot-outer {
+    height: calc(1200px * 0.56625 * 0.75);
+  }
+}
+
+@media (min-width: 1200px) {
+  #screenshot-outer {
+    height: calc(1200px * 0.7125 * 0.75);
+  }
+}
+
+@media (min-width: 1400px) {
+  #screenshot-outer {
+    height: calc(1200px * 0.825 * 0.75);
+  }
+}
+
+#donate form button[type="submit"] img {
   vertical-align: middle;
+}
+
+#donate form button[type="submit"] {
   border: 0;
-}
-
-/* Miscellaneous */
-
-abbr {
-  font-variant: small-caps;
-}
-
-.errorbox {
-  font-size: 1.2em;
-  color: #222222;
-  background-color: #fff2f2;
-  margin: 10px auto;
-  border: 2px red solid;
-  padding: 0.5em 1em;
-}
-
-.errorbox p {
-  /* Don't let other things screw with the errorbox style. */
-  font-size: inherit;
-  line-height: inherit;
-  margin: inherit;
-  padding: inherit;
-}
-
-.errorbox h2 {
-  font-size: 1em;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  font-family: sans-serif;
   font-weight: bold;
-  display: inline;
-  margin: 0 0.5em 0 0;
-  border: none;
+  font-size: 100%;
+  color: white;
+}
+
+#donate form button[type="submit"]:hover span {
+  text-decoration: underline;
 }
