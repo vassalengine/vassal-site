@@ -34,8 +34,8 @@ async function loadNews(news_url, base_item_url, count) {
   });
 }
 
-const news_url = 'https://www.test.vassalengine.org/forum/c/news/18.json';
-const base_item_url = '/forum/t';
+const news_url = 'https://forum.vassalengine.org/c/news/17.json';
+const base_item_url = 'https://forum.vassalengine.org/t';
 const count = 10;
 
 loadNews(news_url, base_item_url, count);
