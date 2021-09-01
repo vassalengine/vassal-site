@@ -20,17 +20,19 @@ async function loadNews(news_url, base_item_url, count) {
   const news = await (await fetch(news_url)).json();
   const news_root = document.getElementById('news_root');
 
-  // The first topic is the "About" topic, skip it
-  news['topic_list']['topics'].slice(1, count + 1).map(t => {
-    const date = new Date(t['created_at']);
-    news_root.appendChild(makeNewsItem(
-      t['slug'],
-      t['id'],
-      t['title'],
-      date.toLocaleString('en', {month: 'short'}),
-      date.toLocaleString('en', {day: 'numeric'}),
-      base_item_url
-    ));
+  news['topic_list']['topics'].slice(0, count + 1).map(t => {
+    // Skip the "About" topic
+    if (t['title'] != 'About the News category') {
+      const date = new Date(t['created_at']);
+      news_root.appendChild(makeNewsItem(
+        t['slug'],
+        t['id'],
+        t['title'],
+        date.toLocaleString('en', {month: 'short'}),
+        date.toLocaleString('en', {day: 'numeric'}),
+        base_item_url
+      ));
+    }
   });
 }
 
