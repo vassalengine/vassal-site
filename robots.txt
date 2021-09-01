@@ -1,8 +1,3 @@
 User-agent: *
-Disallow: /login.php
-Disallow: /logout.php
-Disallow: /mediawiki/
-Disallow: /wiki/Special:Search
-Disallow: /wiki/Special:Random
-Disallow: /register.php
+Disallow: /w/index.php?
 Disallow: /status.php
