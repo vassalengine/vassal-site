@@ -9,5 +9,5 @@ header('Content-type: text/plain; charset=utf-8');
 
 ?>
 type = node
-nodeHost = one.vassalengine.org
+nodeHost = game.vassalengine.org
 nodePort = 5050
