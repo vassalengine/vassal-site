@@ -20,9 +20,16 @@ async function loadNews(news_url, base_item_url, count) {
   const news = await (await fetch(news_url)).json();
   const news_root = document.getElementById('news_root');
 
-  news['topic_list']['topics'].slice(0, count + 1).map(t => {
+  news['topic_list']['topics']
     // Skip the "About" topic
-    if (t['title'] != 'About the News category') {
+    .filter(t => t['title'] != 'About the News category')
+    // Sort newest first
+    .sort(
+      (a,b) => a['created_at'] > b['created_at'] ? -1 :
+               a['created_at'] < b['created_at'] ? 1 : 0)
+    // Take the most recent count items
+    .slice(0, count)
+    .map(t => {
       const date = new Date(t['created_at']);
       news_root.appendChild(makeNewsItem(
         t['slug'],
@@ -32,8 +39,7 @@ async function loadNews(news_url, base_item_url, count) {
         date.toLocaleString('en', {day: 'numeric'}),
         base_item_url
       ));
-    }
-  });
+    });
 }
 
 const news_url = 'https://forum.vassalengine.org/c/news/17.json';
