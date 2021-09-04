@@ -6,8 +6,8 @@ if (!isset($_REQUEST['STATUS'])) {
 }
 
 # reject input from anywhere but our game server
-if ($_SERVER['REMOTE_ADDR'] != '62.210.178.7') {
-  throw new ErrorException('You are not our game server.');
+if ($_SERVER['REMOTE_ADDR'] != '109.237.26.25') {
+  throw new ErrorException('You are not our game server: ' + $_SERVER['REMOTE_ADDR']);
 }
 
 $now = time();
@@ -35,13 +35,11 @@ for ($line = strtok($status, "\n"); $line; $line = strtok("\n")) {
   # map module-room-player triples to the current time
   $query = sprintf(
     'INSERT INTO connections (module_name, game_room, player_name, time) ' .
-    'VALUES ("%s", "%s", "%s", FROM_UNIXTIME(%d)) ' .
-    'ON DUPLICATE KEY UPDATE time = FROM_UNIXTIME(%d)',
+    'VALUES ("%s", "%s", "%s", FROM_UNIXTIME(%d))',
     mysqli_real_escape_string($dbh, $module),
     mysqli_real_escape_string($dbh, $game),
     mysqli_real_escape_string($dbh, $player),
     $now,
-    $now
   );
 
   $r = mysqli_query($dbh, $query);

@@ -39,12 +39,12 @@ if (mysqli_connect_errno()) {
 }
 
 # build the query
-$query = 'SELECT module_name, game_room, player_name, UNIX_TIMESTAMP(time)*1000 FROM connections';
+$query = 'SELECT module_name, game_room, player_name, UNIX_TIMESTAMP(MAX(time))*1000 FROM connections';
 
 if ($start !== null) {
   # add the time interval, if we have one
   $query .= sprintf(
-    ' WHERE time BETWEEN FROM_UNIXTIME(%s) AND FROM_UNIXTIME(%s)',
+    ' WHERE time BETWEEN FROM_UNIXTIME(%s) AND FROM_UNIXTIME(%s) GROUP BY module_name, game_room, player_name',
     $start,
     # BETWEEN wants [start,end], we use [start,end), so adjust end
     $end + 1
