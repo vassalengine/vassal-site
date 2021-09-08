@@ -51,7 +51,7 @@
     </div>
 
     <div id="screenshot-outer" class="container px-5 overflow-hidden">
-      <div class="container position-relative">
+      <div id="screenshot-inner" class="container position-relative">
         
         <picture class="screenshot shadow-lg">
           <source width="1224" height="918" media="(min-width: 1400px)" srcset="/images/screenshots/screenshot1-1224.webp" type="image/webp">
@@ -116,6 +116,14 @@
       </div>
     </div>
   </div>
+
+  <script>
+    // shuffle the screenshots
+    const par = document.querySelector('#screenshot-inner');
+    for (var i = par.children.length; i >= 0; i--) {
+      par.appendChild(par.children[Math.random() * i | 0]);
+    }
+  </script>
 
   <!-- features -->
 
