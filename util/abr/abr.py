@@ -35,7 +35,7 @@ GH_HEADERS={
 }
 
 
-LOG_URL = 'http://www.vassalengine.org/files/gh'
+LOG_URL = 'https://vassalengine.org/files/gh'
 
 
 @app.errorhandler(HTTPException)
