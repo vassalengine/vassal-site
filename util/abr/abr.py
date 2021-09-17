@@ -73,7 +73,7 @@ def upload_file(stream, filename, mime_type, bucket_path, md5):
 
     h64 = base64.b64encode(md5).decode('ascii')
 
-    content_disposition = ('attachment' if mime_type != 'text/plain' and not mime_type.startswith('image/') else 'inline') + '; filename="' + filename + '"'
+    content_disposition = ('attachment' if not mime_type.startswith('text/plain') and not mime_type.startswith('image/') else 'inline') + '; filename="' + filename + '"'
 
     s3.put_object(
         Bucket=S3_BUCKET,
@@ -113,7 +113,7 @@ def handle_request():
     log.seek(0, 0)
 
     # upload the log to S3
-    upload_file(log, log.filename, 'text/plain', 'tracker/gh/' + log_sha1, log_md5)
+    upload_file(log, log.filename, 'text/plain; charset=utf-8', 'tracker/gh/' + log_sha1, log_md5)
 
     log_url = LOG_URL + '/' + log_sha1
 
