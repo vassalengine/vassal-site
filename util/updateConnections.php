@@ -33,7 +33,7 @@ for ($line = strtok($status, "\n"); $line; $line = strtok("\n")) {
 
   # map module-room-player triples to the current time
   $query = sprintf(
-    'INSERT INTO connections (module_name, game_room, player_name, time, sha1) ' .
+    'INSERT INTO connections (module_name, game_room, player_name, sha1, time) ' .
     'VALUES ("%s", "%s", "%s", UNHEX("%s"), FROM_UNIXTIME(%d)) ' .
     'ON DUPLICATE KEY UPDATE time = FROM_UNIXTIME(%d)',
     mysqli_real_escape_string($dbh, $module),
