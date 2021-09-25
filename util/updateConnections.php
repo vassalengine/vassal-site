@@ -12,7 +12,6 @@ if ($_SERVER['REMOTE_ADDR'] != '109.237.26.25') {
 
 $now = time();
 
-# FIXME: what encoding for status? seems to contain garbage sometimes
 # FIXME: used to stripslashes(), was this necessary?
 $status = $_REQUEST['STATUS'];
 
@@ -34,11 +33,14 @@ for ($line = strtok($status, "\n"); $line; $line = strtok("\n")) {
 
   # map module-room-player triples to the current time
   $query = sprintf(
-    'INSERT INTO connections (module_name, game_room, player_name, time) ' .
-    'VALUES ("%s", "%s", "%s", FROM_UNIXTIME(%d))',
+    'INSERT INTO connections (module_name, game_room, player_name, time, sha1) ' .
+    'VALUES ("%s", "%s", "%s", UNHEX("%s"), FROM_UNIXTIME(%d)) ' .
+    'ON DUPLICATE KEY UPDATE time = FROM_UNIXTIME(%d)',
     mysqli_real_escape_string($dbh, $module),
     mysqli_real_escape_string($dbh, $game),
     mysqli_real_escape_string($dbh, $player),
+    sha1("$module\0$game\0$player"),
+    $now,
     $now,
   );
 
