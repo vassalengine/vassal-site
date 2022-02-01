@@ -43,10 +43,18 @@
   <!-- hero -->
 
   <div class="hero border-bottom mb-5">
-    <div class="container px-4 pt-5 mt-5 text-center">
+    <div class="container px-4 pt-5 mt-5 mb-5 text-center">
       <h1 class="display-4 fw-bold">Play boardgames, virtually</h1>
-      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5 mt-4">
-        <a class="btn btn-primary btn-lg px-4" href="https://github.com/vassalengine/vassal/releases/latest">Get Vassal</a>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-4">
+        <a id="download_btn" class="btn btn-primary btn-lg px-4" href="https://github.com/vassalengine/vassal/releases/latest">Get Vassal</a>
+      </div>
+    </div>
+    <div id="alt_downloads" class="d-grid gap-2 d-sm-flex justify-content-sm-center container">
+      <div class="row">
+        <div class="col-sm text-muted">
+          <h6>Not the download you're looking for?</h6>
+          <p><a href="https://github.com/vassalengine/vassal/releases/latest">Look here for others.</a></p>
+        </div>
       </div>
     </div>
 
@@ -194,6 +202,11 @@
       </div>
     </div>
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/ua-parser-js@1.0.2/dist/ua-parser.min.js" integrity="sha256-m2v8Q27BEHNMx7d1BJAIuAoq6Y4DIF1AG3BODy/A4Ak=" crossorigin="anonymous"></script>
+
+  <script src="/js/detect.js"></script>
+  
   <script src="/js/news.js"></script>
 
 
