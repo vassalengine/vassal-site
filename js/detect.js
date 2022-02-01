@@ -99,36 +99,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   // get what data we can
   const uach = await get_userAgentData();
 
-  // now match what we care about for releases
-  let os;
-  switch (uach.platform) {
-  case PLATFORM_LINUX:
-  case PLATFORM_MACOS:
-  case PLATFORM_WINDOWS:
-    os = uach.platform;
-    break;
-  default:
-    os = 'unknown';
-    break;
-  }
-
-  let cpu = 'unknown';
-  switch (uach.architecture) {
-  case ARCH_X86:
-    if (uach.bitness === BITS_64 || uach.bitness === BITS_32) {
-      cpu = `x86_${uach.bitness}`;
-    }
-    break;
-  case ARCH_ARM:
-    if (uach.bitness === BITS_64) {
-      cpu = 'aarch64';
-    }
-    break;
-  }
-
-  document.getElementById('os_' + os).classList.add('found');
-  document.getElementById('cpu_' + cpu).classList.add('found');
-
   const base_url = 'https://github.com/vassalengine/vassal/releases';
 
   const ver = '3.6.4';
