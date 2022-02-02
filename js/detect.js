@@ -2,11 +2,16 @@ async function try_navigator_userAgentData() {
   let uach = null;
   if (navigator.userAgentData) {
     // this browser supports userAgentData
-    const uach = await navigator.userAgentData.getHighEntropyValues(['architecture', 'bitness', 'platform']);
+    const uach = await navigator.userAgentData.getHighEntropyValues(['architecture', 'bitness', 'platform', 'mobile']);
   
     // fill in platform if we need to (do we ever?) 
     if (!uach.platform) {
       uach.platform = navigator.userAgentData.platform;
+    }
+
+    // fill in mobile if we need to (do we ever?)
+    if (uach.mobile === undefined) {
+      uach.mobile = navigator.userAgentData.mobile;
     }
   }
   return uach;
@@ -89,6 +94,10 @@ async function get_userAgentData() {
         }
       }
     }
+
+    if (uach.mobile === undefined) {
+      uach.mobile = parser.getDevice().type === 'mobile';
+    }
   }
 
   return uach;
@@ -110,41 +119,43 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   let specific_download = false;
 
-  if (uach.platform === PLATFORM_WINDOWS) {
-    if (uach.architecture === ARCH_X86) {
-      if (uach.bitness === BITS_64) {
-        specific_download = true;
-        btn_text = `${get_vassal} for ${uach.platform} (64-bit x86)`;
-        btn_link = `${dl_url}/VASSAL-${ver}-windows-x86_64.exe`;
+  if (!uach.mobile) {
+    if (uach.platform === PLATFORM_WINDOWS) {
+      if (uach.architecture === ARCH_X86) {
+        if (uach.bitness === BITS_64) {
+          specific_download = true;
+          btn_text = `${get_vassal} for ${uach.platform} (64-bit x86)`;
+          btn_link = `${dl_url}/VASSAL-${ver}-windows-x86_64.exe`;
+        }
+        else if (uach.bitness === BITS_32) {
+          specific_download = true;
+          btn_text = `${get_vassal} for ${uach.platform} (32-bit x86)`;
+          btn_link = `${dl_url}/VASSAL-${ver}-windows-x86_32.exe`;
+        }
       }
-      else if (uach.bitness === BITS_32) {
+      else if (uach.architecture === ARCH_ARM && uach.bitness === BITS_64) {
         specific_download = true;
-        btn_text = `${get_vassal} for ${uach.platform} (32-bit x86)`;
-        btn_link = `${dl_url}/VASSAL-${ver}-windows-x86_32.exe`;
+        btn_text = `${get_vassal} for ${uach.platform} (64-bit ARM)`;
+        btn_link = `${dl_url}/VASSAL-${ver}-windows-aarch64.exe`;
       }
     }
-    else if (uach.architecture === ARCH_ARM && uach.bitness === BITS_64) {
-      specific_download = true;
-      btn_text = `${get_vassal} for ${uach.platform} (64-bit ARM)`;
-      btn_link = `${dl_url}/VASSAL-${ver}-windows-aarch64.exe`;
+    else if (uach.platform === PLATFORM_MACOS && uach.bitness === BITS_64) {
+      if (uach.architecture === ARCH_X86) {
+        specific_download = true;
+        btn_text = `${get_vassal} for ${uach.platform} (Intel)`;
+        btn_link = `${dl_url}/VASSAL-${ver}-macos-x86_64.dmg`;
+      }
+      else if (uach.architecture === ARCH_ARM) {
+        specific_download = true;
+        btn_text = `${get_vassal} for ${uach.platform} (Apple Silicon)`;
+        btn_link = `${dl_url}/VASSAL-${ver}-macos-aarch64.dmg`;
+      }
     }
-  }
-  else if (uach.platform === PLATFORM_MACOS && uach.bitness === BITS_64) {
-    if (uach.architecture === ARCH_X86) {
+    else if (uach.platform === PLATFORM_LINUX) {
       specific_download = true;
-      btn_text = `${get_vassal} for ${uach.platform} (Intel)`;
-      btn_link = `${dl_url}/VASSAL-${ver}-macos-x86_64.dmg`;
+      btn_text = `${get_vassal} for ${uach.platform}`;
+      btn_link = `${dl_url}/VASSAL-${ver}-linux.tar.bz2`;
     }
-    else if (uach.architecture === ARCH_ARM) {
-      specific_download = true;
-      btn_text = `${get_vassal} for ${uach.platform} (Apple Silicon)`;
-      btn_link = `${dl_url}/VASSAL-${ver}-macos-aarch64.dmg`;
-    }
-  }
-  else if (uach.platform === PLATFORM_LINUX) {
-    specific_download = true;
-    btn_text = `${get_vassal} for ${uach.platform}`;
-    btn_link = `${dl_url}/VASSAL-${ver}-linux.tar.bz2`;
   }
 
   if (!specific_download) {
