@@ -2,8 +2,14 @@ async function try_navigator_userAgentData() {
   let uach = null;
   if (navigator.userAgentData) {
     // this browser supports userAgentData
-    const uach = await navigator.userAgentData.getHighEntropyValues(['architecture', 'bitness', 'platform', 'mobile']);
-  
+    try {
+      uach = await navigator.userAgentData.getHighEntropyValues(['architecture', 'bitness', 'platform', 'mobile']);
+    }
+    catch (e) {
+      // this can happen if the user-agent refuses to return one of the hints
+      uach = {};
+    }
+
     // fill in platform if we need to (do we ever?) 
     if (!uach.platform) {
       uach.platform = navigator.userAgentData.platform;
