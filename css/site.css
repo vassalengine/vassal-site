@@ -1,3 +1,5 @@
+/* common */
+
 img {
   max-width: 100%;
   height: auto;
@@ -9,6 +11,10 @@ img {
   fill: currentColor;
   display: inline-block;
   vertical-align: -0.125em;
+}
+
+.svg-sprites {
+  display: none;
 }
 
 .wordmark {
@@ -26,13 +32,15 @@ img {
   background-repeat: repeat-x;
 }
 
+.footer-icon {
+  width: 3em;
+}
+
+/* index */
+
 .big-icon {
   width: 8em;
   padding-bottom: 0.5em;
-}
-
-.footer-icon {
-  width: 3em;
 }
 
 .cal-icon {
@@ -136,6 +144,8 @@ img {
     height: calc(1200px * 0.825 * 0.75);
   }
 }
+
+/* about */
 
 #donate form button[type="submit"] img {
   vertical-align: middle;

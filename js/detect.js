@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const get_vassal = 'Get Vassal';
   let btn_text = get_vassal;
-  let btn_link = `${base_url}/latest`;
+  let btn_link = '/download.html';
 
   let specific_download = false;
 
