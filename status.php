@@ -44,7 +44,7 @@
   </header>
 
   <div id="alert-bar" class="text-center">
-    <h5 class="py-3">Vassal 3.6.9 is released! See the <a class="link-light" href="https://forum.vassalengine.org/t/vassal-3-6-9-released/76086">news</a> for details.</h5>
+    <h5 class="py-3">Vassal 3.6.10 is released! See the <a class="link-light" href="https://forum.vassalengine.org/t/vassal-3-6-10-released/76275">news</a> for details.</h5>
   </div>
 
   
@@ -249,7 +249,7 @@ catch (Exception $e) {
 
       <div id="colophon" class="text-center pt-5">
         <div class="row text-muted">
-          <p class="col mb-0">Copyright © 2009–2022 The Vassal Team</p>
+          <p class="col mb-0">Copyright © 2009–2023 The Vassal Team</p>
         </div>
         <div class="row text-muted">
           <p class="col">
