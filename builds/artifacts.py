@@ -30,7 +30,7 @@ def get_page(page, per_page):
         API_URL,
         params={'per_page': per_page, 'page': page},
         headers={
-            'Authorization': f'token {TOKEN}'
+            'Authorization': f'token {TOKEN}',
             'Accept': 'application/vnd.github.v3+json'
         }
     ).json()
