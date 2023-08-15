@@ -39,37 +39,18 @@ def get_page(page, per_page):
 @app.route('/')
 @app.route('/list')
 def show_builds():
-    page = request.args.get('page', 1)
+    page = int(request.args.get('page', 1))
+    j = get_page(page, PER_PAGE)
+    total_count = j['total_count']
+    items = j['artifacts']
 
-    if page == 'all':
-        j = get_page(1, PER_PAGE)
-        total_count = j['total_count']
-        items = j['artifacts']
-
-        for p in range(2, math.ceil(total_count / PER_PAGE) + 1):
-            items += get_page(p, PER_PAGE)['artifacts']
-
-        return render_template(
-            'list.html',
-            items=items,
-            page=1,
-            per_page=total_count,
-            total_count=total_count
-        )
-
-    else:
-        page = int(page)
-        j = get_page(page, PER_PAGE)
-        total_count = j['total_count']
-        items = j['artifacts']
-
-        return render_template(
-            'list.html',
-            items=items,
-            page=page,
-            per_page=PER_PAGE,
-            total_count=total_count
-        )
+    return render_template(
+        'list.html',
+         items=items,
+         page=page,
+         per_page=PER_PAGE,
+         total_count=total_count
+    )
 
 
 @app.route('/build/<build_id>')
