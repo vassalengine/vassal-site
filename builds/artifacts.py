@@ -40,16 +40,18 @@ def get_page(page, per_page):
 @app.route('/list')
 def show_builds():
     page = int(request.args.get('page', 1))
+    match = request.args.get('filter')
     j = get_page(page, PER_PAGE)
     total_count = j['total_count']
     items = j['artifacts']
 
     return render_template(
-        'list.html',
-         items=items,
-         page=page,
-         per_page=PER_PAGE,
-         total_count=total_count
+       'list.html',
+        items=items if match is None else [i for i in items if match in i['name']],
+        page=page,
+        per_page=PER_PAGE,
+        total_count=total_count,
+        match=match
     )
 
 

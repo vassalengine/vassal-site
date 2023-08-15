@@ -53,14 +53,14 @@
 <ul class="pagination">
 
 {% if page > 1 %}
-<li class="active"><a href="{{ url_for('show_builds', page=1) }}">|&lt;</a></li>
+<li class="active"><a href="{{ url_for('show_builds', page=1, filter=match) }}">|&lt;</a></li>
 {% else %}
 <li class="disabled">|&lt;</li>
 {% endif %}
 </li>
 
 {% if page > 1 %}
-<li class="active"><a href="{{ url_for('show_builds', page=page-1) }}">&lt;</a></li>
+<li class="active"><a href="{{ url_for('show_builds', page=page-1, filter=match) }}">&lt;</a></li>
 {% else %}
 <li class="disabled">&lt;</li>
 {% endif %}
@@ -68,13 +68,13 @@
 <li class="current">{{ page }}</li>
 
 {% if page * per_page < total_count %}
-<li class="active"><a href="{{ url_for('show_builds', page=page+1) }}">&gt;</a></li>
+<li class="active"><a href="{{ url_for('show_builds', page=page+1, filter=match) }}">&gt;</a></li>
 {% else %}
 <li class="disabled">&gt;</li>
 {% endif %}
 
 {% if page * per_page < total_count %}
-<li class="active"><a href="{{ url_for('show_builds', page=(total_count/per_page)|round(0, 'ceil')|int) }}">&gt;|</a></li>
+<li class="active"><a href="{{ url_for('show_builds', page=(total_count/per_page)|round(0, 'ceil')|int, filter=match) }}">&gt;|</a></li>
 {% else %}
 <li class="disabled">&gt;|</li>
 {% endif %}
