@@ -21,7 +21,7 @@ API_URL = f'https://api.github.com/repos/{USER}/{REPO}/actions/artifacts'
 
 @app.errorhandler(Exception)
 def handle_error(err):
-    tb = ''.join(traceback.format_exception(etype=type(err), value=err, tb=err.__traceback__))
+    tb = ''.join(traceback.format_exception(err))
     return render_template('error.html', err=tb), 500
 
 
