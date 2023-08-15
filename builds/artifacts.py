@@ -16,8 +16,7 @@ TOKEN = app.config['TOKEN']
 USER = app.config['USER']
 REPO = app.config['REPO']
 
-#API_URL = f'https://api.github.com/repos/{USER}/{REPO}/actions/artifacts'
-API_URL = 'https://api.github.com/repos/{USER}/{REPO}/actions/artifacts'.format(USER=USER, REPO=REPO)
+API_URL = f'https://api.github.com/repos/{USER}/{REPO}/actions/artifacts'
 
 
 @app.errorhandler(Exception)
@@ -31,8 +30,7 @@ def get_page(page, per_page):
         API_URL,
         params={'per_page': per_page, 'page': page},
         headers={
-#            'Authorization': f'token {TOKEN}'
-            'Authorization': 'token ' + TOKEN,
+            'Authorization': f'token {TOKEN}'
             'Accept': 'application/vnd.github.v3+json'
         }
     ).json()
@@ -77,12 +75,9 @@ def show_builds():
 @app.route('/build/<build_id>')
 def request_build(build_id):
     r = requests.get(
-#        f'{API_URL}/{build_id}/zip',
-#        headers={'Authorization': f'token {TOKEN}'},
-        '{API_URL}/{build_id}/zip'.format(API_URL=API_URL, build_id=build_id),
+        f'{API_URL}/{build_id}/zip',
         headers={
-#            'Authorization': f'token {TOKEN}'
-            'Authorization': 'token ' + TOKEN,
+            'Authorization': f'token {TOKEN}'
             'Accept': 'application/vnd.github.v3+json'
         },
         allow_redirects=False
