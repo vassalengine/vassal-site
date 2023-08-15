@@ -58,7 +58,7 @@ def request_build(build_id):
     r = requests.get(
         f'{API_URL}/{build_id}/zip',
         headers={
-            'Authorization': f'token {TOKEN}'
+            'Authorization': f'token {TOKEN}',
             'Accept': 'application/vnd.github.v3+json'
         },
         allow_redirects=False
