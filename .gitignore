@@ -1,4 +1,11 @@
 /builds/config.py
+/doc/*
+!/doc/.htaccess
+/javadoc/*
+!/javadoc/.htaccess
+/maven/*
+!/maven/.htaccess
+/releases/VASSAL-*
 /util/abr/config.py
 /util/vserver-config.php
-/releases/VASSAL-*
+/ws
