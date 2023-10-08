@@ -44,7 +44,7 @@
   </header>
 
   <div id="alert-bar" class="text-center">
-    <h5 class="py-3">Vassal 3.7.1 is released! See the <a class="link-light" href="https://forum.vassalengine.org/t/vassal-3-7-1-released/77895">news</a> for details.</h5>
+    <h5 class="py-3">Vassal 3.7.2 is released! See the <a class="link-light" href="https://forum.vassalengine.org/t/vassal-3-7-2-released/78014">news</a> for details.</h5>
   </div>
 
   
