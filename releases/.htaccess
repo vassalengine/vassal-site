@@ -1,5 +1,5 @@
 # Redirect downloads to GitHub when possible
 RewriteEngine on
 RewriteBase /releases
-RewriteRule ^(VASSAL-(3\.(2\.17|[3456]\.\d+)).+)$ https://github.com/vassalengine/vassal/releases/download/$2/$1 [R]
+RewriteRule ^(VASSAL-(3\.(2\.17|[34567]\.\d+)).+)$ https://github.com/vassalengine/vassal/releases/download/$2/$1 [R]
 Options +Indexes
