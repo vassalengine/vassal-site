@@ -33,13 +33,11 @@ def get_page(page, per_page):
     ).json()
 
 def extract_build_id(artifact_name):
-    match = re.search(r'VASSAL-\d+\.\d+\.\d+-SNAPSHOT-([^-]+)-', artifact_name)
-    if match:
-        return match.group(1)
-    match = re.search(r'VASSAL-\d+\.\d+\.\d+-SNAPSHOT-([^-]+)\.(exe|zip|dmg|tar\.bz2)', artifact_name)
-    if match:
-        return match.group(1)
-    return None
+    match = re.search(
+        r'VASSAL-\d+\.\d+\.\d+-SNAPSHOT-([^-]+)\.(exe|dmg|zip|tar\.bz2)',
+        artifact_name
+    )
+    return match.group(1) if match else None
 
 @app.route('/')
 @app.route('/list')
