@@ -48,11 +48,11 @@ def show_builds():
     build_id_filter = request.args.get('build')    # Specific build ID to filter
 
     if build_id_filter:
-        # Logic for filtering by a specific build ID
         items = []          # List to store matching artifacts
         total_count = 0     # Total number of matching artifacts
         api_page = 1        # Current API page number
-        found_build = False # Flag to indicate if the build ID has been found
+        found_matches = False # Flag to indicate if we've found any matches
+        checked_next_page = False # Flag to indicate if we've checked the next page
 
         while True:
             # Fetch artifacts from the API page by page
@@ -61,28 +61,37 @@ def show_builds():
             if not artifacts:
                 break  # Exit loop if no more artifacts are found
 
-            for i, artifact in enumerate(artifacts):
+            # Check current page for matches
+            current_page_matches = []
+            for artifact in artifacts:
                 build_id = extract_build_id(artifact['name'])
                 if build_id == build_id_filter:
-                    # If the artifact's build ID matches the filter
-                    found_build = True
-                    items.append(artifact)
-                    if len(items) >= PER_PAGE:
-                        # If we have enough items for the current page, stop fetching
-                        total_count = len(items)
-                        break
-                elif found_build and build_id != build_id_filter:
-                    # If we've found the build ID but the current artifact has a different build ID,
-                    # perform a lookahead to ensure we're not prematurely ending the build group.
-                    lookahead = artifacts[i:i + 10]
-                    if not any(extract_build_id(la['name']) == build_id_filter for la in lookahead):
-                        # If the build ID is not found in the lookahead, stop fetching
-                        break
-            if len(items) >= PER_PAGE:
-                break
-            if found_build:
-                break
-            api_page += 1
+                    current_page_matches.append(artifact)
+
+            if current_page_matches:
+                found_matches = True
+                items.extend(current_page_matches)
+
+                # If we have enough items for the current page, stop
+                if len(items) >= PER_PAGE:
+                    break
+
+                # If we haven't checked the next page yet, do so
+                if not checked_next_page:
+                    checked_next_page = True
+                    api_page += 1
+                    continue
+                else:
+                    # We've already checked next page, so stop
+                    break
+            else:
+                # No matches in current page
+                if found_matches:
+                    # We had matches before but none in this page, stop
+                    break
+                else:
+                    # No matches found yet, continue to next page
+                    api_page += 1
 
         if filter_term:
             # Apply name filter if provided
