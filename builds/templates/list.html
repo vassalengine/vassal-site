@@ -3,96 +3,419 @@
 <head>
   <title>Builds of vassalengine/vassal</title>
   <style>
-    ul.pagination { 
-      margin: 1em 0;
-      padding: 0;
+    body {
+        line-height: 1.3;
+    }
+
+    h1 {
+        margin-bottom: 0.3em;
+    }
+
+    ul.pagination {
+        margin: 0.3em 0;
+        padding: 0;
     }
 
     ul.pagination::after {
-      content: '';
-      display: block;
-      clear: both;
+        content: '';
+        display: block;
+        clear: both;
     }
 
     ul.pagination a {
-      text-decoration: none;
+        text-decoration: none;
     }
 
     ul.pagination li {
-      list-style: none;
-      float: left;
-      border: 1px solid;
-      border-radius: 4px;
-      padding: 5px;
-      margin: 3px;
+        list-style: none;
+        float: left;
+        border: 1px solid;
+        border-radius: 4px;
+        padding: 3px 5px;
+        margin: 2px 3px;
     }
 
     ul.pagination li.active {
-      color: #0000EE;
-      cursor: default;
+        color: #0000EE;
+        cursor: default;
     }
 
     ul.pagination li.active a {
-      color: #0000EE;
+        color: #0000EE;
     }
 
     ul.pagination li.current {
     }
 
     ul.pagination li.disabled {
-      cursor: not-allowed;
-      color: darkgray;
+        cursor: not-allowed;
+        color: darkgray;
+    }
+
+    .error-message {
+        color: red;
+        margin-top: 0.5em;
+    }
+
+    .controls-row > div {
+        display: inline-block;
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+
+    .controls-row {
+        margin-bottom: 0.5em;
+        display: flex;
+        align-items: center;
+    }
+
+    .controls-row > div:first-child {
+        margin-right: 20px;
+    }
+
+    .filter-button-group {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .filter-button-group button,
+    footer button {
+        cursor: pointer; /* Change cursor to pointer on hover */
+        transition: background-color 0.2s ease; /* Add a smooth transition for color changes */
+    }
+
+    .filter-button-group button:hover,
+    footer button:hover {
+        background-color: #f0f0f0; /* Light gray background on hover */
+    }
+
+    .filter-button-group button:active,
+    footer button:active {
+        background-color: #e0e0e0; /* Slightly darker gray on click/active */
+    }
+
+    .pagination-container {
+        display: inline-block;
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+
+    #build-list-container {
+        margin-bottom: 0.5em;
+    }
+
+    #build-list-container table {
+        margin-top: 0.2em;
+    }
+
+    #build-list-container th,
+    #build-list-container td {
+        padding: 0.4em 0.6em;
+    }
+
+    footer {
+        margin-top: 0.3em;
+        text-align: left;
+    }
+
+    footer .pagination-container {
+        margin-right: 10px;
+    }
+
+    footer button {
+        margin-left: 0;
+    }
+
+    input.placeholder {
+        font-style: italic; /* Apply italic style to placeholder text */
+        color: gray;
     }
   </style>
 </head>
 <body>
 <h1>VASSAL Development Builds</h1>
 
-<header>
-{% block nav %}
-<ul class="pagination">
+<section class="controls-row">
+  <div class="pagination-container top-pagination">
+    <header>
+      {% block nav %}
+      <ul class="pagination">
+        {% if page > 1 %}
+        <li class="active"><a href="{{ url_for('show_builds', page=1, filter=match, build=request.args.get('build', '')) }}" data-page="1">|&lt;</a></li>
+        {% else %}
+        <li class="disabled">|&lt;</li>
+        {% endif %}
 
-{% if page > 1 %}
-<li class="active"><a href="{{ url_for('show_builds', page=1, filter=match) }}">|&lt;</a></li>
-{% else %}
-<li class="disabled">|&lt;</li>
-{% endif %}
-</li>
+        {% if page > 1 %}
+        <li class="active"><a href="{{ url_for('show_builds', page=page-1, filter=match, build=request.args.get('build', '')) }}" data-page="{{ page - 1 }}">&lt;</a></li>
+        {% else %}
+        <li class="disabled">&lt;</li>
+        {% endif %}
 
-{% if page > 1 %}
-<li class="active"><a href="{{ url_for('show_builds', page=page-1, filter=match) }}">&lt;</a></li>
-{% else %}
-<li class="disabled">&lt;</li>
-{% endif %}
+        <li class="current">{{ page }}</li>
 
-<li class="current">{{ page }}</li>
+        {% if page < total_pages %}
+        <li class="active"><a href="{{ url_for('show_builds', page=page+1, filter=match, build=request.args.get('build', '')) }}" data-page="{{ page + 1 }}">&gt;</a></li>
+        {% else %}
+        <li class="disabled">&gt;</li>
+        {% endif %}
 
-{% if page * per_page < total_count %}
-<li class="active"><a href="{{ url_for('show_builds', page=page+1, filter=match) }}">&gt;</a></li>
-{% else %}
-<li class="disabled">&gt;</li>
-{% endif %}
+        {% if page < total_pages %}
+        <li class="active"><a href="{{ url_for('show_builds', page=total_pages, filter=match, build=request.args.get('build', '')) }}" data-page="{{ total_pages }}">|&gt;</a></li>
+        {% else %}
+        <li class="disabled">&gt;|</li>
+        {% endif %}
+      </ul>
+      {% endblock %}
+    </header>
+  </div>
 
-{% if page * per_page < total_count %}
-<li class="active"><a href="{{ url_for('show_builds', page=(total_count/per_page)|round(0, 'ceil')|int, filter=match) }}">&gt;|</a></li>
-{% else %}
-<li class="disabled">&gt;|</li>
-{% endif %}
-</ul>
-{% endblock %}
-</header>
+  <div>
+    <label for="build">Build Id:</label>
+    <input type="text" id="build" name="build" data-placeholder="<i>blank for any</i>" style="max-width: 100px;" value="{{ request.args.get('build', '') }}" maxlength="10">
+  </div>
 
-<table>
-{% for item in items %}
-<tr>
-  <td><a href="{{ url_for('request_build', build_id=item['id']) }}">{{ item['name'] }}</a></td>
-  <td>{{ item['updated_at'].replace('T', ' ').replace('Z', '') }}</td>
-</tr>
-{% endfor %}
-</table>
+  <div>
+    <label for="sub_filter">Filter:</label>
+    <input type="text" id="sub_filter" name="filter" data-placeholder="<i>text to search for</i>" style="width: 30ch;" value="{{ match if match }}">
+  </div>
+
+  <div class="filter-button-group">
+    <button type="submit" id="apply-filter-button" title="<i>Apply current filter and build ID</i>">Apply</button>
+    <button type="button" id="reset-filter-top" title="<i>Reset to full list, page 1</i>">Reset</button>
+  </div>
+</section>
+
+<div id="build-list-container">
+  <table>
+    {% for item in items %}
+    <tr>
+      <td><a href="{{ url_for('request_build', build_id=item['id']) }}">{{ item['name'] }}</a></td>
+      <td>{{ item['updated_at'].replace('T', ' ').replace('Z', '') }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
 
 <footer>
-{{ self.nav() }}
+  <div class="pagination-container bottom-pagination">
+    <header>
+      {{ self.nav() }}
+    </header>
+  </div>
+  <button type="button" id="reset-filter-bottom" title="<i>Reset to full list, page 1</i>">Reset</button>
 </footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      const filterForm = document.getElementById('filter-form');
+      const applyFilterButton = document.getElementById('apply-filter-button');
+      const resetFilterButtonTop = document.getElementById('reset-filter-top');
+      const resetFilterButtonBottom = document.getElementById('reset-filter-bottom');
+      const buildListContainer = document.getElementById('build-list-container');
+      let currentPage = parseInt("{{ page }}");
+      let totalPages = parseInt("{{ total_pages }}");
+      const initialFilterTerm = "{{ match }}";
+      const initialBuildId = "{{ request.args.get('build', '') }}";
+      const cache = {};
+
+      function constructURL(page, subFilter, build) {
+          let url = `/list?page=${page}`;
+          if (subFilter && !document.getElementById('sub_filter').classList.contains('placeholder')) {
+              url += `&filter=${encodeURIComponent(subFilter)}`;
+          }
+          if (build && !document.getElementById('build').classList.contains('placeholder')) {
+              url += `&build=${encodeURIComponent(build)}`;
+          }
+          return url;
+      }
+
+      function fetchAndCache(page, subFilter, build) {
+          const url = constructURL(page, subFilter, build);
+          if (cache[url]) {
+              return Promise.resolve(cache[url]);
+          }
+
+          return fetch(url)
+              .then(response => response.text())
+              .then(data => {
+                  cache[url] = data;
+                  console.log(`Fetched and cached: ${url}`);
+                  return data;
+              })
+              .catch(error => {
+                  console.error(`Error fetching ${url}:`, error);
+                  throw error;
+              });
+      }
+
+      function updateBuildList(htmlContent) {
+          const tempDiv = document.createElement('div');
+          tempDiv.innerHTML = htmlContent;
+          const newTable = tempDiv.querySelector('#build-list-container table');
+          const newPagination = tempDiv.querySelector('.pagination');
+
+          if (newTable) {
+              buildListContainer.innerHTML = newTable.outerHTML;
+          }
+          if (newPagination) {
+              const topPaginationContainer = document.querySelector('.top-pagination');
+              const bottomPaginationContainer = document.querySelector('.bottom-pagination');
+              if (topPaginationContainer) topPaginationContainer.innerHTML = `<header>${newPagination.outerHTML}</header>`;
+              if (bottomPaginationContainer) bottomPaginationContainer.innerHTML = `<header>${newPagination.outerHTML}</header>`;
+              attachPaginationListeners();
+          }
+      }
+
+      function handlePaginationClick(event) {
+          event.preventDefault();
+          const targetPage = parseInt(event.target.getAttribute('data-page'));
+          const currentFilter = document.getElementById('sub_filter').value;
+          const currentBuildId = document.getElementById('build').value;
+
+          if (targetPage) {
+              const url = constructURL(targetPage, currentFilter, currentBuildId);
+              console.log('Pagination URL:', url);
+              const cachedData = cache[url];
+
+              if (cachedData) {
+                  console.log(`Loading from cache: ${url}`);
+                  updateBuildList(cachedData);
+                  currentPage = targetPage;
+                  window.history.pushState({ page: targetPage, filter: currentFilter, buildId: currentBuildId }, '', url);
+              } else {
+                  fetchAndCache(targetPage, currentFilter, currentBuildId)
+                      .then(htmlContent => {
+                          updateBuildList(htmlContent);
+                          currentPage = targetPage;
+                          window.history.pushState({ page: targetPage, filter: currentFilter, buildId: currentBuildId }, '', url);
+                      })
+                      .catch(error => {
+                          console.error('Fetch Error:', error);
+                      });
+              }
+              renderPagination(currentPage, totalPages, currentFilter, currentBuildId); // Re-render pagination
+          }
+      }
+
+      function renderPagination(page, totalPages, filter, build) {
+          const topPagination = document.querySelector('.top-pagination ul.pagination');
+          const bottomPagination = document.querySelector('.bottom-pagination ul.pagination');
+
+          if (!topPagination || !bottomPagination) return;
+
+          let paginationHTML = '';
+
+          if (page > 1) {
+              paginationHTML += `<li class="active"><a href="${constructURL(1, filter, build)}" data-page="1">|&lt;</a></li>`;
+              paginationHTML += `<li class="active"><a href="${constructURL(page - 1, filter, build)}" data-page="${page - 1}">&lt;</a></li>`;
+          } else {
+              paginationHTML += '<li class="disabled">|&lt;</li><li class="disabled">&lt;</li>';
+          }
+
+          paginationHTML += `<li class="current">${page}</li>`;
+
+          if (page < totalPages) {
+              paginationHTML += `<li class="active"><a href="${constructURL(page + 1, filter, build)}" data-page="${page + 1}">&gt;</a></li>`;
+              paginationHTML += `<li class="active"><a href="${constructURL(totalPages, filter, build)}" data-page="${totalPages}">|&gt;</a></li>`;
+          } else {
+              paginationHTML += '<li class="disabled">&gt;</li><li class="disabled">&gt;|</li>';
+          }
+
+          topPagination.innerHTML = paginationHTML;
+          bottomPagination.innerHTML = paginationHTML;
+          attachPaginationListeners();
+      }
+
+      function attachPaginationListeners() {
+          const paginationLinks = document.querySelectorAll('.pagination-container .pagination a[data-page]');
+          paginationLinks.forEach(link => {
+              link.addEventListener('click', handlePaginationClick);
+          });
+      }
+
+      function resetFilterTop() {
+          document.getElementById('build').value = '';
+          document.getElementById('sub_filter').value = '';
+          window.location.href = '/list?page=1';
+      }
+
+      function resetFilterBottom() {
+          console.log('resetFilterBottom function called');
+          const resetURL = '/list?page=1';
+          console.log('Navigating to:', resetURL);
+          window.location.href = resetURL;
+          console.log('Navigation triggered.');
+      }
+
+      if (applyFilterButton) {
+          applyFilterButton.addEventListener('click', function(event) {
+              event.preventDefault();
+              const currentFilter = document.getElementById('sub_filter').value;
+              const currentBuildId = document.getElementById('build').value;
+              const url = constructURL(1, currentFilter, currentBuildId);
+              console.log("Filter URL:", url);
+              window.location.href = url;
+          });
+      }
+
+      if (resetFilterButtonTop) {
+          resetFilterButtonTop.addEventListener('click', resetFilterTop);
+      }
+
+      if (resetFilterButtonBottom) {
+          resetFilterButtonBottom.addEventListener('click', resetFilterBottom);
+      }
+
+      const buildInput = document.getElementById('build');
+      const subFilterInput = document.getElementById('sub_filter');
+
+      function setupPlaceholder(input) {
+          const placeholder = input.getAttribute('data-placeholder');
+          if (input.value === '') {
+              const tempDiv = document.createElement('div');
+              tempDiv.innerHTML = placeholder;
+              input.value = tempDiv.textContent;
+              input.classList.add('placeholder');
+          }
+
+          input.addEventListener('focus', function() {
+              if (input.classList.contains('placeholder')) {
+                  input.value = '';
+                  input.classList.remove('placeholder');
+              }
+          });
+
+          input.addEventListener('blur', function() {
+              if (input.value === '') {
+                  const tempDiv = document.createElement('div');
+                  tempDiv.innerHTML = placeholder;
+                  input.value = tempDiv.textContent;
+                  input.classList.add('placeholder');
+              }
+          });
+      }
+
+      setupPlaceholder(buildInput);
+      setupPlaceholder(subFilterInput);
+
+      buildInput.addEventListener('keydown', handleEnterKeyPress);
+      subFilterInput.addEventListener('keydown', handleEnterKeyPress);
+
+      function handleEnterKeyPress(event) {
+          if (event.keyCode === 13) {
+              event.preventDefault();
+              applyFilterButton.click();
+          }
+      }
+
+      // Initial pre-fetch (only if a filter is active and on page 1)
+      if (initialFilterTerm && currentPage === 1 && totalPages > 1) {
+          const initialBuildIdValue = document.getElementById('build').value;
+          fetchAndCache(currentPage + 1, initialFilterTerm, initialBuildIdValue);
+      }
+  });
+</script>
+
 </body>
 </html>
