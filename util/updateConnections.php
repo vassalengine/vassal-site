@@ -6,7 +6,7 @@ if (!isset($_REQUEST['STATUS'])) {
 }
 
 # reject input from anywhere but our game server
-if ($_SERVER['REMOTE_ADDR'] != '109.237.26.25') {
+if ($_SERVER['REMOTE_ADDR'] != '172.237.96.19') {
   throw new ErrorException('You are not our game server: ' + $_SERVER['REMOTE_ADDR']);
 }
 
