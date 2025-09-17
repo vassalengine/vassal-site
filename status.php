@@ -12,7 +12,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#ffffff">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="/css/site.css"/>
 
 
@@ -44,10 +44,7 @@
   </header>
 
   <div id="alert-bar" class="text-center">
-<!--
-    <h5 class="py-3">Vassal 3.7.16 is released! See the <a class="link-light" href="https://forum.vassalengine.org/t/vassal-3-7-16-released/84971">news</a> for details.</h5>
--->
-    <h5 class="py-3">We've moved to the new module library. See <a class="link-light" href="https://vassalengine.org/library">here</a> for details.</h5>
+    <h5 class="py-3">Vassal 3.7.17 is released! See the <a class="link-light" href="https://forum.vassalengine.org/t/vassal-3-7-17-released/86638">news</a> for details.</h5>
   </div>
 
   
