@@ -117,7 +117,7 @@ def handle_request():
     log_url = LOG_URL + '/' + log_sha1
 
     # submit the report to GitHub
-    body = "| ABR | |\n|-----|-----|\n| Version | {version} |\n| Reporter | {email} |\n| Error Log | [{log_size} bytes]({log_url}) |\n\n<pre>{description}</pre>".format(version=version, email=email, description=description, log_url=log_url, log_size=log_size)
+    body = f'| ABR | |\n|-----|-----|\n| Version | {version} |\n| Reporter | {email} |\n| Error Log | [{log_size} bytes]({log_url}) |\n\n<pre>{description}</pre>'
 
     r = create_issue(summary, body) 
     if r.status_code != 201:
