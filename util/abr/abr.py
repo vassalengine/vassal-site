@@ -26,8 +26,7 @@ S3_REGION = app.config['S3_REGION']
 S3_ENDPOINT = app.config['S3_ENDPOINT']
 S3_BUCKET = app.config['S3_BUCKET']
 
-#GH_API_URL = f'https://api.github.com/repos/{GH_USER}/{GH_REPO}/issues'
-GH_API_URL = 'https://api.github.com/repos/{GH_USER}/{GH_REPO}/issues'.format(GH_USER=GH_USER, GH_REPO=GH_REPO)
+GH_API_URL = f'https://api.github.com/repos/{GH_USER}/{GH_REPO}/issues'
 
 GH_HEADERS={
     'Authorization': 'token ' + GH_TOKEN,
