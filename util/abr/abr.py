@@ -8,6 +8,7 @@ from flask import Flask, app, jsonify, request
 from werkzeug.exceptions import HTTPException
 
 import boto3
+import botocore.config
 import requests
 
 
@@ -62,12 +63,17 @@ def create_issue(title, body):
 
 
 def upload_file(stream, filename, mime_type, bucket_path, md5):
+    config = botocore.config.Config(
+        request_checksum_calculation='when_required'
+    )
+
     s3 = boto3.client(
         's3',
         region_name=S3_REGION,
         endpoint_url=S3_ENDPOINT,
         aws_access_key_id=S3_KEY,
-        aws_secret_access_key=S3_SECRET
+        aws_secret_access_key=S3_SECRET,
+        config=config
     )
 
     h64 = base64.b64encode(md5).decode('ascii')
