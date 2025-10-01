@@ -4,3 +4,4 @@ class Config(object):
     REPO = 'your_repo'
     TOKEN = 'your_token'
     PER_PAGE = 100
+    SECRET_KEY = 'your_key_for_flask_session_security _11AN3RLJY0Qf2u6QybxX0j_QTSIbZSfR3lobZPt9SiUBmcQHmaus'
