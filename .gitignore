@@ -1,4 +1,5 @@
 /builds/config.py
+/builds/venv
 /doc/*
 !/doc/.htaccess
 /javadoc/*
@@ -9,3 +10,4 @@
 /util/abr/config.py
 /util/vserver-config.php
 /ws
+.idea/
