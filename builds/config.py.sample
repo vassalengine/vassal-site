@@ -1,6 +1,0 @@
-
-class Config(object):
-    USER = 'your_username'
-    REPO = 'your_repo'
-    TOKEN = 'your_token'
-    PER_PAGE = 100
