@@ -6,6 +6,7 @@
 /maven/*
 !/maven/.htaccess
 /releases/VASSAL-*
+/releases/vassal_*.deb
 /util/abr/config.py
 /util/vserver-config.php
 /ws
