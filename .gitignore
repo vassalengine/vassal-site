@@ -1,4 +1,3 @@
-/builds/config.py
 /doc/*
 !/doc/.htaccess
 /javadoc/*
