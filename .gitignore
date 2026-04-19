@@ -1,8 +1,7 @@
 /doc/*
 /javadoc/*
 /maven/*
-/releases/VASSAL-*
-/releases/vassal_*.deb
+/releases/*
 /util/abr/config.py
 /util/vserver-config.php
 /ws
