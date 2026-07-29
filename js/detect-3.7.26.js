@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const base_url = 'https://github.com/vassalengine/vassal/releases';
 
-  const ver = '3.7.25';
+  const ver = '3.7.26';
   const dl_url = `${base_url}/download/${ver}`;
 
   const get_vassal = 'Get Vassal';
