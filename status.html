@@ -16,12 +16,11 @@
   <link rel="stylesheet" type="text/css" href="/css/site.css"/>
 
 
-  <script src="/js/mktree.js"></script>
-  <script src="/js/status.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/site.css">
 
-  <link rel="stylesheet" type="text/css" href="/css/mktree.css"/>
-  <link rel="stylesheet" type="text/css" href="/css/status.css"/>
 
+  <script type="module" crossorigin src="/assets/status-o_Xqv1z7.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/status-cMuuTsVs.css">
 </head>
 <body>
   <!-- nav -->
@@ -64,156 +63,8 @@
     </div>
   </div>
 
-  <div class="container mb-5">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <ul class="tab_menu">
-<?php
-
-$when = isset($_GET['when']) ? $_GET['when'] : 'current';
-
-switch ($when) {
-case 'current':
-  echo <<<END
-      <li class="showing"><a href="?when=current">Current</a></li>
-      <li><a href="?when=day">Day</a></li>
-      <li><a href="?when=week">Week</a></li>
-      <li><a href="?when=month">Month</a></li>
-END;
-  break;
-case 'day':
-  echo <<<END
-      <li><a href="?when=current">Current</a></li>
-      <li class="showing"><a href="?when=day">Day</a></li>
-      <li><a href="?when=week">Week</a></li>
-      <li><a href="?when=month">Month</a></li>
-END;
-  break;
-case 'week':
-  echo <<<END
-      <li><a href="?when=current">Current</a></li>
-      <li><a href="?when=day">Day</a></li>
-      <li class="showing"><a href="?when=week">Week</a></li>
-      <li><a href="?when=month">Month</a></li>
-END;
-  break;
-case 'month':
-  echo <<<END
-      <li><a href="?when=current">Current</a></li>
-      <li><a href="?when=day">Day</a></li>
-      <li><a href="?when=week">Week</a></li>
-      <li class="showing"><a href="?when=month">Month</a></li>
-END;
-  break;
-default:
-  throw new ErrorException('Unrecognized when: ' . $when);
-}
-
-?>
-      <li><img id="toggle" src="/images/green-plus.png" alt="Expand"/></li>
-    </ul>
-
-    <div class="tab_contents">
-      <ul class="mktree" id="stree">
-<?php
-
-try {
-  # connect to the SQL server
-  require_once('util/vserver-config.php');
-
-  $dbh = mysqli_connect(SQL_HOST, SQL_USERNAME, SQL_PASSWORD, SQL_DB);
-  if (mysqli_connect_errno()) {
-    throw new RuntimeException('Connection failed: ' . mysqli_connect_error());
-  }
-
-  $query = 'SELECT module_name, game_room, player_name FROM connections ';
-
-  switch ($when) {
-  case 'current':
-    # get the set of rows having the most recent timestamp
-    $query .= 'WHERE time = (SELECT MAX(time) FROM connections) ';
-    break;
-  case 'day':
-    $query .= 'WHERE DATEDIFF(NOW(), time) <= 1 ';
-    break;
-  case 'week':
-    $query .= 'WHERE DATEDIFF(NOW(), time) <= 7 ';
-    break;
-  case 'month':
-    $query .= 'WHERE DATEDIFF(NOW(), time) <= 30 ';
-    break;
-  default:
-    throw new RuntimeException('Unrecognized when: ' . $when);
-  }
-
-  $query .= 'ORDER BY module_name, game_room, player_name';
-
-  $r = mysqli_query($dbh, $query);
-  if (!$r) {
-    throw new RuntimeException('SELECT failed: ' . mysqli_error($dbh));
-  }
-
-  $tree = array();
-
-  while (($row = mysqli_fetch_row($r))) {
-    $tree[$row[0]][$row[1]][] = $row[2];
-  }
-
-  # NB: root is liClosed to prevent the tree from being
-  # rendered as expanded before all the parts are loaded
-  echo sprintf(
-    "<li id=\"root\" class=\"liClosed\">Vassal (%d)\n",
-    mysqli_num_rows($r)
-  );
-
-  mysqli_free_result($r);
-
-  echo ' <ul>', "\n";
-
-  $first = true;
-  foreach ($tree as $module => $rooms) {
-    echo sprintf(
-      " <li%s>%s (%d)\n",
-      $first ? ' id="first_module"' : '',
-      htmlspecialchars($module, ENT_QUOTES),
-      count($rooms, COUNT_RECURSIVE) - count($rooms)
-    );
-    echo '  <ul>', "\n";
-
-    $first = false;
-
-    foreach ($rooms as $room => $players) {
-      echo sprintf(
-        "   <li>%s (%d)\n",
-        htmlspecialchars($room, ENT_QUOTES),
-        count($players)
-      );
-      echo '    <ul>', "\n";
-
-      foreach ($players as $player) {
-        echo '     <li>', htmlspecialchars($player, ENT_QUOTES), "</li>\n";
-      }
-
-      echo '    </ul>', "\n";
-      echo '   </li>', "\n";
-    }
-
-    echo '  </ul>', "\n";
-    echo ' </li>', "\n";
-  }
-}
-catch (Exception $e) {
-  echo sprintf("            <li>Exception: %s</li>\n", $e->getMessage());
-}
-?>
-
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div id="main">
+  </div> 
 
 
 
@@ -238,7 +89,7 @@ catch (Exception $e) {
           </div>
         </a>
 
-        <a class="nav-link link-dark col-md d-flex align-items-start justify-content-center" href="/status.php">
+        <a class="nav-link link-dark col-md d-flex align-items-start justify-content-center" href="/status.html">
           <img class="footer-icon float-start mx-2" src="/images/server-svgrepo-com.svg" width="512" height="512" alt="">
           <div>
             <h5 class="mb-0">Server Status</h5>
@@ -253,7 +104,7 @@ catch (Exception $e) {
         </div>
         <div class="row text-muted">
           <p class="col">
-            <a class="link-secondary text-decoration-none" href="/status.php">Status</a> | <a class="link-secondary text-decoration-none" href="/contact.html">Contact</a> | <a class="link-secondary text-decoration-none" href="/about.html#donate">Donate</a>
+            <a class="link-secondary text-decoration-none" href="/status.html">Status</a> | <a class="link-secondary text-decoration-none" href="/contact.html">Contact</a> | <a class="link-secondary text-decoration-none" href="/about.html#donate">Donate</a>
           </p>
         </div>
       </div>
